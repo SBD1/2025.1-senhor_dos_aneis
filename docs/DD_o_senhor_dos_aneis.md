@@ -2,17 +2,6 @@
 # DD - Dicionário de Dados
 
 > "Um dicionário de dados é uma coleção de metadados que contém definições e representações de elementos de dados."
-## Entidade: Personagem
-
-
-| Campo         | Tipo         | Chave   | Nulo? | Descrição                                  |
-|---------------|--------------|---------|-------|---------------------------------------------|
-| id_personagem | INT          | PK      | NÃO   | Identificador único do personagem           |
-| classe        | VARCHAR(50)  |         | SIM   | Classe geral do personagem                  |
-| vida_maxima   | INT          |         | SIM   | Vida máxima                                 |
-| mana_maxima   | INT          |         | SIM   | Mana máxima                                 |
-| habilidade    | TEXT         |         | SIM   | Habilidade especial                         |
-| hostilidade   | BOOLEAN      |         | SIM   | Indica se é hostil                          |
-| level         | INT          |         | SIM   | Nível do personagem                         |
-| dialogo       | TEXT         |         | SIM   | Fala ou frase característica                |
-| resistencias  | TEXT         |         | SIM   | Resistência a ataques ou elementos          |
+## Entidade: Personagem    
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
