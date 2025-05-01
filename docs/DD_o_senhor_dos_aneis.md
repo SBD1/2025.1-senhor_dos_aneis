@@ -16,8 +16,8 @@
 | mana_Maxima   |              |                            |                    |                        |          |                   |
 | habilidade    |              |                            |                    |                        |          |                   |
 | hostilidade   |
-| level         | || 
-| resistencias  | || 
+| level         | 
+| resistencias  | 
 | dialogo       | 
 
 ## Entidade: Jogador
@@ -44,15 +44,9 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
+| ID_inventário |              |                            |                    |                        |    PK    |                   |
+| id_jogador    |              |                            |                    |                        |          |                   |
+|  Pods         |              |                            |                    |                        |    FK    |                   |
 
 ## Entidade: características  
 
@@ -62,7 +56,11 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+|   ID_Jogador  |              |                            |                    |                        |   FK     |                   |
+| fogo          |              |                            |                    |                        |          |                   |
+| agua          |              |                            |                    |                        |          |                   |
+| terra         |              |                            |                    |                        |          |                   |
+| ar            |              |                            |                    |                        |          |                   |
 
 
 
@@ -71,11 +69,11 @@
 
 #### Observação: 
 
-| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
+| Nome Variável   |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------:   | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+| ID_Jogador      |              |                            |                    |                        |    FK    |                   |
+| atq_Magico      |              |                            |                    |                        |          |                   |
+| atq_MultElemento|              |                            |                    |                        |          |                   |
 
 
 
@@ -87,8 +85,9 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
+|  ID_Jogador   |              |                            |                    |                        |   FK     |                   |
+|  atq_Fisico   |              |                            |                    |                        |          |                   |
+|  bloquear_Dano|              |                            |                    |                        |          |                   |
 
 
 
@@ -100,15 +99,9 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
+| ID_Jogador    |              |                            |                    |                        |    FK    |                   |
+|  atq_Preciso  |              |                            |                    |                        |          |                   |
+|  atq_Rapido   |              |                            |                    |                        |          |                   |
 
 ## Entidade: Sacerdote
 #### Descrição: 
@@ -117,7 +110,9 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+| ID_Jogador    |              |                            |                    |                        |    FK    |                   |
+|bencao_Cura    |              |                            |                    |                        |          |                   |
+|atq_Especial   |              |                            |                    |                        |          |                   |
 
 
 ## Entidade: Criatura
@@ -127,17 +122,8 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-
-
-## Entidade:
-#### Descrição: 
-
-#### Observação: 
-
-| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+| ID_Criatura   |              |                            |                    |                        |    PK    |                   |
+|  XP           |              |                            |                    |                        |          |                   |
 
 
 ## Entidade: Ork
@@ -146,7 +132,9 @@
 #### Observação: 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+|ID_Criatura    |              |                            |                    |                        |    FK    |                   |
+|Raiva          |              |                            |                    |                        |          |                   |
+
 
 ## Entidade: Goblin
 #### Descrição: 
@@ -154,7 +142,10 @@
 #### Observação: 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+| ID_Criatura   |              |                            |                    |                        |  FK      |                   |
+|Raiva          |              |                            |                    |                        |          |                   |
+|furtividade    |              |                            |                    |                        |          |                   |
+|roubo          |              |                            |                    |                        |          |                   |
 
 ## Entidade: NPC
 #### Descrição: 
@@ -162,7 +153,10 @@
 #### Observação: 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+|    UniqueID   |              |                            |                    |                        |    PK    |                   |
+|   quest       |              |                            |                    |                        |          |                   |
+|  localizacao  |              |                            |                    |                        |          |                   |
+|  horaAparicao |              |                            |                    |                        |          |                   |
 
 ## Entidade: Comerciante
 #### Descrição: 
@@ -171,18 +165,18 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-
+|  venda_Item   |              |                            |                    |                        |          |                   |
+| compra_Item   |              |                            |                    |                        |          |                   |
 
 ## Entidade: Guia
 #### Descrição: 
 
 #### Observação: 
 
-| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
+| Nome Variável   |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------:   | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|custo_orientacao |              |                            |                    |                        |          |                   |
+
 
 ## Entidade: Item
 #### Descrição: 
@@ -190,9 +184,10 @@
 #### Observação: 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
-         
+| ID_item       |              |                            |                    |                        |  PK      |                   |
+| id_inventario |              |                            |                    |                        |  FK      |                   |
+|  peso         |              |                            |                    |                        |          |                   |
+| durabilidade  |              |                            |                    |                        |          |                   |        
 
 ## Entidade: Arma
 #### Descrição: 
@@ -200,8 +195,8 @@
 #### Observação: 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-
+|    mãos       |              |                            |                    |                        |          |                   |
+|   dano        |              |                            |                    |                        |          |                
 
 ## Entidade: Armadura
 #### Descrição: 
@@ -209,16 +204,20 @@
 #### Observação: 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
+|  defesa       |              |                            |                    |                        |          |                   |
 
-## Entidade: Cenário
+## Entidade: Batalha
 #### Descrição: 
 
 #### Observação: 
-| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|               |              |                            |                    |                        |          |                   |
-|               |              |                            |                    |                        |          |                   |
+| Nome Variável  |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------:  | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+| ID_batalha     |              |                            |                    |                        |   PK     |                   |
+| Dano_Causado   |              |                            |                    |                        |          |                   |
+|Controle_Dano   |              |                            |                    |                        |          |                   |
+|Ambiente_Batalha|              |                            |                    |                        |          |                   |
+| Dano_Sofrido   |              |                            |                    |                        |          |                   |
+
 
 ## Entidade:
 #### Descrição: 
