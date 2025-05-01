@@ -17,8 +17,8 @@ A proposta inicial da primeira entrega envolve:
 | [Felipe das Neves Freire](https://github.com/FelipeFreire-gf)     | 202046102  | [@FelipeFreire-gf](https://github.com/FelipeFreire-gf)     |
 | [Gabriel Felipe Mesquita Esteves](https://github.com/beltranop)       | 190106956  | [@GabrielMEsteves](https://github.com/GabrielMEsteves)         |
 | [Lucas Soares Barros](https://github.com/lucaaassb)       | 202017700  | [@lucaaassb](https://github.com/lucaaassb)   |
-| [Fernanda Vaz Duarte dos Santos](https://github.com/Fernandavazgit1)         | 221007715 | [@seuusuario](https://github.com/Fernandavazgit1)       |
-| [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)         | 211031889 | [@seuusuario](https://github.com/yan-luca)       |
+| [Fernanda Vaz Duarte dos Santos](https://github.com/Fernandavazgit1)         | 221007715 | [@Fernandavazgit1](https://github.com/Fernandavazgit1)       |
+| [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)         | 211031889 | [@yan-luca](https://github.com/yan-luca)       |
 
 ## 🔗 Link para o GitHub Pages
 
