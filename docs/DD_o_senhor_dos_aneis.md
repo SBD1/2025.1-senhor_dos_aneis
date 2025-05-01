@@ -82,6 +82,22 @@
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 
 
+## Entidade: Sacerdote
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Criatura
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
 ## Entidade:
 #### Descrição: 
 
@@ -89,3 +105,84 @@
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Ork
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Goblin
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: NPC
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Comerciante
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Guia
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Item
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Arma
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Armadura
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade: Cenário
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
+## Entidade:
+#### Descrição: 
+
+#### Observação: 
+
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+
