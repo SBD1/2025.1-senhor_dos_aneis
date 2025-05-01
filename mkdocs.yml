@@ -1,0 +1,47 @@
+repo_url: https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main
+repo_name: 2025.1-senhor_dos_aneis
+
+site_name: Senhor dos Anéis
+
+nav:
+  - Landing Page: landing.html
+  - Home: index.md
+
+  
+  
+
+theme:
+  font:
+    text: Montserrat
+  name: material
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    - header.autohide
+    - navigation.expand
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - navigation.path
+
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: amber
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: #2c2c7c
+      accent: #2c2c7c
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+  icon:
+    repo: fontawesome/brands/git-alt
