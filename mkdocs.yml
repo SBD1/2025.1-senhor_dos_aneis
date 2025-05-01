@@ -4,7 +4,6 @@ repo_name: 2025.1-senhor_dos_aneis
 site_name: Senhor dos Anéis
 
 nav:
-  - Landing Page: landing.html
   - Home: index.md
 
   
