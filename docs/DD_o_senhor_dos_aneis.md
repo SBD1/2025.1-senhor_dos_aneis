@@ -9,16 +9,16 @@
 
 #### Observação: 
 
-| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| iD_Personagem |              | Identificador do personagem|                    |                        |    PK    |                   |
-| vida_Maxima   |              |                            |                    |                        |          |                   |
-| mana_Maxima   |              |                            |                    |                        |          |                   |
-| habilidade    |              |                            |                    |                        |          |                   |
-| hostilidade   |
-| level         | 
-| resistencias  | 
-| dialogo       | 
+| Nome Variável |     Tipo     |         Descrição          | Valores permitidos  | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------: | :----------------:  | :--------------------: | :------: | ----------------- |
+| iD_Personagem |     INT      | Identificador do personagem|Inteiro positivo     |  Não                   |    PK    |                   |
+| vida_Maxima   |     INT      | Valor máximo de vida       |    ≥ 0              |  Não                   |          |                   |
+| mana_Maxima   |     INT      | Valor máximo de mana       |    ≥ 0              |	Sim                    |          |                   |
+| habilidade    | VARCHAR(100) | Nome da habilidade         | Texto               | Sim                    |          |                   |
+| hostilidade   | BOOLEAN      | Indica a hostilidade       | TRUE / FALSE        |  Não                   |          |                   |
+| level         |    	INT      | Nível do personagem        |    ≥ 1              |  Não                   |          |                   |
+| resistencias  |   	TEXT     | Resistências do personagem |Lista de resistências|  Sim                   |          |                   |
+| dialogo       |     TEXT     | diálogo do personagem      |  Texto livre        | 	Sim                  |          |                   |
 
 ## Entidade: Jogador
 
