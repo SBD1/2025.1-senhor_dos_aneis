@@ -6,8 +6,14 @@ site_name: Senhor dos Anéis
 nav:
   - Home: index.md
 
-  
-  
+  - Diagrama Entidade Relacionamento: "der/DER.md"
+
+  - Modelo Entidade Relacionamento: "mer/DER.md"
+
+  - Modelo Relacional: "mer/DER.md"
+
+  - Dicionário de Dados: "dicionario/DD_o_senhor_dos_aneis.md"
+   
 
 theme:
   font:
