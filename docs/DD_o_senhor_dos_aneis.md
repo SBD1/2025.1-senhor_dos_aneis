@@ -212,14 +212,13 @@
 #### Observação:
 Pode ocorrer em ambientes diversos.
 
-| Nome Variável  |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------:  | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| ID_batalha     |   	INT       |	Identificador da batalha        |                    |                        |   PK     |                   |
-| ID_batalha     |   	INT       |Dano total infligido             |                    |                        |   PK     |                   |
-| Dano_Causado   |    INT       |Dano total infligido             |                    |                        |          |                   |
-|Controle_Dano   |VARCHAR(50)   | controle de dano                |                    |                        |          |                   |
-|Ambiente_Batalha|VARCHAR(50)   |	Ambiente onde ocorreu a batalha |                    |                        |          |                   |
-| Dano_Sofrido   |  	INT       | Dano total recebido pelo jogador|                    |                        |          |                   |
+| Nome Variável  |     Tipo     |         Descrição               | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------:  | :----------: | :------------------------:      | :----------------: | :--------------------: | :------: | ----------------- |
+| ID_batalha     |   	INT       |Identificador da batalha         |Inteiro positivo    |   Não                  |   PK     |                   |
+| Dano_Causado   |    INT       |Dano total infligido             | ≥ 0                |   Não                  |          |                   |
+|Controle_Dano   |VARCHAR(50)   | controle de dano                |   Texto            |   Sim                  |          |                   |
+|Ambiente_Batalha|VARCHAR(50)   |	Ambiente onde ocorreu a batalha |   Texto            |   Sim                  |          |                   |
+| Dano_Sofrido   |  	INT       | Dano total recebido pelo jogador|  ≥ 0               |   Não                  |          |                   |
 
 
 
