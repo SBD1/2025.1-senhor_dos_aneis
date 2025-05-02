@@ -7,6 +7,7 @@ Este projeto foi desenvolvido como parte da disciplina **Sistema Banco de Dados 
 
 A proposta inicial da primeira entrega envolve:
 - Diagrama Entidade Entidade Relacionamento
+- Modelo Entidade Relacionamento
 - Modelo Relacional
 - Dicionário de Dados
 
