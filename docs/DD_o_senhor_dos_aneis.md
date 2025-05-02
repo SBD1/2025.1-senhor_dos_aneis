@@ -1,7 +1,7 @@
 
 # DD - Dicionário de Dados
 
-> "Um dicionário de dados é uma coleção de metadados que contém definições e representações de elementos de dados."
+> Um Dicionário de Dados (DD) é um documento que descreve detalhadamente todos os dados usados em um sistema ou banco de dados.
 
 ## Entidade: Personagem  
 
