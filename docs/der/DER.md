@@ -23,4 +23,4 @@
 
 | Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
 |--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
-|1.0  |02/04/2025     | Criação Docs DER | [Gabriel Esteves](https://github.com/GabrielMEsteves) e [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)|
+|1.0  |02/04/2025     | Criação Docs DER | [Gabriel Esteves](https://github.com/GabrielMEsteves) e [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)| [Felipe das Neves](https://github.com/FelipeFreire-gf) |
