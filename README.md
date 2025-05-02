@@ -24,7 +24,7 @@ A proposta inicial da primeira entrega envolve:
 
 Acesse a documentação e demais detalhes do projeto no link abaixo:
 
-➡️ [GitHub Pages – Senhor dos Anéis]()
+➡️ [GitHub Pages – Senhor dos Anéis](sbd1.github.io/2025.1-senhor_dos_aneis/)
 
 ---
 
