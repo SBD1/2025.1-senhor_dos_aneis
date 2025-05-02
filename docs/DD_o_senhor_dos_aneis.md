@@ -171,6 +171,8 @@
 
 #### Descrição: NPC que fornece orientações aos jogadores.
 
+#### Observação:
+
 |  Nome Variável   | Tipo |           Descrição           | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :--------------: | :--: | :---------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 | custo_orientacao | INT  | Custo para receber orientação |        ≥ 0         |          Não           |          |                   |
