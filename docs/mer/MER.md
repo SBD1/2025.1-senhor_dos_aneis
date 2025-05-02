@@ -1,6 +1,6 @@
 # MER - Modelo Entidade Relacionamento
 
-O Modelo Entidade Relacionamento de um banco de dados é um modelo conceitual que descreve as entidades de um domínio de negócios, com seus atributos e seus relacionamentos.
+> O Modelo Entidade Relacionamento de um banco de dados é um modelo conceitual que descreve as entidades de um domínio de negócios, com seus atributos e seus relacionamentos.
 
 **Entidades**: os objetos da realidade a ser modelada.  
 **Relacionamentos**: as associações entre as entidades.  
@@ -108,5 +108,5 @@ id_jogador, fogo, agua, terra, ar
 
 | Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
 |--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
-| 1.0    | 02/05/2025 | Desenvolvimento do artefato   | <a style="color:gold;" href="https://github.com/leozinlima" target="_blank">Felipe das Neves</a> | Todos os Integrantes |
+| 1.0    | 02/05/2025 | Desenvolvimento do artefato   | <a style="color:gold;" href="https://github.com/FelipeFreire-gf" target="_blank">Felipe das Neves</a> | Todos os Integrantes |
 

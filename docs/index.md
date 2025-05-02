@@ -4,7 +4,7 @@
 
 <div style="text-align: justify;">
 <p>
-Este projeto foi desenvolvido como parte da disciplina Sistema Banco de Dados 1 (2025.1) e tem como objetivo aplicar os principais conceitos de modelagem em banco de dados. Inspirado no universo de O Senhor dos Anéis, a modelagem inicial possui, relacionamentos e interações que poderiam existir nesse mundo fictício, como personagens, batalhas, itens e cenários.
+Este projeto está sendo desenvolvido como parte da disciplina Sistema Banco de Dados 1 (2025.1) e tem como objetivo aplicar os principais conceitos de modelagem em banco de dados. Inspirado no universo de O Senhor dos Anéis, a modelagem inicial possui, relacionamentos e interações que poderiam existir nesse mundo fictício, como personagens, batalhas, itens e cenários no formato de um RPG.
 </p>
 </div>
 
