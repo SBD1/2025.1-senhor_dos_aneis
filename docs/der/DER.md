@@ -19,7 +19,8 @@
   <p style="margin-top: -1%; font-size: 12px">Fonte: Autores</p>
 </div>
 
-## 🕰️ Histórico de Versão
-| Data       | Versão | Descrição            | Autores                                                                                                                            |
-|------------|--------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| 02/04/2025 | 1.0    | Criação Docs DER | [Gabriel Esteves](https://github.com/GabrielMEsteves) e [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)|
+# Tabela de Versionamento
+
+| Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
+|--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
+|1.0  |02/04/2025     | Criação Docs DER | [Gabriel Esteves](https://github.com/GabrielMEsteves) e [Yan Luca Viana de Araújo Fontenele](https://github.com/yan-luca)|
