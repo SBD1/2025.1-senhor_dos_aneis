@@ -237,3 +237,10 @@ Pode ocorrer em ambientes diversos.
 |  Controle_Dano   | VARCHAR(50) |         controle de dano         |        INT         |          Sim           |          |                   |
 | Ambiente_Batalha | VARCHAR(50) | Ambiente onde ocorreu a batalha  |       Texto        |          Sim           |          |                   |
 |   Dano_Sofrido   |     INT     | Dano total recebido pelo jogador |        ≥ 0         |          Não           |          |                   |
+
+
+# Tabela de Versionamento 
+
+| Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
+|--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
+| 1.0    | 01/05/2025 | Desenvolvimento do artefato   | <a style="color:gold;" href="https://github.com/lucaaassb" target="_blank">Lucas Soares</a>, <a style="color:gold;" href="https://github.com/Fernandavazgit1" target="_blank">Fernanda Vaz</a> | <a style="color:gold;" href="https://github.com/leozinlima" target="_blank">Felipe das Neves</a> |
