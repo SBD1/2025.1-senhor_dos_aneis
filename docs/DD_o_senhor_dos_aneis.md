@@ -4,7 +4,7 @@
 
 ## Entidade: Personagem
 
-#### Descrição: Representa qualquer personagem do jogo, podendo ser controlado por um jogador ou ser um NPC (personagem não jogável).
+#### Descrição: Representa qualquer personagem do jogo, podendo ser um jogador ou ser um NPC (personagem não jogável), bem como criaturas..
 
 #### Observação:
 
@@ -21,14 +21,14 @@
 
 ## Entidade: Jogador
 
-#### Descrição:
+#### Descrição: Jogador é um tipo de personagem que pode interagir com o jogo.
 
 #### Observação:
 
 |  Nome Variável   |    Tipo     |         Descrição         | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :--------------: | :---------: | :-----------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 |    ID_Jogador    |     INT     | Identificador do jogador  |  Inteiro positivo  |          Não           |          |                   |
-| tipo_equipamento | VARCHAR(50) | Tipo de equipamento usado |      \*\*\*\*      |          Sim           |          |                   |
+| tipo_equipamento | VARCHAR(50) | Tipo de equipamento usado |      Texto         |          Sim           |          |                   |
 |     cenario      | VARCHAR(50) |      Nome do cenário      |      \*\*\*\*      |          Sim           |    PF    |                   |
 
 ## Entidade: inventário
@@ -57,6 +57,17 @@
 |     terra     | INT  |    elemento terra     |      0 a 100       |          Sim           |          |                   |
 |      ar       | INT  |      elemento ar      |      0 a 100       |          Sim           |          |                   |
 
+## Entidade: skill
+
+#### Descrição: Habilidades de um jogador.
+
+#### Observação: Relaciona-se com Jogador.
+
+| Nome Variável | Tipo |       Descrição           | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :-------------------:     | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Jogador   | INT  | Referência ao jogador     |  Inteiro positivo  |          Não           |    FK    |                   |
+|     atq       | INT  | Ataque básico do jogador  |      0 a 100       |          Sim           |          |                   |
+
 ## Entidade: Mago
 
 #### Descrição: Especialização de um jogador com poderes mágicos.
@@ -67,11 +78,11 @@
 | :--------------: | :-----: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 |    ID_Jogador    |   INT   | Referência ao jogador mago |  Inteiro positivo  |          Não           |    FK    |                   |
 |    atq_Magico    |   INT   |      ataques mágicos       |        ≥ 0         |          Não           |          |                   |
-| atq_MultElemento | BOOLEAN |        **\*\*\*\***        |    TRUE / FALSE    |          Sim           |          |                   |
+| atq_MultElemento | BOOLEAN |        **\*\*\*\***        |        ≥ 0         |          Sim           |          |                   |
 
 ## Entidade: Guerreiro
 
-#### Descrição: Classe especializada em combate corpo a corpo com alta resistência física.
+#### Descrição: Classe especializada em combate corpo a corpo.
 
 #### Observação: Herdada da entidade Jogador.
 
@@ -90,12 +101,12 @@
 | Nome Variável | Tipo |           Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :--: | :----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 |  ID_Jogador   | INT  | Referência ao jogador arqueiro |  Inteiro positivo  |          Não           |    FK    |                   |
-|  atq_Preciso  | INT  |      Precisão dos ataques      |      0 a 100       |          Sim           |          |                   |
+|  atq_Preciso  | INT  |      Precisão dos ataques      |        100%         |          Sim           |          |                   |
 |  atq_Rapido   | INT  |     Velocidade dos ataques     |        ≥ 0         |          Sim           |          |                   |
 
 ## Entidade: Sacerdote
 
-#### Descrição: Especialização de um jogador com foco em cura e suporte.
+#### Descrição: Especialização de um jogador com habilidades de cura.
 
 #### Observação: Herdada da entidade Jogador.
 
@@ -107,7 +118,7 @@
 
 ## Entidade: Criatura
 
-#### Descrição: Representa os monstros e criaturas do jogo que podem ser enfrentados.
+#### Descrição: Representa as criaturas do jogo que podem ser enfrentados.
 
 | Nome Variável | Tipo |              Descrição              | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :--: | :---------------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
@@ -162,10 +173,10 @@
 
 #### Observação: Herdada da entidade NPC.
 
-| Nome Variável |  Tipo   |     Descrição      | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :-----: | :----------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  venda_Item   | BOOLEAN | Pode vender itens? |    TRUE / FALSE    |          Não           |          |                   |
-|  compra_Item  | BOOLEAN | Pode vender itens? |    TRUE / FALSE    |          Não           |          |                   |
+| Nome Variável |  Tipo   |     Descrição       | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :-----: | :----------------:  | :----------------: | :--------------------: | :------: | ----------------- |
+|  venda_Item   | BOOLEAN | Pode vender itens?  |    TRUE / FALSE    |          Não           |          |                   |
+|  compra_Item  | BOOLEAN | Pode comprar itens? |    TRUE / FALSE    |          Não           |          |                   |
 
 ## Entidade: Guia
 
@@ -223,6 +234,6 @@ Pode ocorrer em ambientes diversos.
 | :--------------: | :---------: | :------------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 |    ID_batalha    |     INT     |     Identificador da batalha     |  Inteiro positivo  |          Não           |    PK    |                   |
 |   Dano_Causado   |     INT     |       Dano total infligido       |        ≥ 0         |          Não           |          |                   |
-|  Controle_Dano   | VARCHAR(50) |         controle de dano         |       Texto        |          Sim           |          |                   |
+|  Controle_Dano   | VARCHAR(50) |         controle de dano         |        INT         |          Sim           |          |                   |
 | Ambiente_Batalha | VARCHAR(50) | Ambiente onde ocorreu a batalha  |       Texto        |          Sim           |          |                   |
 |   Dano_Sofrido   |     INT     | Dano total recebido pelo jogador |        ≥ 0         |          Não           |          |                   |
