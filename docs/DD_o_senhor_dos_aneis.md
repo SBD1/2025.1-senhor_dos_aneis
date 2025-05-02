@@ -5,7 +5,7 @@
 
 ## Entidade: Personagem  
 
-#### Descrição: 
+#### Descrição: Representa qualquer personagem do jogo, podendo ser controlado por um jogador ou ser um NPC (personagem não jogável).
 
 #### Observação: 
 
@@ -28,9 +28,9 @@
 
 | Nome Variável  |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------:  | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| ID_Jogador     |              |                            |                    |                        |          |                   |
-|tipo_equipamento|              |                            |                    |                        |          |                   |
-|  cenario       |              |                            |                    |                        |   PF     |                   | 
+| ID_Jogador     |    INT       |  Identificador do jogador  |Inteiro positivo    |        Não             |          |                   |
+|tipo_equipamento| 	VARCHAR(50) |  Tipo de equipamento usado |   ****             |        Sim             |          |                   |
+|  cenario       | 	VARCHAR(50) |  Nome do cenário           |   ****             |        Sim             |   PF     |                   | 
   
 
 
@@ -38,42 +38,42 @@
  
 ## Entidade: inventário 
 
-#### Descrição: 
+#### Descrição: Armazena os itens que um jogador possui.
 
-#### Observação: 
+#### Observação: Relaciona-se com Jogador e pode conter múltiplos itens.
 
-| Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| ID_inventário |              |                            |                    |                        |    PK    |                   |
-| id_jogador    |              |                            |                    |                        |          |                   |
-|  Pods         |              |                            |                    |                        |    FK    |                   |
+| Nome Variável |     Tipo     |         Descrição                   | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :----------: | :------------------------:          | :----------------: | :--------------------: | :------: | ----------------- |
+| ID_inventário |    	INT      |Identificador do inventário          |  Inteiro positivo  |      Não               |    PK    |                   |
+| id_jogador    |     INT      |Jogador ao qual o inventário pertence| Inteiro positivo   |      Não               |          |                   |
+|  Pods         |     FLOAT    |      ****                           |        ≥ 0         |      Sim               |    FK    |                   |
 
 ## Entidade: características  
 
-#### Descrição: 
+#### Descrição: Atributos vinculados ao jogador.
 
-#### Observação: 
+#### Observação: Relaciona-se com Jogador.
 
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|   ID_Jogador  |              |                            |                    |                        |   FK     |                   |
-| fogo          |              |                            |                    |                        |          |                   |
-| agua          |              |                            |                    |                        |          |                   |
-| terra         |              |                            |                    |                        |          |                   |
-| ar            |              |                            |                    |                        |          |                   |
+| ID_Jogador    |     	INT    |Referência ao jogador       | 	Inteiro positivo |       	Não             |   FK     |                   |
+| fogo          |     	INT    |elemento fogo               |        0 a 100     |        Sim             |          |                   |
+| agua          |      	INT    |elemento água               |        0 a 100     |        Sim             |          |                   |
+| terra         |      	INT    |elemento terra              |        0 a 100     |        Sim             |          |                   |
+| ar            |       INT    |elemento ar                 |        0 a 100     |        Sim             |          |                   |
 
 
 
 ## Entidade:  Mago 
-#### Descrição: 
+#### Descrição: Especialização de um jogador com poderes mágicos.
 
-#### Observação: 
+#### Observação: Herdada da entidade Jogador.
 
 | Nome Variável   |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------:   | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| ID_Jogador      |              |                            |                    |                        |    FK    |                   |
-| atq_Magico      |              |                            |                    |                        |          |                   |
-| atq_MultElemento|              |                            |                    |                        |          |                   |
+| ID_Jogador      |    	INT      |Referência ao jogador mago  |Inteiro positivo    |   	Não                 |    FK    |                   |
+| atq_Magico      |    	INT      |ataques mágicos             |  ≥ 0               |   	Não                 |          |                   |
+| atq_MultElemento|BOOLEAN       |   ********                 |  TRUE / FALSE      |   	Sim                 |          |                   |
 
 
 
