@@ -41,7 +41,7 @@
 | :-----------: | :---: | :-----------------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 | ID_inventário |  INT  |      Identificador do inventário      |  Inteiro positivo  |          Não           |    PK    |                   |
 |  id_jogador   |  INT  | Jogador ao qual o inventário pertence |  Inteiro positivo  |          Não           |          |                   |
-|     Pods      | FLOAT |               \*\*\*\*                |        ≥ 0         |          Sim           |    FK    |                   |
+|     Pods      | FLOAT |       Capacidade do inventário        |        ≥ 0         |          Sim           |    FK    |                   |
 
 ## Entidade: características
 
@@ -170,10 +170,6 @@
 ## Entidade: Guia
 
 #### Descrição: NPC que fornece orientações aos jogadores.
-
-|  Nome Variável   | Tipo  |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :--------------: | :---: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| custo_orientacao | FLOAT | Custo para obter ajuda/dica |        ≥ 0         |          Sim           |          |                   |
 
 |  Nome Variável   | Tipo |           Descrição           | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :--------------: | :--: | :---------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
