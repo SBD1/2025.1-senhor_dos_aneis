@@ -13,7 +13,6 @@ nav:
   - Modelo Relacional: "mer/DER.md"
 
   - Dicionário de Dados: "dicionario/DD_o_senhor_dos_aneis.md"
-   
 
 theme:
   font:
@@ -34,16 +33,16 @@ theme:
   palette:
     # Palette toggle for light mode
     - scheme: default
-      primary: amber
-      accent: amber
+      primary: black
+      accent: black
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
-      primary: #2c2c7c
-      accent: #2c2c7c
+      primary: black
+      accent: black
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
