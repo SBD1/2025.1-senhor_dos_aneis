@@ -1,6 +1,6 @@
 # DD - Dicionário de Dados
 
-> "Um dicionário de dados é uma coleção de metadados que contém definições e representações de elementos de dados."
+> Um Dicionário de Dados (DD) é um documento que descreve detalhadamente todos os dados usados em um sistema ou banco de dados.
 
 ## Entidade: Personagem
 
@@ -71,27 +71,27 @@
 
 ## Entidade: Guerreiro
 
-#### Descrição: Especialização de um jogador com foco em combate corpo a corpo e defesa física.
+#### Descrição: Classe especializada em combate corpo a corpo com alta resistência física.
 
 #### Observação: Herdada da entidade Jogador.
 
-| Nome Variável |  Tipo   |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :-----: | :-----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  ID_Jogador   |   INT   | Referência ao jogador guerreiro |  Inteiro positivo  |          Não           |    FK    |                   |
-|  atq_Fisico   |   INT   |     Poder de ataque físico      |        ≥ 0         |          Não           |          |                   |
-| bloquear_Dano | BOOLEAN |   Capacidade de bloquear dano   |    TRUE / FALSE    |          Sim           |          |                   |
+| Nome Variável | Tipo |             Descrição              | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :--------------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Jogador   | INT  | Identificador do jogador guerreiro |  Inteiro positivo  |          Não           |    FK    |                   |
+|  atq_Fisico   | INT  |       Força de ataque físico       |        ≥ 0         |          Não           |          |                   |
+| bloquear_Dano | INT  |    Capacidade de bloquear dano     |      0 a 100       |          Sim           |          |                   |
 
 ## Entidade: Arqueiro
 
 #### Descrição: Especialização de um jogador com foco em ataques à distância e precisão.
 
-#### Observação: Herdada da entidade Jogador.
+#### Observação: Herda de Jogador.
 
-| Nome Variável |  Tipo   |           Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :-----: | :----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  ID_Jogador   |   INT   | Referência ao jogador arqueiro |  Inteiro positivo  |          Não           |    FK    |                   |
-|  atq_Preciso  |   INT   |    Poder de ataque preciso     |        ≥ 0         |          Não           |          |                   |
-|  atq_Rapido   | BOOLEAN |  Capacidade de ataque rápido   |    TRUE / FALSE    |          Sim           |          |                   |
+| Nome Variável | Tipo |           Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Jogador   | INT  | Referência ao jogador arqueiro |  Inteiro positivo  |          Não           |    FK    |                   |
+|  atq_Preciso  | INT  |      Precisão dos ataques      |      0 a 100       |          Sim           |          |                   |
+|  atq_Rapido   | INT  |     Velocidade dos ataques     |        ≥ 0         |          Sim           |          |                   |
 
 ## Entidade: Sacerdote
 
@@ -99,17 +99,20 @@
 
 #### Observação: Herdada da entidade Jogador.
 
-| Nome Variável |  Tipo   |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :-----: | :-----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  ID_Jogador   |   INT   | Referência ao jogador sacerdote |  Inteiro positivo  |          Não           |    FK    |                   |
-|  bencao_Cura  |   INT   |          Poder de cura          |        ≥ 0         |          Não           |          |                   |
-| atq_Especial  | BOOLEAN |  Habilidade de ataque especial  |    TRUE / FALSE    |          Sim           |          |                   |
+| Nome Variável | Tipo |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :-----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Jogador   | INT  | Referência ao jogador sacerdote |  Inteiro positivo  |          Não           |    FK    |                   |
+|  bencao_Cura  | INT  |          Poder de cura          |        ≥ 0         |          Sim           |          |                   |
+| atq_Especial  | INT  |     Dano de ataque especial     |        ≥ 0         |          Sim           |          |                   |
 
 ## Entidade: Criatura
 
 #### Descrição: Representa os monstros e criaturas do jogo que podem ser enfrentados.
 
-#### Observação: Entidade que representa inimigos não jogáveis.
+| Nome Variável | Tipo |              Descrição              | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :---------------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Criatura  | INT  |   Identificador único da criatura   |  Inteiro positivo  |          Não           |    PK    |                   |
+|      XP       | INT  | Experiência concedida ao derrotá-la |        ≥ 0         |          Não           |          |                   |
 
 | Nome Variável | Tipo |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :--: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
@@ -120,24 +123,25 @@
 
 #### Descrição: Tipo específico de criatura com características próprias.
 
-#### Observação: Herdada da entidade Criatura.
+#### Observação:
 
-| Nome Variável | Tipo |         Descrição         | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :--: | :-----------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  ID_Criatura  | INT  | Referência à criatura Ork |  Inteiro positivo  |          Não           |    FK    |                   |
-|     Raiva     | INT  |   Nível de raiva do Ork   |      0 a 100       |          Não           |          |                   |
+| Nome Variável | Tipo |       Descrição       | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :-------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Criatura  | INT  | Referência à criatura |  Inteiro positivo  |          Não           |    FK    |                   |
+|     Raiva     | INT  | Grau de agressividade |      0 a 100       |          Sim           |          |                   |
 
 ## Entidade: Goblin
 
 #### Descrição: Tipo específico de criatura com habilidades furtivas.
 
-#### Observação: Herdada da entidade Criatura.
+#### Observação:
 
-| Nome Variável |  Tipo   |          Descrição           | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :-----: | :--------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  ID_Criatura  |   INT   | Referência à criatura Goblin |  Inteiro positivo  |          Não           |    FK    |                   |
-|  furtividade  |   INT   |     Nível de furtividade     |      0 a 100       |          Não           |          |                   |
-|     roubo     | BOOLEAN |  Capacidade de roubar itens  |    TRUE / FALSE    |          Sim           |          |                   |
+| Nome Variável | Tipo |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  ID_Criatura  | INT  | Referência à criatura base |  Inteiro positivo  |          Não           |    FK    |                   |
+|     Raiva     | INT  |   Grau de agressividade    |      0 a 100       |          Sim           |          |                   |
+|  furtividade  | INT  |    Nível de furtividade    |      0 a 100       |          Sim           |          |                   |
+|     roubo     | INT  |    Capacidade de roubo     |      0 a 100       |          Sim           |          |                   |
 
 ## Entidade: NPC
 
@@ -148,9 +152,9 @@
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 |   UniqueID    |     INT      | Identificador único do NPC |  Inteiro positivo  |          Não           |    PK    |                   |
-|     quest     |     TEXT     | Missão oferecida pelo NPC  |    Texto livre     |          Sim           |          |                   |
-|  localizacao  | VARCHAR(100) | Localização do NPC no mapa |       Texto        |          Não           |          |                   |
-| horaAparicao  |  TIMESTAMP   | Horário que o NPC aparece  | Formato timestamp  |          Sim           |          |                   |
+|     quest     | VARCHAR(100) |                            |                    |                        |          |                   |
+|  localizacao  | VARCHAR(100) |                            |                    |                        |          |                   |
+| horaAparicao  |   \*\*\*\*   |                            |                    |                        |          |                   |
 
 ## Entidade: Comerciante
 
@@ -158,16 +162,18 @@
 
 #### Observação: Herdada da entidade NPC.
 
-| Nome Variável |  Tipo   |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :-----: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|  venda_Item   | BOOLEAN | Capacidade de vender itens  |    TRUE / FALSE    |          Não           |          |                   |
-|  compra_Item  | BOOLEAN | Capacidade de comprar itens |    TRUE / FALSE    |          Não           |          |                   |
+| Nome Variável |  Tipo   |     Descrição      | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :-----: | :----------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|  venda_Item   | BOOLEAN | Pode vender itens? |    TRUE / FALSE    |          Não           |          |                   |
+|  compra_Item  | BOOLEAN | Pode vender itens? |    TRUE / FALSE    |          Não           |          |                   |
 
 ## Entidade: Guia
 
 #### Descrição: NPC que fornece orientações aos jogadores.
 
-#### Observação: Herdada da entidade NPC.
+|  Nome Variável   | Tipo  |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :--------------: | :---: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+| custo_orientacao | FLOAT | Custo para obter ajuda/dica |        ≥ 0         |          Sim           |          |                   |
 
 |  Nome Variável   | Tipo |           Descrição           | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :--------------: | :--: | :---------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
@@ -175,58 +181,50 @@
 
 ## Entidade: Item
 
-#### Descrição: Objetos que podem ser coletados e utilizados no jogo.
+#### Descrição: Objeto armazenável no inventário do jogador.
 
-#### Observação: Itens que podem ser equipados ou utilizados pelos jogadores.
+#### Observação:
 
-| Nome Variável | Tipo  |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :---: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|    ID_item    |  INT  | Identificador único do item |  Inteiro positivo  |          Não           |    PK    |                   |
-| id_inventario |  INT  |  Referência ao inventário   |  Inteiro positivo  |          Sim           |    FK    |                   |
-|     peso      | FLOAT |        Peso do item         |        > 0         |          Não           |          |                   |
-| durabilidade  |  INT  |    Durabilidade do item     |      0 a 100       |          Não           |          |                   |
+| Nome Variável | Tipo  |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :---: | :-----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|    ID_item    |  INT  |      Identificador do item      |  Inteiro positivo  |          Não           |    PK    |                   |
+| id_inventario |  INT  |   Inventário ao qual pertence   |  Inteiro positivo  |          Não           |    FK    |                   |
+|     peso      | FLOAT |          Peso do item           |        ≥ 0         |          Não           |          |                   |
+| durabilidade  |  INT  | Número de usos antes de quebrar |        ≥ 0         |          Sim           |          |                   |
 
 ## Entidade: Arma
 
-#### Descrição: Item específico para combate.
+#### Descrição: : Item ofensivo usado em batalha.
 
-#### Observação: Herdada da entidade Item.
+#### Observação: Herda de Item.
 
-| Nome Variável | Tipo |           Descrição            | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :--: | :----------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|     mãos      | INT  | Quantidade de mãos necessárias |       1 ou 2       |          Não           |          |                   |
-|     dano      | INT  |     Dano causado pela arma     |        ≥ 0         |          Não           |          |                   |
+| Nome Variável | Tipo |  Descrição   | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :----------: | :----------------: | :--------------------: | :------: | ----------------- |
+|     mãos      | INT  |              |       1 ou 2       |          Não           |          |                   |
+|     dano      | INT  | Dano causado |        ≥ 0         |          Não           |          |
 
 ## Entidade: Armadura
 
-#### Descrição: Item específico para defesa.
+#### Descrição: Item defensivo que reduz dano.
 
-#### Observação: Herdada da entidade Item.
+#### Observação:
 
-| Nome Variável | Tipo |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :-----------: | :--: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|    defesa     | INT  | Valor de defesa da armadura |        ≥ 0         |          Não           |          |                   |
+| Nome Variável | Tipo |       Descrição        | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :-----------: | :--: | :--------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|    defesa     | INT  | Capacidade de proteção |        ≥ 0         |          Não           |          |                   |
 
 ## Entidade: Batalha
 
-#### Descrição: Registro dos combates entre personagens.
+#### Descrição: Representa um combate entre personagens e criaturas.
 
-#### Observação: Armazena informações sobre as batalhas no jogo.
+#### Observação:
 
-|  Nome Variável   |    Tipo     |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-| :--------------: | :---------: | :-------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-|    ID_batalha    |     INT     |  Identificador da batalha   |  Inteiro positivo  |          Não           |    PK    |                   |
-|   Dano_Causado   |     INT     |     Dano total causado      |        ≥ 0         |          Não           |          |                   |
-|  Controle_Dano   |   BOOLEAN   |   Controle de dano ativo    |    TRUE / FALSE    |          Não           |          |                   |
-| Ambiente_Batalha | VARCHAR(50) | Local onde ocorre a batalha |       Texto        |          Não           |          |                   |
-|   Dano_Sofrido   |     INT     |     Dano total recebido     |        ≥ 0         |          Não           |          |                   |
+Pode ocorrer em ambientes diversos.
 
-## Entidade:
-
-#### Descrição:
-
-#### Observação: | Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
-
-| :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
-| | | | | | | |
-| | | | | | | |
+|  Nome Variável   |    Tipo     |            Descrição             | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
+| :--------------: | :---------: | :------------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
+|    ID_batalha    |     INT     |     Identificador da batalha     |  Inteiro positivo  |          Não           |    PK    |                   |
+|   Dano_Causado   |     INT     |       Dano total infligido       |        ≥ 0         |          Não           |          |                   |
+|  Controle_Dano   | VARCHAR(50) |         controle de dano         |       Texto        |          Sim           |          |                   |
+| Ambiente_Batalha | VARCHAR(50) | Ambiente onde ocorreu a batalha  |       Texto        |          Sim           |          |                   |
+|   Dano_Sofrido   |     INT     | Dano total recebido pelo jogador |        ≥ 0         |          Não           |          |                   |
