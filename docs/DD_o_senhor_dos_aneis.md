@@ -152,9 +152,9 @@
 | Nome Variável |     Tipo     |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :----------: | :------------------------: | :----------------: | :--------------------: | :------: | ----------------- |
 |   UniqueID    |     INT      | Identificador único do NPC |  Inteiro positivo  |          Não           |    PK    |                   |
-|     quest     | VARCHAR(100) |                            |                    |                        |          |                   |
-|  localizacao  | VARCHAR(100) |                            |                    |                        |          |                   |
-| horaAparicao  |   \*\*\*\*   |                            |                    |                        |          |                   |
+|     quest     | VARCHAR(100) |     Missão disponível      |       Texto        |          Sim           |          |                   |
+|  localizacao  | VARCHAR(100) |      Posição no mapa       |       Texto        |          Não           |          |                   |
+| horaAparicao  |  TIMESTAMP   |   Horário de surgimento    | Formato timestamp  |          Sim           |          |                   |
 
 ## Entidade: Comerciante
 
@@ -201,7 +201,7 @@
 | Nome Variável | Tipo |  Descrição   | Valores permitidos | Permite valores nulos? | É chave? | Outras Restrições |
 | :-----------: | :--: | :----------: | :----------------: | :--------------------: | :------: | ----------------- |
 |     mãos      | INT  |              |       1 ou 2       |          Não           |          |                   |
-|     dano      | INT  | Dano causado |        ≥ 0         |          Não           |          |
+|     dano      | INT  | Dano causado |        ≥ 0         |          Não           |          |                   |
 
 ## Entidade: Armadura
 
