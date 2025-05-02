@@ -3,7 +3,7 @@
 
 ## DER - Senhor dos Aneis
 
-<img src="../assets/diagramaEntidadeRelacionamento.png">
+<img src="https://raw.githubusercontent.com/SBD1/2025.1-senhor_dos_aneis/refs/heads/main/docs/assets/diagramaEntidadeRelacionamento.png">
 
 <div style="text-align: center">
   <p>Figura 1: DER Senhor dos Aneis</p>
@@ -12,7 +12,7 @@
 
 ## DER - Mapa do Jogo
 
-<img src="../assets/diagramaEntidadeRelacionamentoMapa.png"/>
+<img src="https://raw.githubusercontent.com/SBD1/2025.1-senhor_dos_aneis/refs/heads/main/docs/assets/diagramaEntidadeRelacionamentoMapa.png"/>
 
 <div style="text-align: center">
   <p>Figura 2: DER Mapa</p>

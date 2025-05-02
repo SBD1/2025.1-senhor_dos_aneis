@@ -3,7 +3,7 @@
 
 ## Modelo Relacionamento - Senhor dos Aneis
 
-<img src="../assets/modeloRelacional.png"/>
+<img src="https://raw.githubusercontent.com/SBD1/2025.1-senhor_dos_aneis/refs/heads/main/docs/assets/diagramaEntidadeRelacionamentoMapa.png"/>
 
 <div style="text-align: center">
   <p>Figura 1: Modelo Relacional Senhor dos Aneis</p>
