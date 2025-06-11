@@ -25,23 +25,23 @@ INSERT INTO caracteristicas (ID_jogador, fogo, agua, terra, ar) VALUES
 (3, 40, 60, 30, 50); 
 
 
-INSERT INTO Inventario (ID_Inventario, ID_personagem, Poder)
+INSERT INTO Inventario (ID_Inventario, ID_personagem, Pods)
 VALUES 
-    (1, 1, 30),   -- Frodo
-    (2, 2, 90);   -- Aragorn
+    (1, 1, 30),   
+    (2, 2, 90);   
 
 
 INSERT INTO Item (ID_Item, ID_Inventario, peso, durabilidade)
 VALUES 
-    (14, 1, 0.1, 250),   -- O Um Anel (Frodo)
-    (102, 2, 4.5, 200),  -- Espada Andúril (Aragorn)
-    (143, 1, 2.0, 100);  -- Cota de Mithril (Frodo)
+    (1, 1, 0.1, 250),   
+    (2, 2, 4.5, 200),  
+    (3, 1, 2.0, 100);  
 
-INSERT INTO Arma (ID_item, dano, delay)
+INSERT INTO Arma (ID_item, dano)
 VALUES 
-    (102, 50, 1.2),   -- Andúril
-    (14, 25, 0.8);    -- Ferroada (Sting)
+    (1, 50),   
+    (2, 25);   
 
 INSERT INTO Armadura (ID_item, defesa)
 VALUES 
-    (143, 95);   -- Cota de Mithril (alta defesa)
+    (1, 95);   
