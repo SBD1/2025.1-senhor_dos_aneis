@@ -45,3 +45,30 @@ VALUES
 INSERT INTO Armadura (ID_item, defesa)
 VALUES 
     (1, 95);   
+
+-- Inserir cenários
+INSERT INTO cenario (norte_id, leste_id, oeste_id, sul_id, sol, chuva, noite, dia) VALUES
+(NULL, 2, NULL, 3, 'Ensolarado', 'Sem chuva', 'Lua cheia', 'Claro'),
+(NULL, NULL, 1, 4, 'Nublado', 'Chuva fraca', 'Escuro', 'Parcialmente nublado'),
+(1, 4, NULL, NULL, 'Sol forte', 'Tempestade', 'Estrelado', 'Brilhante'),
+(3, NULL, 2, NULL, 'Pôr do sol', 'Garoa', 'Neblina', 'Amanhecer');
+
+-- Inserir guerreiros 
+INSERT INTO guerreiro (id_personagem, atq_Fisico, bloquear_Dano) VALUES
+(1, 85, 70),
+(2, 92, 65);
+
+-- Inserir sacerdotes 
+INSERT INTO sacerdote (id_personagem, bencao_Cura, atq_Especial) VALUES
+(3, 90, 45),
+(4, 85, 50);
+
+-- Inserir magos 
+INSERT INTO mago (id_personagem, atq_Magico, atq_MultiElemento) VALUES
+(5, 95, 80),
+(6, 88, 75);
+
+-- Inserir arqueiros 
+INSERT INTO arqueiro (id_personagem, atq_Preciso, atq_Rapido) VALUES
+(7, 90, 85),
+(8, 87, 90);

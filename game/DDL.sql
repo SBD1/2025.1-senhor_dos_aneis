@@ -63,3 +63,52 @@ CREATE TABLE IF NOT EXISTS armadura (
     defesa INT CHECK (defesa >= 0),  -- Defesa da armadura (ex: Cota de Mithril com defesa 90)
     FOREIGN KEY (id_item) REFERENCES Item(id_item) ON DELETE RESTRICT
 );
+
+-- Tabela Cenario
+CREATE TABLE cenario (
+    id_cenario INT PRIMARY KEY AUTO_INCREMENT,
+    norte_id INT,
+    leste_id INT,
+    oeste_id INT,
+    sul_id INT,
+    sol VARCHAR(50),
+    chuva VARCHAR(50),
+    noite VARCHAR(50),
+    dia VARCHAR(50),
+    FOREIGN KEY (norte_id) REFERENCES cenario(id_cenario),
+    FOREIGN KEY (leste_id) REFERENCES cenario(id_cenario),
+    FOREIGN KEY (oeste_id) REFERENCES cenario(id_cenario),
+    FOREIGN KEY (sul_id) REFERENCES cenario(id_cenario)
+);
+
+-- Tabela Guerreiro
+CREATE TABLE guerreiro (
+    id_personagem INT PRIMARY KEY,
+    atq_Fisico INT,
+    bloquear_Dano INT,
+    FOREIGN KEY (id_personagem) REFERENCES personagem(id_personagem)
+);
+
+-- Tabela Sacerdote
+CREATE TABLE sacerdote (
+    id_personagem INT PRIMARY KEY,
+    bencao_Cura INT,
+    atq_Especial INT,
+    FOREIGN KEY (id_personagem) REFERENCES personagem(id_personagem)
+);
+
+-- Tabela Mago
+CREATE TABLE mago (
+    id_personagem INT PRIMARY KEY,
+    atq_Magico INT,
+    atq_MultiElemento INT,
+    FOREIGN KEY (id_personagem) REFERENCES personagem(id_personagem)
+);
+
+-- Tabela Arqueiro
+CREATE TABLE arqueiro (
+    id_personagem INT PRIMARY KEY,
+    atq_Preciso INT,
+    atq_Rapido INT,
+    FOREIGN KEY (id_personagem) REFERENCES personagem(id_personagem)
+);
