@@ -63,3 +63,58 @@ CREATE TABLE IF NOT EXISTS armadura (
     defesa INT CHECK (defesa >= 0),  -- Defesa da armadura (ex: Cota de Mithril com defesa 90)
     FOREIGN KEY (id_item) REFERENCES Item(id_item) ON DELETE RESTRICT
 );
+
+-- Felipe
+
+-- Tabela base para todas as entidades do tipo personagem
+
+CREATE TABLE Personagem (
+    ID_personagem SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    vida_maxima INT NOT NULL,
+    mana_maxima INT NOT NULL,
+    habilidade VARCHAR(255),
+    dificuldade VARCHAR(50),
+    level INT DEFAULT 1,
+    resistencia VARCHAR(255),
+    dialogo TEXT
+);
+
+-- Tabela especializada para NPCs (Non-Player Characters)
+-- Herda as características de Personagem
+
+CREATE TABLE NPC (
+    ID_personagem INT PRIMARY KEY,
+    quest TEXT,
+    localizacao VARCHAR(255),
+    hora_aparicao TIME,
+    CONSTRAINT fk_npc_personagem
+        FOREIGN KEY(ID_personagem)
+        REFERENCES Personagem(ID_personagem)
+        ON DELETE CASCADE
+);
+
+-- Tabela especializada para Guias
+-- Herda as características de Personagem
+
+CREATE TABLE Guia (
+    ID_personagem INT PRIMARY KEY,
+    custo_orientacao NUMERIC(10, 2),
+    CONSTRAINT fk_guia_personagem
+        FOREIGN KEY(ID_personagem)
+        REFERENCES Personagem(ID_personagem)
+        ON DELETE CASCADE
+);
+
+-- Tabela especializada para Comerciantes
+-- Herda as características de Personagem
+
+CREATE TABLE Comerciante (
+    ID_personagem INT PRIMARY KEY,
+    venda_item TEXT,
+    compra_item TEXT,
+    CONSTRAINT fk_comerciante_personagem
+        FOREIGN KEY(ID_personagem)
+        REFERENCES Personagem(ID_personagem)
+        ON DELETE CASCADE
+);
