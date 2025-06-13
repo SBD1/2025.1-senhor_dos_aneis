@@ -1,58 +1,66 @@
+site_name: Lord of The Rings Terminal Game
+
 repo_url: https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main
 repo_name: 2025.1-senhor_dos_aneis
-
-site_name: Lord of the Rings
+site_description: "Documentação do jogo Lord of The Rings Terminal Game"
 
 nav:
   - Home: index.md
+  - Metodologia: metodologia.md
+  - Modulo 1:
+    - Diagrama Entidade-Relacionamento: pages/Modulo1/Diagrama_Entidade_Relacionamento.md
+    - Modelo Relacional: pages/Modulo1/modelo_relacional.md
+    - Dicionário de Dados: pages/Modulo1/Dicionario.md
+    - Apresentação 1: pages/Modulo1/Entrega1.md
 
-  - Diagrama Entidade Relacionamento: "der/DER.md"
+  - Modulo 2:
+    - DDL: pages/Modulo2/DDL.md
+    - DML: pages/Modulo2/DMLl.md
+    - DQL: pages/Modulo2/DQL.md
+    - Apresentação 2: pages/Modulo2/Entrega2.md
 
-
-  - Modelo Entidade Relacionamento: "mer/MER.md"
-
-
-  - Modelo Relacional: "mor/MOR.md"
-
-
-  - Dicionário de Dados: "dicionario/DD_o_senhor_dos_aneis.md"
-
-
-  - Entregas: 
-      - Entrega 1: "entregas/entrega1.md"
+  - Modulo 3:
+    - Triggers e SP: pages/Modulo3/Triggers.md
+    - Views: pages/Modulo3/Views.md
+    - Atualizações: pages/Modulo3/Modificacoes.md
+    - Apresentação 3: pages/Modulo3/Entrega3.md
 
 theme:
-  font:
-    text: Montserrat
   name: material
+  language: pt-BR
+
   features:
     - content.code.annotate
     - content.tabs.link
     - header.autohide
-    - navigation.expand
     - navigation.instant
-    - navigation.sections
-    - navigation.tabs
     - navigation.top
     - navigation.tracking
-    - navigation.path
-
+  
   palette:
-    # Palette toggle for light mode
     - scheme: default
-      primary: blue
-      accent: blue
+      primary: 'brown'
+      accent: 'brown'
       toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-
-    # Palette toggle for dark mode
+        icon: material/lightbulb-outline
+        name: Mude para o tema escuro
+        
     - scheme: slate
-      primary: black
-      accent: black
+      primary: 'brown'
+      accent: 'brown'
       toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
+        icon: material/lightbulb
+        name: Mude para o tema claro
 
-  icon:
-    repo: fontawesome/brands/git-alt
+  
+  logo: assets/imgL-icon.ico
+  favicon: assets/imgL.png
+  highlightjs: true
+
+extra_css:
+  - overrides/styles.css
+
+markdown_extensions:
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
