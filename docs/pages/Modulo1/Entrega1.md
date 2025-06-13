@@ -1,5 +1,4 @@
-# Entrega da Primeira Etapa do Projeto
-
+<span style="background-color:#c5a352; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Versão 1.1</span>
 
 > ## Descrição
 
@@ -55,11 +54,10 @@ A apresentação da primeira etapa pode ser acessada no link abaixo:
 
 ---
 
-# Tabela de Versionamento 
+## Tabela de Versionamento
 
 | Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
 |--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
-| 1.0    | 02/05/2025 | Desenvolvimento do artefato   | <a style="color:gold;" href="https://github.com/FelipeFreire-gf" target="_blank">Felipe das Neves</a> | Todos os Integrantes |
-
-
+|1.0  |02/05/2025     | Desenvolvimento do artefato | [Felipe das Neves](https://github.com/FelipeFreire-gf)  [Felipe das Neves](https://github.com/FelipeFreire-gf) |Todos os Integrantes|
+|1.1  |13/06/2025     | Atualização do Artefato | [Felipe das Neves](https://github.com/FelipeFreire-gf) | [Felipe das Neves](https://github.com/FelipeFreire-gf) |
 
