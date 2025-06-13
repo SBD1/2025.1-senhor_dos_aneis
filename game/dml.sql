@@ -45,3 +45,29 @@ VALUES
 INSERT INTO Armadura (ID_item, defesa)
 VALUES 
     (1, 95);   
+
+
+-- Felipe
+
+-- Inserindo dados na tabela base Personagem
+-- (Assumindo que o SERIAL vai gerar os IDs 1, 2, 3 e 4)
+INSERT INTO Personagem (nome, vida_maxima, mana_maxima, habilidade, dificuldade, level, resistencia, dialogo) VALUES
+('Roric, o Guia', 100, 150, 'Navegação', 'Normal', 12, 'Gelo', 'Olá, viajante! Posso te ajudar a encontrar seu destino por algumas moedas.'),
+('Borgar, o Mercador', 150, 50, 'Comércio', 'Fácil', 18, 'Nenhuma', 'Tenho os melhores itens deste lado da montanha! Dê uma olhada.'),
+('Lord Valerius', 120, 120, 'Liderança', 'Difícil', 25, 'Persuasão', 'Bem-vindo ao meu domínio. Cumpra uma tarefa para mim e será recompensado.'),
+('Elara, a Cidadã', 80, 80, 'Culinária', 'Fácil', 5, 'Nenhuma', 'Um belo dia para um passeio na praça, não acha?');
+
+
+-- Inserindo dados nas tabelas especializadas usando os IDs correspondentes
+
+-- Roric (ID 1) é um Guia
+INSERT INTO Guia (ID_personagem, custo_orientacao) VALUES
+(1, 75.50);
+
+-- Borgar (ID 2) é um Comerciante
+INSERT INTO Comerciante (ID_personagem, venda_item, compra_item) VALUES
+(2, 'Poções de cura, Adagas de ferro', 'Ervas raras, Peles de lobo');
+
+-- Lord Valerius (ID 3) é um NPC que oferece uma quest
+INSERT INTO NPC (ID_personagem, quest, localizacao, hora_aparicao) VALUES
+(3, 'Derrote o líder dos goblins na floresta sombria.', 'Sala do Trono do Castelo', '14:00:00');
