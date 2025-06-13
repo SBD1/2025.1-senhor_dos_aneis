@@ -17,7 +17,7 @@ A seguir, está a imagem do Modelo Relacional desenvolvido para o jogo:
 
 
 <center>
-  <span style="background-color:#1ec68e; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Modelo Relacional | Versão 1.0</span>
+  <span style="background-color:#c5a352; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Modelo Relacional | Versão 1.0</span>
 </center>
 
 <div style="text-align: center">
