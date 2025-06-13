@@ -1,28 +1,66 @@
-# Lord of the Rings
+# Lord of The Rings Terminal Game
 
-<p align="center" ><br><img style="border: 2px solid white; border-radius: 30%" src="https://camo.githubusercontent.com/f7d1f8eee1f1710f822db7f990223a1ba789125a55a1672030271088b26e390e/68747470733a2f2f7374617469632e77696b69612e6e6f636f6f6b69652e6e65742f6475626c6167656d2f696d616765732f372f37332f4f5f53656e686f725f646f735f416e25433325413969735f4c6f676f5f50542e706e672f7265766973696f6e2f6c61746573743f63623d323032343033303830333532343226706174682d7072656669783d70742d6272" width = 40%></p>
-
-<div style="text-align: justify;">
-<p>
-Este projeto está sendo desenvolvido como parte da disciplina Sistema Banco de Dados 1 (2025.1) e tem como objetivo aplicar os principais conceitos de modelagem em banco de dados. Inspirado no universo de O Senhor dos Anéis, a modelagem inicial possui, relacionamentos e interações que poderiam existir nesse mundo fictício, como personagens, batalhas, itens e cenários no formato de um RPG.
-</p>
+<div align="center">
+  <img src="assets/imgL.png" alt="Capa" width="50%">
+  <p><b>Figura 1:</b> Capa oficial do Jogo</p>
 </div>
 
-## Integrantes do Grupo:
+O **Lord of The Rings Terminal Game** é inspirado no universo de Senhor dos Aneis criado por J. R. R. Tolkien. Nosso objetivo é recriar a essência da série de filmes, com foco em mecânicas de exploração, gerenciamento e combate.
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/FelipeFreire-gf"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/62055315?v=4" width="100px;" alt=""/><br /><sub><b>Felipe das Neves</b></sub></a><br />
-    <td align="center"><a href=""><img style="border-radius: 50%;" src="" width="100px;" alt=""/><br /><sub><b></b></sub></a><br />
-    <td align="center"><a href="https://github.com/GabrielMEsteves"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/98546978?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Felipe</b></sub></a><br /><a href="Link git" title="Rocketseat"></a></td>
-    <td align="center"><a href=""><img style="border-radius: 50%;" src="" width="100px;" alt=""/><br /><sub><b></b></sub></a><br />
-    <td align="center"><a href="https://github.com/lucaaassb"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u//82137254?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Soares</b></sub></a><br /><a href="Link git" title="Rocketseat"></a></td>
-    <td align="center"><a href=""><img style="border-radius: 50%;" src="" width="100px;" alt=""/><br /><sub><b></b></sub></a><br />
-    <td align="center"><a href="https://github.com/Fernandavazgit1"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/144569110?v=4" width="100px;" alt=""/><br /><sub><b>Fernanda Vaz</b></sub></a><br />
-    <td align="center"><a href=""><img style="border-radius: 50%;" src="" width="100px;" alt=""/><br /><sub><b></b></sub></a><br />
-    <td align="center"><a href="https://github.com/yan-luca"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/108501120?v=4" width="100px;" alt=""/><br /><sub><b>Yan Luca</b></sub></a><br />
-  </tr>
-</table>
+---
+
+## Sobre o Projeto
+
+Em **Lord of The Rings Terminal Game**, você assume o papel de um aventureiro, um hobbit que vive em paz na sua vila, porém, avido para viver novas aventuras e explorar a magnitude do mundo. Nosso projeto adapta essa experiência para o terminal, com funcionalidades como:
+
+- **Exploração de masmorras**: Navegue pelas masmorras, enfrentando desafios e coletando itens valiosos.
+- **Combate contra monstros**: Enfrente uma variedade de inimigos com diferentes habilidades e comportamentos.
+- **Sistema de armas e armaduras**: Equipe-se com armas e armaduras que podem possuir diferentes efeitos.
+- **Efeitos e habilidades especiais**: Utilize habilidades e efeitos únicos para derrotar inimigos e superar obstáculos.
+- **Gerenciamento de inventário**: Organize os itens coletados durante as explorações e decida o que vender ou guardar.
+- **Progressão do personagem**: Melhore as habilidades e desbloqueie novos equipamentos e funcionalidades.
+
+A aplicação é desenvolvida em **Python**, com a lógica de dados estruturada em **PostgreSQL**, utilizando SQL puro para modelagem, triggers, views e controle de acesso.
+
+---
+
+# Contribuidores:
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><a href="https://github.com/FelipeFreire-gf"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/62055315?v=4" width="100px;" alt=""/><br /><sub><b>Felipe das Neves</b></sub></a><br />202046102</td>
+      <td align="center"><a href="https://github.com/GabrielMEsteves"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/98546978?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Felipe</b></sub></a><br />190106956</td>
+      <td align="center"><a href="https://github.com/lucaaassb"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u//82137254?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Soares</b></sub></a><br />202017700</td>
+      <td align="center"><a href="https://github.com/Fernandavazgit1"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/144569110?v=4" width="100px;" alt=""/><br /><sub><b>Fernanda Vaz</b></sub></a><br />221007715</td>
+      <td align="center"><a href="https://github.com/yan-luca"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/108501120?v=4" width="100px;" alt=""/><br /><sub><b>Yan Luca</b></sub></a><br />211031889</td>
+    </tr>
+  </table>
+</div>
+
+## Estrutura do Projeto
+
+O projeto está organizado em três ambientes principais:
+
+- **`game/cli`**: Código da interface em terminal (Python), responsável pela interação do usuário com o sistema.
+- **`game/sql`**: Lógica do banco de dados (PostgreSQL), incluindo tabelas, seeds, views, triggers e controles de acesso.
+- **`apps/docs`**: Documentação do projeto, criada com MkDocs, explicando o funcionamento, decisões de arquitetura, DER/MER e instruções de uso.
+
+Essa estrutura modular facilita o desenvolvimento e a manutenção do projeto.
+
+---
+
+## Como Executar
+
+O projeto ainda está em fase inicial e o código não foi implementado nesta primeira entrega. Assim que o desenvolvimento começar, as instruções para execução serão adicionadas aqui.
+
+Fique atento às próximas atualizações!
 
 
+
+## Histórico de Versão
+
+| Versão | Data          | Descrição                          | Autor(es)     | 
+| ------ | ------------- | ---------------------------------- | ------------- |
+| `1.0`  |  39/04/2025 |  Criação da página 'Home', contendo informações sobre o projeto | [Felipe das Neves](https://github.com/FelipeFreire-gf)  |
 
