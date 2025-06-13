@@ -39,15 +39,15 @@ theme:
   
   palette:
     - scheme: default
-      primary: 'brown'
-      accent: 'brown'
+      primary: '--md-primary-fg-color'
+      accent: '--md-primary-fg-color'
       toggle:
         icon: material/lightbulb-outline
         name: Mude para o tema escuro
         
     - scheme: slate
-      primary: 'brown'
-      accent: 'brown'
+      primary: '--md-primary-fg-color'
+      accent: '--md-primary-fg-color'
       toggle:
         icon: material/lightbulb
         name: Mude para o tema claro

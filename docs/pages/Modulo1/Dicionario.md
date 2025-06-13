@@ -18,7 +18,7 @@ O dicionário de dados do Jogo Lord of The Rings apresenta a descrição detalha
 Cada tabela está documentada com seus respectivos campos, tipos de dados, restrições e limites, garantindo transparência na estruturação das informações e contribuindo para a manutenção da integridade e consistência do sistema.
 
 <center>
-  <span style="background-color:#1ec68e; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Dicionário de Dados | Versão 1.0</span>
+  <span style="background-color:#c5a352; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Dicionário de Dados | Versão 1.0</span>
 </center>
 
 ??? info "Tabela Personagem | 1.0v"
