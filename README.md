@@ -5,11 +5,22 @@
 
 Este projeto foi desenvolvido como parte da disciplina **Sistema Banco de Dados 1** (2025.1) e tem como objetivo aplicar os principais conceitos de modelagem em banco de dados. Inspirado no universo de **O Senhor dos Anéis**, a modelagem inicial possui, relacionamentos e interações que poderiam existir nesse mundo fictício, como personagens, batalhas, itens e cenários.
 
-A proposta inicial da primeira entrega envolve:
+A proposta da primeira entrega envolve:
+
 - Diagrama Entidade Entidade Relacionamento
 - Modelo Entidade Relacionamento
 - Modelo Relacional
 - Dicionário de Dados
+
+Realizada 02/05/2025
+
+A proposta da segunda entrega:
+
+- Data Definition Language
+- Data Manipulation Language
+- Data Query Language
+
+Realizada 14/06/2025
 
 ## 👥 Integrantes do Grupo
 
