@@ -1,4 +1,3 @@
-
 import psycopg2
 import os
 from time import sleep

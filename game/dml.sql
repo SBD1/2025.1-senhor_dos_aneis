@@ -119,4 +119,3 @@ INSERT INTO confronta (vencedor, criatura_id, jogador_id) VALUES
 (FALSE, 10, 2),
 (TRUE, 11, 3);
 
-
