@@ -52,15 +52,82 @@ Essa estrutura modular facilita o desenvolvimento e a manutenção do projeto.
 
 ## Como Executar
 
-O projeto ainda está em fase inicial e o código não foi implementado nesta primeira entrega. Assim que o desenvolvimento começar, as instruções para execução serão adicionadas aqui.
+### Requisitos
 
-Fique atento às próximas atualizações!
+- Python 3.8 ou superior
+- PostgreSQL 12 ou superior
+- Banco de dados configurado com as tabelas do arquivo `DDL.sql`
 
+### Instalação
 
+1. Clone o repositório
 
-## Histórico de Versão
+Obs.: Pode ser interessante você suber ir máquina virtual para manter a integridade do SO;
+Caso queira aqui está o passo a passo para a virtualização usando o python no ambiente windows:
 
-| Versão | Data          | Descrição                          | Autor(es)     | 
-| ------ | ------------- | ---------------------------------- | ------------- |
-| `1.0`  |  39/04/2025 |  Criação da página 'Home', contendo informações sobre o projeto | [Felipe das Neves](https://github.com/FelipeFreire-gf)  |
+```bash
+python -m venv venv
+```
 
+Inicializar a máquina virtual:
+
+```bash
+venv/Scripts/activate
+```
+
+Após:
+
+2. Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Configure o banco de dados:
+
+    - Crie um banco de dados chamado `senhor_dos_aneis`
+    - Execute o arquivo `DDL.sql` para criar as tabelas
+    - Execute o arquivo `DML.sql` para inserir os dados iniciais
+
+4. Configure as credenciais do banco de dados no arquivo `main.py`:
+
+```python
+self.conn = psycopg2.connect(
+    dbname="senhor_dos_aneis",
+    user="seu_usuario",
+    password="sua_senha",
+    host="localhost",
+    port="5432"
+)
+```
+
+### Executando o Jogo
+
+Para iniciar o jogo, execute:
+
+```bash
+python main.py
+```
+
+### Funcionalidades
+
+- Criação de personagem com diferentes classes (Guerreiro, Mago, Arqueiro, Sacerdote)
+- Sistema de exploração de cenários
+- Sistema de inventário
+- Sistema de status e características
+- Salvamento automático do progresso
+
+### Controles
+
+- Use os números para navegar pelos menus
+- Pressione ENTER para confirmar suas escolhas
+- Use as setas do teclado para explorar os cenários
+
+---
+
+## Tabela de Versionamento
+
+| Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
+|--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
+|1.0  | 02/04/2025     | Criação da página 'Home', contendo informações sobre o projeto | [Felipe das Neves](https://github.com/FelipeFreire-gf)  |Todos os Integrantes|
+|1.1  | 15/06/2025     | Desenvolvimento do tópico de execução do jogo | [Lucas Soares](https://github.com/lucaaassb)  | [Felipe das Neves](https://github.com/FelipeFreire-gf) |

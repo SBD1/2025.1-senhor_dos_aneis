@@ -261,5 +261,5 @@ Cada tabela está documentada com seus respectivos campos, tipos de dados, restr
 
 | Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
 |--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
-|1.0  |02/04/2025     | Desenvolvimento do artefato | [Lucas Soares](https://github.com/https://github.com/lucaaassb) e [Fernanda Vaz](https://github.com/Fernandavazgit1)| [Felipe das Neves](https://github.com/FelipeFreire-gf) |
+|1.0  |02/04/2025     | Desenvolvimento do artefato | [Lucas Soares](https://github.com/lucaaassb) e [Fernanda Vaz](https://github.com/Fernandavazgit1)| [Felipe das Neves](https://github.com/FelipeFreire-gf) |
 |1.1  |13/06/2025     | Atualização do Artefato | [Felipe das Neves](https://github.com/FelipeFreire-gf) | [Felipe das Neves](https://github.com/FelipeFreire-gf) |
