@@ -1,5 +1,5 @@
 -- ============================================
--- 1. PERSONAGENS BASE
+-- 1. TODOS OS PERSONAGENS BASE
 -- ============================================
 INSERT INTO personagem (nome, vida_maxima, mana_maxima, habilidade, dificuldade, level, resistencia, dialogo) VALUES
 ('Roric, o Guia', 100, 150, 'Navegação', 'Normal', 12, 'Gelo', 'Olá, viajante! Posso te ajudar a encontrar seu destino por algumas moedas.'), -- ID 1
@@ -9,10 +9,13 @@ INSERT INTO personagem (nome, vida_maxima, mana_maxima, habilidade, dificuldade,
 ('Aeldrin, o Mago', 90, 200, 'Feitiçaria', 'Média', 14, 'Fogo', 'O conhecimento está nas runas antigas.'), -- ID 5
 ('Thalas, o Invocador', 100, 180, 'Invocação', 'Alta', 16, 'Sombras', 'O mundo espiritual é volátil.'), -- ID 6
 ('Lira, a Arqueira', 85, 110, 'Precisão', 'Normal', 13, 'Ar', 'Nada escapa dos meus olhos.'), -- ID 7
-('Kira, a Caçadora', 90, 100, 'Furtividade', 'Difícil', 15, 'Vento', 'Eu vejo o que os outros não enxergam.');
+('Kira, a Caçadora', 90, 100, 'Furtividade', 'Difícil', 15, 'Vento', 'Eu vejo o que os outros não enxergam.'), -- ID 8
+('Ork Bruto', 200, 20, 'Força Bruta', 'Média', 10, 'Físico', 'GRRRR!'), -- ID 9
+('Goblin Ladrão', 90, 60, 'Roubo', 'Fácil', 7, 'Furtividade', 'Hehe, peguei seu ouro!'), -- ID 10
+('Rei Demônio', 500, 250, 'Magia Negra', 'Extrema', 20, 'Fogo', 'Você jamais sairá vivo daqui!'); -- ID 11
 
 -- ============================================
--- 2. ESPECIALIZAÇÕES DE PERSONAGEM
+-- 2. ESPECIALIZAÇÕES DE PERSONAGEM (NPCs)
 -- ============================================
 INSERT INTO guia (ID_personagem, custo_orientacao) VALUES (1, 75.50);
 
@@ -23,7 +26,21 @@ INSERT INTO npc (ID_personagem, quest, localizacao, hora_aparicao) VALUES
 (3, 'Derrote o líder dos goblins na floresta sombria.', 'Sala do Trono do Castelo', '14:00:00');
 
 -- ============================================
--- 3. CENÁRIOS
+-- 3. CRIATURAS
+-- ============================================
+INSERT INTO criatura (ID_personagem, XP) VALUES 
+(9, 1500),
+(10, 1200),
+(11, 5000);
+
+INSERT INTO ork (ID_personagem, Raiva) VALUES (9, 90);
+
+INSERT INTO goblin (ID_personagem, furtividade, roubo) VALUES (10, 75, 40);
+
+INSERT INTO boss (ID_personagem, faseAtual, imunidades) VALUES (11, 2, 'fogo,veneno');
+
+-- ============================================
+-- 4. CENÁRIOS
 -- ============================================
 INSERT INTO cenario (norte_id, leste_id, oeste_id, sul_id, sol, chuva, noite, dia) VALUES
 (NULL, 2, NULL, 3, 'Ensolarado', 'Sem chuva', 'Lua cheia', 'Claro'), -- ID 1
@@ -32,7 +49,7 @@ INSERT INTO cenario (norte_id, leste_id, oeste_id, sul_id, sol, chuva, noite, di
 (3, NULL, 2, NULL, 'Pôr do sol', 'Garoa', 'Neblina', 'Amanhecer'); -- ID 4
 
 -- ============================================
--- 4. JOGADORES
+-- 5. JOGADORES
 -- ============================================
 INSERT INTO jogador (ID_personagem, cenario, tipo_equipamento) VALUES
 (1, 1, 'Espada'),
@@ -48,25 +65,6 @@ INSERT INTO caracteristicas (ID_jogador, fogo, agua, terra, ar) VALUES
 (3, 40, 60, 30, 50);
 
 -- ============================================
--- 5. CRIATURAS
--- ============================================
-INSERT INTO personagem (nome, vida_maxima, mana_maxima, habilidade, dificuldade, level, resistencia, dialogo) VALUES
-('Ork Bruto', 200, 20, 'Força Bruta', 'Média', 10, 'Físico', 'GRRRR!'), -- ID 9
-('Goblin Ladrão', 90, 60, 'Roubo', 'Fácil', 7, 'Furtividade', 'Hehe, peguei seu ouro!'), -- ID 10
-('Rei Demônio', 500, 250, 'Magia Negra', 'Extrema', 20, 'Fogo', 'Você jamais sairá vivo daqui!'); -- ID 11
-
-INSERT INTO criatura (ID_personagem, XP) VALUES 
-(9, 1500),
-(10, 1200),
-(11, 5000);
-
-INSERT INTO ork (ID_personagem, Raiva) VALUES (9, 90);
-
-INSERT INTO goblin (ID_personagem, furtividade, roubo) VALUES (10, 75, 40);
-
-INSERT INTO boss (ID_personagem, faseAtual, imunidades) VALUES (11, 2, 'fogo,veneno');
-
--- ============================================
 -- 6. INVENTÁRIO E ITENS
 -- ============================================
 INSERT INTO inventario (ID_inventario, ID_personagem, Pods) VALUES 
@@ -76,12 +74,13 @@ INSERT INTO inventario (ID_inventario, ID_personagem, Pods) VALUES
 INSERT INTO item (ID_item, ID_inventario, nome, peso, durabilidade)
 VALUES (1, 1, 'Espada Longa', 0.1, 250);
 
-
 INSERT INTO arma (ID_item, mãos, dano) VALUES (1, 1, 50);
 
+-- NOTA: O mesmo item não pode ser arma E armadura. Vou criar um item separado para armadura
+INSERT INTO item (ID_item, ID_inventario, nome, peso, durabilidade)
+VALUES (2, 1, 'Armadura de Couro', 5.0, 200);
 
-INSERT INTO armadura (ID_item, defesa) VALUES 
-(1, 95);
+INSERT INTO armadura (ID_item, defesa) VALUES (2, 95);
 
 -- ============================================
 -- 7. CLASSES DE PERSONAGEM
@@ -119,3 +118,5 @@ INSERT INTO confronta (vencedor, criatura_id, jogador_id) VALUES
 (TRUE, 9, 1),
 (FALSE, 10, 2),
 (TRUE, 11, 3);
+
+
