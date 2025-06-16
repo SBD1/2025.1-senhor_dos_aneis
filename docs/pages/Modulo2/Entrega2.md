@@ -43,12 +43,12 @@ A apresentação da segunda etapa pode ser acessada no link abaixo:
 
 <div style="text-align: center;">
   <p><strong>Entrega 2: </strong> 
-    <a href="https://www.youtube.com/watch?v=c3PBaiwbirc">Modelagem</a>
+    <a href="https://www.youtube.com/watch?v=BWf-5Y_HMe0">Modelagem</a>
   </p>
   <iframe 
     width="560" 
     height="315" 
-    src="https://www.youtube.com/embed/c3PBaiwbirc" 
+    src="https://www.youtube.com/embed/BWf-5Y_HMe0" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
     allowfullscreen>
