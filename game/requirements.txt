@@ -1,2 +1,0 @@
-psycopg2-binary==2.9.9
-colorama==0.4.6 
