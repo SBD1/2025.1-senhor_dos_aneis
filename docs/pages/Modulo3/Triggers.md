@@ -29,9 +29,6 @@ A seguir, apresento a criação de cada objeto programável:
 !!! Warning "Atenção!"
     O conteúdo deste tópico **poderá sofrer alterações** ao longo da Disciplina de Sistema de Banco de Dados 1. Portanto, à medida que novas inserções forem necessárias, o arquivo atual sempre sempre se manterá atualizado com a nova versão.
 
-!!! Tip "Atenção!"
-    Alguns DML's abaixo **também utiliza de comandos DQL (Data Query Language) de forma integrada**, isto é, comandos `SELECT` a fim de não comprometer as referências às chaves primárias à medida que o software evolui. Dessa maneira, entenda que ao invés da equipe inserir manualmente os valores de _ID's_ ou _Seeds_ nos campos de chave estrangeira, foi feito uma busca com `SELECT` sob alguns parâmetros com `WHERE` para capturar estes valores.  
-
 ---
 
 ### **1. Triggers**
