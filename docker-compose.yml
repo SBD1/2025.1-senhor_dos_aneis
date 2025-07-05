@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Serviço do Banco de Dados PostgreSQL
+  db:
+    image: postgres:14-alpine
+    container_name: lotr_db
+    environment:
+      POSTGRES_DB: senhor_dos_aneis
+      POSTGRES_USER: lord
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - "5433:5432" # Mapeia a porta 5433 do host para a 5432 do contêiner
+    volumes:
+      # Mapeia o volume nomeado para o diretório de dados do Postgres
+      # É aqui que a "mágica" da persistência acontece.
+      - postgres-data:/var/lib/postgresql/data
+      # Mapeia os scripts SQL para um diretório dentro do contêiner
+      # para inicialização automática na primeira execução.
+      - ./game/sql:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  # Serviço da Aplicação do Jogo
+  game:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lotr_game
+    depends_on:
+      - db
+    # Mantém o stdin aberto para interação e aloca um pseudo-TTY
+    stdin_open: true
+    tty: true
+    # A aplicação espera o banco estar pronto para se conectar
+    command: >
+      sh -c "echo 'Aguardando o banco de dados...' && sleep 5 && python game/jogo.py"
+
+# Define o volume nomeado que será usado pelo serviço 'db'
+volumes:
+  postgres-data:

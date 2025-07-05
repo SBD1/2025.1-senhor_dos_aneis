@@ -27,7 +27,7 @@ class LordOfTheRingsGame:
         try:
             # Configurações do banco - ajuste conforme necessário
             self.connection = psycopg2.connect(
-                host="localhost",
+                host="db", # Alterado para o nome do serviço no docker-compose
                 database="senhor_dos_aneis",
                 user="lord",
                 password="12345",
