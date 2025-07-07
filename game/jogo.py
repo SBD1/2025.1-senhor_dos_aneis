@@ -348,7 +348,6 @@ class LordOfTheRingsGame:
         return descriptions.get(scenario_id, f"🔍 Área desconhecida #{scenario_id}")
     
     def show_navigation_options(self):
-        """Mostra as opções de navegação disponíveis"""
         scenario = self.get_scenario_info(self.current_scenario_id)
         if not scenario:
             return False
@@ -795,7 +794,7 @@ class LordOfTheRingsGame:
         print("\n" + "="*60)
         print(f"📍 **LOCALIZAÇÃO ATUAL**")
         print(f"{base_description}")
-        print(f"🌤️ Clima: {scenario['dia']} com {scenario['sol']}")
+        print(f"🌤️ Clima: {scenario['dia']}, {scenario['sol']}")
         if scenario['chuva'] != 'Sem chuva':
             print(f"🌧️ {scenario['chuva']}")
         print("="*60)
