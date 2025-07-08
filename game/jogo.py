@@ -3,6 +3,7 @@ import os
 import time
 import platform
 import random
+import unicodedata
 from typing import Optional, Dict, Any, List, Tuple
 
 class LordOfTheRingsMUD:
@@ -381,10 +382,15 @@ class LordOfTheRingsMUD:
             self.connection.rollback()
 
     def update_player_status(self, vida_atual: int = None, mana_atual: int = None):
-        """Atualiza a vida e/ou mana atual do jogador"""
+        """Atualiza a vida e/ou mana atual do jogador, com debug"""
         try:
             cursor = self.connection.cursor()
-            
+            # Debug: mostrar valores antes
+            cursor.execute("""
+                SELECT vida_atual, mana_atual FROM jogador_status WHERE id_jogador = %s
+            """, (self.current_player_id,))
+            before = cursor.fetchone()
+            print(f"[DEBUG] Status antes: vida_atual={before[0] if before else None}, mana_atual={before[1] if before else None}")
             if vida_atual is not None and mana_atual is not None:
                 cursor.execute("""
                     INSERT INTO jogador_status (id_jogador, vida_atual, mana_atual)
@@ -406,10 +412,14 @@ class LordOfTheRingsMUD:
                     ON CONFLICT (id_jogador) 
                     DO UPDATE SET mana_atual = EXCLUDED.mana_atual
                 """, (self.current_player_id, self.current_player_id, mana_atual))
-            
             self.connection.commit()
+            # Debug: mostrar valores depois
+            cursor.execute("""
+                SELECT vida_atual, mana_atual FROM jogador_status WHERE id_jogador = %s
+            """, (self.current_player_id,))
+            after = cursor.fetchone()
+            print(f"[DEBUG] Status depois: vida_atual={after[0] if after else None}, mana_atual={after[1] if after else None}")
             cursor.close()
-            
         except Exception as e:
             print(f"❌ Erro ao atualizar status do jogador: {e}")
             self.connection.rollback()
@@ -786,6 +796,40 @@ class LordOfTheRingsMUD:
                 # Marcar criatura como derrotada
                 self.mark_creature_defeated(creature_id)
                 
+                # --- RECOMPENSA EM MOEDAS PARA CRIATURAS DIFÍCEIS ---
+                # Buscar ataque da criatura
+                cursor.execute("""
+                    SELECT s.atq FROM skill s WHERE s.ID_jogador = %s
+                """, (creature_id,))
+                skill_row = cursor.fetchone()
+                creature_atq = skill_row[0] if skill_row else 0
+                # Critérios de dificuldade
+                is_dificil = (creature_hp + damage >= 120) or (creature_atq > 40)
+                # creature_hp pode estar negativo, então use o valor original passado para a função
+                # Para isso, salve o valor original no início da função
+                # (vou adicionar isso no início do método)
+                #
+                # Calcule moedas
+                if not hasattr(self, '_creature_hp_original'):
+                    self._creature_hp_original = creature_hp + sum([random.randint(player_attack - 10, player_attack + 10) for _ in range(turn-1)])
+                vida_original = self._creature_hp_original if hasattr(self, '_creature_hp_original') else creature_hp
+                if vida_original < creature_hp:
+                    vida_original = creature_hp
+                if (vida_original > 120) or (creature_atq > 40):
+                    moedas_recompensa = max(1, (vida_original // 50) + (creature_atq // 10))
+                    # Buscar inventário do jogador
+                    cursor.execute("""
+                        SELECT id_inventario FROM inventario WHERE id_personagem = %s
+                    """, (self.current_player_id,))
+                    inv_id = cursor.fetchone()[0]
+                    for _ in range(moedas_recompensa):
+                        cursor.execute("""
+                            INSERT INTO item (nome, peso, durabilidade, id_inventario)
+                            VALUES (%s, %s, %s, %s)
+                        """, ("Moeda de Ouro", 0.01, 999, inv_id))
+                    print(f"💰 Você recebeu {moedas_recompensa} moedas pela vitória!")
+                # --- FIM RECOMPENSA ---
+                
                 # Atualizar quest de combate baseado no cenário atual
                 if self.current_scenario_id == 1:  # Condado
                     self.update_quest_progress('creature_kill_condado', 1)
@@ -1014,10 +1058,11 @@ class LordOfTheRingsMUD:
             
             sellable_items = []
             for row in player_items:
-                if row is None or len(row) < 3:
+                print(f"[DEBUG] player_items row: {row}")
+                if not row or len(row) < 3:
                     print(f"[DEBUG] Linha inesperada em player_items: {row}")
                     continue
-                item_id, nome, quantidade = row
+                item_id, nome, quantidade = row[:3]
                 if not nome or quantidade is None:
                     print(f"[DEBUG] Dados incompletos: {row}")
                     continue
@@ -1721,7 +1766,7 @@ class LordOfTheRingsMUD:
             print(f"🎯 {player['habilidade']} | 🛡️ Resistência: {player['resistencia']}")
 
     def show_inventory(self):
-        """Sistema de inventário aprimorado"""
+        """Sistema de inventário aprimorado com opção de usar/equipar itens"""
         self.clear_screen()
         print("🧙‍♂️ SENHOR DOS ANÉIS - INVENTÁRIO 🧙‍♂️")
         print("="*60)
@@ -1729,7 +1774,6 @@ class LordOfTheRingsMUD:
         
         try:
             cursor = self.connection.cursor()
-            
             # Buscar inventário completo
             cursor.execute("""
                 SELECT i.pods, 
@@ -1740,15 +1784,12 @@ class LordOfTheRingsMUD:
                 WHERE i.id_personagem = %s
                 GROUP BY i.id_inventario, i.pods
             """, (self.current_player_id,))
-            
             result = cursor.fetchone()
             if result:
                 capacidade, peso_usado, num_itens = result
-                
                 print(f"\n🎒 **INVENTÁRIO**")
                 print(f"📦 Capacidade: {peso_usado:.1f}/{capacidade} kg utilizados")
                 print(f"📋 Total de itens: {num_itens}")
-                
                 # Buscar itens agrupados
                 cursor.execute("""
                     SELECT it.nome, it.peso, it.durabilidade, COUNT(*) as quantidade
@@ -1758,9 +1799,7 @@ class LordOfTheRingsMUD:
                     GROUP BY it.nome, it.peso, it.durabilidade
                     ORDER BY it.nome
                 """, (self.current_player_id,))
-                
                 itens = cursor.fetchall()
-                
                 if itens:
                     print("\n📋 **SEUS ITENS:**")
                     print("-" * 50)
@@ -1770,17 +1809,165 @@ class LordOfTheRingsMUD:
                             print(f"{i:2d}. {nome} x{quantidade}")
                         else:
                             print(f"{i:2d}. {nome}")
-                        print(f"     ⚖️ {peso}kg | 🔧 [{durability_bar}] {durabilidade}%")
+                        
                         print()
+                    # Opção de usar/equipar
+                    print("0. Voltar")
+                    print("U. Usar/Equipar item")
+                    choice = input("\n➤ Escolha uma opção (número/U/0): ").strip().lower()
+                    if choice == "0":
+                        return
+                    elif choice == "u":
+                        self.use_or_equip_item(itens)
+                        self.pause_and_clear()
+                        return self.show_inventory()
                 else:
                     print("\n📭 Seu inventário está vazio.")
             else:
                 print("🎒 Inventário não encontrado.")
-            
             cursor.close()
-            
         except Exception as e:
             print(f"❌ Erro ao mostrar inventário: {e}")
+
+    def use_or_equip_item(self, itens):
+        """Permite ao jogador usar ou equipar um item do inventário"""
+        print("\n🔧 **USAR/EQUIPAR ITEM**")
+        print("-" * 40)
+        for i, (nome, peso, durabilidade, quantidade) in enumerate(itens, 1):
+            print(f"{i:2d}. {nome} x{quantidade}")
+        print("0. Voltar")
+        def normalize(text):
+            return unicodedata.normalize('NFKD', text.lower().strip()).encode('ASCII', 'ignore').decode('ASCII')
+        try:
+            idx = int(input("\n➤ Qual item deseja usar/equipar? (número): ").strip())
+            if idx == 0:
+                return
+            if 1 <= idx <= len(itens):
+                nome, peso, durabilidade, quantidade = itens[idx-1]
+                nome_norm = normalize(nome)
+                if ("pocao de cura" in nome_norm) or ("pocoes de cura" in nome_norm):
+                    self.consume_heal_potion(nome)
+                elif ("pocao de mana" in nome_norm) or ("pocoes de mana" in nome_norm):
+                    self.consume_mana_potion(nome)
+                elif "espada" in nome_norm:
+                    self.equip_weapon(nome)
+                elif "armadura" in nome_norm:
+                    self.equip_armor(nome)
+                else:
+                    print("❌ Este item não pode ser usado ou equipado diretamente.")
+            else:
+                print("❌ Opção inválida!")
+        except ValueError:
+            print("❌ Digite um número válido!")
+
+    def consume_heal_potion(self, nome_item):
+        """Consome uma poção de cura e recupera vida"""
+        try:
+            cursor = self.connection.cursor()
+            # Buscar inventário
+            cursor.execute("""
+                SELECT id_inventario FROM inventario WHERE id_personagem = %s
+            """, (self.current_player_id,))
+            inv_id = cursor.fetchone()[0]
+            # Remover uma poção
+            cursor.execute("""
+                DELETE FROM item WHERE id_inventario = %s AND nome = %s LIMIT 1
+            """, (inv_id, nome_item))
+            # Recuperar vida (ex: +50)
+            player = self.get_player_stats()
+            vida_max = player['vida_maxima']
+            vida_atual = player['vida']
+            nova_vida = min(vida_atual + 50, vida_max)
+            self.update_player_status(vida_atual=nova_vida)
+            self.connection.commit()
+            cursor.close()
+            print(f"❤️ Você usou {nome_item} e recuperou vida! ({vida_atual} → {nova_vida})")
+        except Exception as e:
+            print(f"❌ Erro ao consumir poção de cura: {e}")
+
+    def consume_mana_potion(self, nome_item):
+        """Consome uma poção de mana e recupera mana"""
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("""
+                SELECT id_inventario FROM inventario WHERE id_personagem = %s
+            """, (self.current_player_id,))
+            inv_id = cursor.fetchone()[0]
+            cursor.execute("""
+                DELETE FROM item WHERE id_inventario = %s AND nome = %s LIMIT 1
+            """, (inv_id, nome_item))
+            player = self.get_player_stats()
+            mana_max = player['mana_maxima']
+            mana_atual = player['mana']
+            nova_mana = min(mana_atual + 40, mana_max)
+            self.update_player_status(mana_atual=nova_mana)
+            self.connection.commit()
+            cursor.close()
+            print(f"💙 Você usou {nome_item} e recuperou mana! ({mana_atual} → {nova_mana})")
+        except Exception as e:
+            print(f"❌ Erro ao consumir poção de mana: {e}")
+
+    def equip_weapon(self, nome_item):
+        """Equipe uma espada e aumente o ataque do jogador, removendo bônus anterior se já houver espada equipada"""
+        try:
+            cursor = self.connection.cursor()
+            # Verificar se já há uma espada equipada
+            cursor.execute("""
+                SELECT tipo_equipamento FROM jogador WHERE ID_personagem = %s
+            """, (self.current_player_id,))
+            tipo_equip = cursor.fetchone()[0]
+            # Se já há uma espada equipada, remova o bônus anterior
+            if tipo_equip and "espada" in tipo_equip.lower():
+                cursor.execute("""
+                    UPDATE skill SET atq = atq - 20 WHERE ID_jogador = %s
+                """, (self.current_player_id,))
+            # Atualizar tipo_equipamento para a nova espada
+            cursor.execute("""
+                UPDATE jogador SET tipo_equipamento = %s WHERE ID_personagem = %s
+            """, (nome_item, self.current_player_id))
+            # Aplicar bônus da nova espada
+            cursor.execute("""
+                UPDATE skill SET atq = atq + 20 WHERE ID_jogador = %s
+            """, (self.current_player_id,))
+            self.connection.commit()
+            cursor.close()
+            print(f"⚔️ Você equipou {nome_item}! Seu ataque aumentou.")
+        except Exception as e:
+            print(f"❌ Erro ao equipar arma: {e}")
+
+    def equip_armor(self, nome_item):
+        """Equipe uma armadura e aumente a defesa do jogador, removendo bônus anterior se já houver armadura equipada"""
+        try:
+            cursor = self.connection.cursor()
+            # Verificar se já há uma armadura equipada
+            cursor.execute("""
+                SELECT tipo_equipamento FROM jogador WHERE ID_personagem = %s
+            """, (self.current_player_id,))
+            tipo_equip = cursor.fetchone()[0]
+            # Se já há uma armadura equipada, remova o bônus anterior
+            if tipo_equip and "armadura" in tipo_equip.lower():
+                cursor.execute("""
+                    ALTER TABLE skill ADD COLUMN IF NOT EXISTS defesa INTEGER DEFAULT 0;
+                """)
+                cursor.execute("""
+                    UPDATE skill SET defesa = defesa - 15 WHERE ID_jogador = %s
+                """, (self.current_player_id,))
+            # Atualizar tipo_equipamento para a nova armadura
+            cursor.execute("""
+                UPDATE jogador SET tipo_equipamento = %s WHERE ID_personagem = %s
+            """, (nome_item, self.current_player_id))
+            # Aplicar bônus da nova armadura
+            cursor.execute("""
+                ALTER TABLE skill ADD COLUMN IF NOT EXISTS defesa INTEGER DEFAULT 0;
+            """)
+            cursor.execute("""
+                UPDATE skill SET defesa = defesa + 15 WHERE ID_jogador = %s
+            """, (self.current_player_id,))
+            self.connection.commit()
+            cursor.close()
+            print(f"🛡️ Você equipou {nome_item}! Sua defesa aumentou.")
+        except Exception as e:
+            print(f"❌ Erro ao equipar armadura: {e}")
 
     def show_navigation_options(self):
         """Menu de navegação visual"""
