@@ -1,0 +1,1633 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do jogo Lord of The Rings Terminal Game">
+      
+      
+      
+      
+        <link rel="prev" href="../../Modulo2/Entrega2/">
+      
+      
+        <link rel="next" href="../Views/">
+      
+      
+      <link rel="icon" href="../../../assets/imgL.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Triggers e SP - Lord of The Rings Terminal Game</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/styles.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#triggers-e-stored-procedures" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-header__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lord of The Rings Terminal Game
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Triggers e SP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-nav__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    Lord of The Rings Terminal Game
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metodologia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Diagrama_Entidade_Relacionamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade-Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/modelo_relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelo Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Dicionario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dicionário de Dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Entrega1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/DDL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/DML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/DQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/Entrega2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Triggers e SP
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Triggers e SP
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceito:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacoes-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementações no Software:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementações no Software:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visao-geral-dos-objetos-programaveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral dos Objetos Programáveis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracoes-de-dml-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declarações de DML no Software:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Declarações de DML no Software:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Triggers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Triggers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-trigger-de-verificacao-de-peso-do-inventario-trg_check_inventory_weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Trigger de Verificação de Peso do Inventário (trg_check_inventory_weight)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-trigger-de-concessao-de-experiencia-trg_grant_xp_on_victory" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Trigger de Concessão de Experiência (trg_grant_xp_on_victory)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-trigger-de-auditoria-de-nivel-trg_log_personagem_level_up" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Trigger de Auditoria de Nível (trg_log_personagem_level_up)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stored-procedures-acoes-manuais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Stored Procedures (Ações Manuais)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Stored Procedures (Ações Manuais)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-procedure-de-execucao-de-batalha-sp_executar_batalha" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Procedure de Execução de Batalha (sp_executar_batalha)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-procedure-de-transferencia-de-itens-sp_transferir_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Procedure de Transferência de Itens (sp_transferir_item)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-testando-o-trigger-de-peso-do-inventario-trg_check_inventory_weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Testando o Trigger de Peso do Inventário (trg_check_inventory_weight)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32testando-o-trigger-de-xp-trg_grant_xp_on_victory-e-a-stored-procedure-de-batalha" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.Testando o Trigger de XP (trg_grant_xp_on_victory) e a Stored Procedure de Batalha
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-testando-a-stored-procedure-de-transferencia-de-item-sp_transferir_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Testando a Stored Procedure de Transferência de Item (sp_transferir_item)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-testando-a-aplicacao-completa-em-bloco-com-beginrollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Testando a aplicação completa em bloco com (BEGIN...ROLLBACK)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Views
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Modificacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Atualizações
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Entrega3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceito:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacoes-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementações no Software:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementações no Software:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visao-geral-dos-objetos-programaveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral dos Objetos Programáveis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracoes-de-dml-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declarações de DML no Software:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Declarações de DML no Software:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Triggers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Triggers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-trigger-de-verificacao-de-peso-do-inventario-trg_check_inventory_weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Trigger de Verificação de Peso do Inventário (trg_check_inventory_weight)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-trigger-de-concessao-de-experiencia-trg_grant_xp_on_victory" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Trigger de Concessão de Experiência (trg_grant_xp_on_victory)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-trigger-de-auditoria-de-nivel-trg_log_personagem_level_up" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Trigger de Auditoria de Nível (trg_log_personagem_level_up)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stored-procedures-acoes-manuais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Stored Procedures (Ações Manuais)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Stored Procedures (Ações Manuais)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-procedure-de-execucao-de-batalha-sp_executar_batalha" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Procedure de Execução de Batalha (sp_executar_batalha)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-procedure-de-transferencia-de-itens-sp_transferir_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Procedure de Transferência de Itens (sp_transferir_item)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Testes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-testando-o-trigger-de-peso-do-inventario-trg_check_inventory_weight" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Testando o Trigger de Peso do Inventário (trg_check_inventory_weight)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32testando-o-trigger-de-xp-trg_grant_xp_on_victory-e-a-stored-procedure-de-batalha" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.Testando o Trigger de XP (trg_grant_xp_on_victory) e a Stored Procedure de Batalha
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-testando-a-stored-procedure-de-transferencia-de-item-sp_transferir_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Testando a Stored Procedure de Transferência de Item (sp_transferir_item)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-testando-a-aplicacao-completa-em-bloco-com-beginrollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Testando a aplicação completa em bloco com (BEGIN...ROLLBACK)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><span style="background-color:#c5a352; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Versão 1.0</span></p>
+<h1 id="triggers-e-stored-procedures">Triggers e Stored Procedures</h1>
+<hr />
+<h2 id="conceito">Conceito:</h2>
+<p><strong>Triggers</strong> e <strong>Stored Procedures</strong> são objetos de banco de dados que estendem o poder do SQL, permitindo que a lógica de negócio seja executada diretamente no servidor. Eles automatizam tarefas, garantem a integridade dos dados e otimizam a performance, funcionando como blocos de código reutilizáveis que operam sobre as tabelas.</p>
+<p>Uma <strong>Stored Procedure</strong> (Procedimento Armazenado) é um conjunto de comandos SQL que pode ser salvo e executado sob demanda. Ela pode aceitar parâmetros de entrada e retornar valores, agindo como uma função em uma linguagem de programação. O uso de procedures centraliza a lógica, reduz o tráfego de rede e melhora a segurança, pois as aplicações podem interagir com o banco de dados através de uma interface bem definida, sem precisar de acesso direto às tabelas.</p>
+<p>Já um <strong>Trigger</strong> (Gatilho) é um tipo especial de procedimento que é "disparado" automaticamente em resposta a eventos específicos de manipulação de dados (DML), como <code>INSERT</code>, <code>UPDATE</code> ou <code>DELETE</code>. Triggers são ideais para impor regras de negócio complexas, auditar modificações ou manter a consistência entre tabelas relacionadas de forma automática. Diferente de uma Stored Procedure, um Trigger não pode ser chamado diretamente; sua execução é uma consequência de uma ação sobre os dados.</p>
+<hr />
+<h2 id="implementacoes-no-software">Implementações no Software:</h2>
+<h3 id="visao-geral-dos-objetos-programaveis"><strong>Visão Geral dos Objetos Programáveis</strong></h3>
+<p>Este script implementa a lógica de negócio dinâmica do jogo de RPG através de triggers e stored procedures. Esses objetos automatizam regras (como a validação de peso em inventários e a concessão de experiência) e encapsulam ações (como a execução de uma batalha completa), garantindo que as mecânicas do jogo funcionem de forma consistente e segura diretamente no banco de dados.</p>
+<p>A seguir, apresento a criação de cada objeto programável:</p>
+<hr />
+<h2 id="declaracoes-de-dml-no-software">Declarações de DML no Software:</h2>
+<div class="admonition warning">
+<p class="admonition-title">Atenção!</p>
+<p>O conteúdo deste tópico <strong>poderá sofrer alterações</strong> ao longo da Disciplina de Sistema de Banco de Dados 1. Portanto, à medida que novas inserções forem necessárias, o arquivo atual sempre sempre se manterá atualizado com a nova versão.</p>
+</div>
+<hr />
+<h3 id="1-triggers"><strong>1. Triggers</strong></h3>
+<p>Estes são os procedimentos que o banco de dados executará automaticamente para manter as regras do jogo.</p>
+<h4 id="11-trigger-de-verificacao-de-peso-do-inventario-trg_check_inventory_weight"><strong>1.1. Trigger de Verificação de Peso do Inventário (<code>trg_check_inventory_weight</code>)</strong></h4>
+<p>Este trigger garante que um jogador não possa carregar mais itens do que a sua capacidade (<code>pods</code>) permite. Ele é disparado antes de qualquer item ser adicionado ou movido, calculando o peso total e cancelando a operação se o limite for excedido.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- PASSO 1: A Função do Trigger</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">func_check_inventory_weight</span><span class="p">()</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">$$</span>
+<span class="k">DECLARE</span>
+<span class="w">    </span><span class="n">v_total_peso</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_max_pods</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="c1">-- Se um item está sendo adicionado a um inventário</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">id_inventario</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="c1">-- Pega a capacidade máxima do inventário de destino</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">pods</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_max_pods</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">id_inventario</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">-- Calcula o peso total dos itens que já estão no inventário</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">COALESCE</span><span class="p">(</span><span class="n">SUM</span><span class="p">(</span><span class="n">peso</span><span class="p">),</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_total_peso</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">id_inventario</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">-- Se o peso total + peso do novo item exceder a capacidade, lança um erro.</span>
+<span class="w">        </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">v_total_peso</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">peso</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">v_max_pods</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">            </span><span class="k">RAISE</span><span class="w"> </span><span class="k">EXCEPTION</span><span class="w"> </span><span class="s1">&#39;Capacidade de peso (Pods) do inventário excedida! Operação cancelada.&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Se a verificação passar, permite a operação</span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="k">NEW</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
+
+<span class="c1">-- PASSO 2: A Declaração do Trigger na Tabela &#39;item&#39;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_check_inventory_weight</span>
+<span class="k">BEFORE</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">item</span>
+<span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
+<span class="k">EXECUTE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">func_check_inventory_weight</span><span class="p">();</span>
+</code></pre></div>
+<h4 id="12-trigger-de-concessao-de-experiencia-trg_grant_xp_on_victory"><strong>1.2. Trigger de Concessão de Experiência (<code>trg_grant_xp_on_victory</code>)</strong></h4>
+<p>Essencial para a progressão no jogo, este trigger é disparado após um confronto ser registrado. Se o resultado for uma vitória do jogador (<code>vencedor = TRUE</code>), o trigger automaticamente busca o valor de <code>XP</code> da criatura derrotada e atualiza o nível do personagem do jogador.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- PASSO 1: A Função do Trigger</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">func_grant_xp_on_victory</span><span class="p">()</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">$$</span>
+<span class="k">DECLARE</span>
+<span class="w">    </span><span class="n">v_xp_ganho</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_jogador_level_atual</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="c1">-- Verifica se o confronto foi uma vitória para o jogador</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">vencedor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="c1">-- Pega o XP da criatura derrotada</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">XP</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_xp_ganho</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">criatura</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">criatura_id</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">-- Pega o level atual do jogador</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_jogador_level_atual</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">jogador_id</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">-- Atualiza o personagem do jogador com um novo level (lógica de exemplo: +1 level por vitória)</span>
+<span class="w">        </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">personagem</span>
+<span class="w">        </span><span class="k">SET</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_jogador_level_atual</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span>
+<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="n">jogador_id</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">-- Exibe uma notificação no console do banco (útil para debug)</span>
+<span class="w">        </span><span class="k">RAISE</span><span class="w"> </span><span class="k">NOTICE</span><span class="w"> </span><span class="s1">&#39;Jogador ID % venceu! Ganhou % XP e subiu para o nível %.&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                     </span><span class="k">NEW</span><span class="mf">.</span><span class="n">jogador_id</span><span class="p">,</span><span class="w"> </span><span class="n">v_xp_ganho</span><span class="p">,</span><span class="w"> </span><span class="n">v_jogador_level_atual</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="k">NEW</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
+
+<span class="c1">-- PASSO 2: A Declaração do Trigger na Tabela &#39;confronta&#39;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_grant_xp_on_victory</span>
+<span class="k">AFTER</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">confronta</span>
+<span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
+<span class="k">EXECUTE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">func_grant_xp_on_victory</span><span class="p">();</span>
+</code></pre></div>
+<h4 id="13-trigger-de-auditoria-de-nivel-trg_log_personagem_level_up"><strong>1.3. Trigger de Auditoria de Nível (<code>trg_log_personagem_level_up</code>)</strong></h4>
+<p>Para fins de auditoria e análise de progressão, este trigger cria um registro em uma tabela de log (<code>log_personagem_level</code>) toda vez que o atributo <code>level</code> de um personagem é modificado, armazenando o valor antigo, o novo valor e a data da alteração.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- PASSO 1: Criar a tabela de log (se não existir)</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">log_personagem_level</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_log</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">id_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">level_antigo</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">level_novo</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data_modificacao</span><span class="w"> </span><span class="nb">TIMESTAMP</span><span class="w"> </span><span class="nb">WITH TIME ZONE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="c1">-- PASSO 2: A Função do Trigger</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">func_log_personagem_level_up</span><span class="p">()</span>
+<span class="k">RETURNS</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">$$</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="c1">-- Verifica se a coluna &#39;level&#39; foi de fato alterada</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="k">OLD</span><span class="mf">.</span><span class="k">level</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="k">level</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">log_personagem_level</span><span class="w"> </span><span class="p">(</span><span class="n">id_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">level_antigo</span><span class="p">,</span><span class="w"> </span><span class="n">level_novo</span><span class="p">)</span>
+<span class="w">        </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">OLD</span><span class="mf">.</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="k">OLD</span><span class="mf">.</span><span class="k">level</span><span class="p">,</span><span class="w"> </span><span class="k">NEW</span><span class="mf">.</span><span class="k">level</span><span class="p">);</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+<span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="k">NEW</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$$</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span><span class="p">;</span>
+
+<span class="c1">-- PASSO 3: A Declaração do Trigger na Tabela &#39;personagem&#39;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="w"> </span><span class="n">trg_log_personagem_level_up</span>
+<span class="k">AFTER</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">personagem</span>
+<span class="k">FOR</span><span class="w"> </span><span class="k">EACH</span><span class="w"> </span><span class="k">ROW</span>
+<span class="k">EXECUTE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">func_log_personagem_level_up</span><span class="p">();</span>
+</code></pre></div>
+<hr />
+<h3 id="2-stored-procedures-acoes-manuais"><strong>2. Stored Procedures (Ações Manuais)</strong></h3>
+<p>Estes são os procedimentos que podem ser chamados pela aplicação para executar operações que exigem uma interrupções no banco.</p>
+<h4 id="21-procedure-de-execucao-de-batalha-sp_executar_batalha"><strong>2.1. Procedure de Execução de Batalha (<code>sp_executar_batalha</code>)</strong></h4>
+<p>Esta procedure encapsula toda a lógica de um combate entre um jogador e uma criatura. Ao ser chamada, ela simula a luta, determina um vencedor com base nos atributos de cada um e registra os resultados nas tabelas <code>batalha</code> e <code>confronta</code>. Isso simplifica a lógica na aplicação, que precisa apenas chamar um único comando para uma ação complexa.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">sp_executar_batalha</span><span class="p">(</span><span class="n">p_jogador_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">p_criatura_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+<span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span>
+<span class="k">AS</span><span class="w"> </span><span class="s">$$</span>
+<span class="k">DECLARE</span>
+<span class="w">    </span><span class="n">v_ataque_jogador</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_vida_criatura</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_dano_causado</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_vitoria</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="c1">-- Obter atributos de combate</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">atq</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_ataque_jogador</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID_jogador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_jogador_id</span><span class="p">;</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">vida_maxima</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_vida_criatura</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_criatura_id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Lógica de batalha simplificada: Dano = ataque do jogador</span>
+<span class="w">    </span><span class="n">v_dano_causado</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">v_ataque_jogador</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Determinar o vencedor</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="n">v_dano_causado</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">v_vida_criatura</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="n">v_vitoria</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
+<span class="w">    </span><span class="k">ELSE</span>
+<span class="w">        </span><span class="n">v_vitoria</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">FALSE</span><span class="p">;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Registrar o log da batalha</span>
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">batalha</span><span class="w"> </span><span class="p">(</span><span class="n">Dano_causado</span><span class="p">,</span><span class="w"> </span><span class="n">Controle_Dano</span><span class="p">,</span><span class="w"> </span><span class="n">Ambiente_batalha</span><span class="p">,</span><span class="w"> </span><span class="n">Dano_sofrido</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">v_dano_causado</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Campo Aberto&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span><span class="w"> </span><span class="c1">-- Valores de exemplo</span>
+
+<span class="w">    </span><span class="c1">-- Registrar o resultado do confronto (isso irá disparar o trigger de XP)</span>
+<span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">confronta</span><span class="w"> </span><span class="p">(</span><span class="n">vencedor</span><span class="p">,</span><span class="w"> </span><span class="n">criatura_id</span><span class="p">,</span><span class="w"> </span><span class="n">jogador_id</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">v_vitoria</span><span class="p">,</span><span class="w"> </span><span class="n">p_criatura_id</span><span class="p">,</span><span class="w"> </span><span class="n">p_jogador_id</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">COMMIT</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$$</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="22-procedure-de-transferencia-de-itens-sp_transferir_item"><strong>2.2. Procedure de Transferência de Itens (<code>sp_transferir_item</code>)</strong></h4>
+<p>Esta procedure gerencia a troca de itens entre dois personagens. Ela executa todas as validações necessárias: verifica se o vendedor realmente possui o item e se o comprador tem um inventário com capacidade disponível. A transferência só é concluída se todas as regras forem satisfeitas, garantindo a consistência dos dados.</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">sp_transferir_item</span><span class="p">(</span><span class="n">p_item_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">p_vendedor_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span><span class="w"> </span><span class="n">p_comprador_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span>
+<span class="k">LANGUAGE</span><span class="w"> </span><span class="n">plpgsql</span>
+<span class="k">AS</span><span class="w"> </span><span class="s">$$</span>
+<span class="k">DECLARE</span>
+<span class="w">    </span><span class="n">v_inventario_vendedor_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_inventario_comprador_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="w">    </span><span class="n">v_item_inventario_atual</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="k">BEGIN</span>
+<span class="w">    </span><span class="c1">-- Pega os IDs dos inventários</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_inventario_vendedor_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_vendedor_id</span><span class="p">;</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_inventario_comprador_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_comprador_id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Pega o inventário atual do item</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">v_item_inventario_atual</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_item_id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Validação 1: O vendedor realmente possui o item?</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="n">v_item_inventario_atual</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">v_inventario_vendedor_id</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="k">RAISE</span><span class="w"> </span><span class="k">EXCEPTION</span><span class="w"> </span><span class="s1">&#39;O vendedor (ID: %) não possui o item (ID: %).&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">p_vendedor_id</span><span class="p">,</span><span class="w"> </span><span class="n">p_item_id</span><span class="p">;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Validação 2: O comprador tem um inventário?</span>
+<span class="w">    </span><span class="k">IF</span><span class="w"> </span><span class="n">v_inventario_comprador_id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">        </span><span class="k">RAISE</span><span class="w"> </span><span class="k">EXCEPTION</span><span class="w"> </span><span class="s1">&#39;O comprador (ID: %) não possui um inventário.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">p_comprador_id</span><span class="p">;</span>
+<span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">IF</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">-- Ação: Atualizar o item para o novo inventário.</span>
+<span class="w">    </span><span class="c1">-- O trigger trg_check_inventory_weight será disparado automaticamente aqui para validar o peso.</span>
+<span class="w">    </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v_inventario_comprador_id</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_item_id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">RAISE</span><span class="w"> </span><span class="k">NOTICE</span><span class="w"> </span><span class="s1">&#39;Item ID % transferido com sucesso do personagem % para o personagem %.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">p_item_id</span><span class="p">,</span><span class="w"> </span><span class="n">p_vendedor_id</span><span class="p">,</span><span class="w"> </span><span class="n">p_comprador_id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">COMMIT</span><span class="p">;</span>
+<span class="k">END</span><span class="p">;</span>
+<span class="s">$$</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h3 id="3-testes"><strong>3. Testes</strong></h3>
+<p>Depois de executar os scripts fizemos alguns testes, como um check caso o peso do inventário passe do limite, transferencias de itens e XP:</p>
+<h4 id="31-testando-o-trigger-de-peso-do-inventario-trg_check_inventory_weight"><strong>3.1. Testando o Trigger de Peso do Inventário (trg_check_inventory_weight)</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">-- O inventário do personagem 1 tem capacidade 30. A espada já pesa 0.1 e a armadura 5.0 (Total: 5.1).</span>
+<span class="c1">-- Tentar adicionar um item pesado que exceda o limite.</span>
+<span class="c1">-- Esta operação deverá FALHAR com uma exceção.</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">(</span><span class="n">id_item</span><span class="p">,</span><span class="w"> </span><span class="n">id_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">peso</span><span class="p">,</span><span class="w"> </span><span class="n">durabilidade</span><span class="p">)</span><span class="w"> </span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bigorna de Anão&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">28.0</span><span class="p">,</span><span class="w"> </span><span class="mf">999</span><span class="p">);</span><span class="w"> </span>
+<span class="c1">-- ESPERADO: ERRO: Capacidade de peso (Pods) do inventário excedida!</span>
+</code></pre></div>
+<h4 id="32testando-o-trigger-de-xp-trg_grant_xp_on_victory-e-a-stored-procedure-de-batalha"><strong>3.2.Testando o Trigger de XP (trg_grant_xp_on_victory) e a Stored Procedure de Batalha</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">-- O jogador 1 está no level 12. O Goblin Ladrão (ID 10) dá 1200 XP.</span>
+<span class="c1">-- Vamos fazer o jogador 1 batalhar com o Goblin.</span>
+<span class="k">CALL</span><span class="w"> </span><span class="n">sp_executar_batalha</span><span class="p">(</span><span class="n">p_jogador_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="n">p_criatura_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+
+<span class="c1">-- Verifique o resultado. O jogador 1 deve ter subido de nível.</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ID_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span><span class="w"> </span>
+<span class="c1">-- ESPERADO: O level deve ser 13 agora.</span>
+
+<span class="c1">-- Verifique a tabela de log para ver a alteração.</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">log_personagem_level</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="c1">-- ESPERADO: Um registro com level_antigo=12 e level_novo=13.</span>
+</code></pre></div>
+<h4 id="33-testando-a-stored-procedure-de-transferencia-de-item-sp_transferir_item"><strong>3.3. Testando a Stored Procedure de Transferência de Item (sp_transferir_item)</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Vamos transferir a &#39;Armadura de Couro&#39; (ID 2) do personagem 1 para o personagem 2.</span>
+<span class="c1">-- O inventário 2 tem 90 de capacidade, então deve funcionar.</span>
+<span class="k">CALL</span><span class="w"> </span><span class="n">sp_transferir_item</span><span class="p">(</span><span class="n">p_item_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="n">p_vendedor_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="n">p_comprador_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+
+<span class="c1">-- Verifique o inventário do item 2.</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="c1">-- ESPERADO: O id_inventario deve ser 2 agora.</span>
+</code></pre></div>
+<h4 id="34-testando-a-aplicacao-completa-em-bloco-com-beginrollback"><strong>3.4. Testando a aplicação completa em bloco com (BEGIN...ROLLBACK)</strong></h4>
+<p>Aliado a esses testes específicos fizemos um script para a validação completa do game o script é envolvido em um bloco de transação (BEGIN...ROLLBACK), o que permite sua execução segura em qualquer ambiente sem alterar permanentemente os dados, tornando-o ideal para nossos testes e demonstrações.</p>
+<div class="highlight"><pre><span></span><code><span class="k">BEGIN</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Inicia uma transação para não salvar os dados de teste</span>
+
+<span class="c1">-- ===================================================================</span>
+<span class="c1">-- TESTE 1: Trigger de Peso de Inventário (trg_check_inventory_weight)</span>
+<span class="c1">-- ===================================================================</span>
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 1.1: FALHA - Tentar adicionar item excedendo o peso máximo</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 1.1: FALHA - Adicionar item pesado demais.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: Inventário 1 (Personagem 1) tem capacidade 30. Vamos tentar adicionar um item de peso 28, o que excederia o limite (5.1 já em uso + 28 &gt; 30).&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pré-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">pods</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">capacidade_maxima</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">SUM</span><span class="p">(</span><span class="n">peso</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">peso_atual</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">-- Ação (ESPERADO: ERRO!)</span>
+<span class="c1">-- Esta linha deve causar um erro e interromper a transação se não for tratada.</span>
+<span class="c1">-- Para um teste automatizado, você usaria um bloco DO/EXCEPTION. Para visualização, apenas saiba que ela falha.</span>
+<span class="c1">-- INSERT INTO item (id_item, id_inventario, nome, peso, durabilidade) VALUES (100, 1, &#39;Bigorna de Anão&#39;, 28.0, 999);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;NOTA: A ação de INSERT para o teste 1.1 foi comentada para permitir que o script continue. Se descomentada, ela deve gerar uma exceção: &quot;Capacidade de peso (Pods) do inventário excedida!&quot;.&#39;</span><span class="p">;</span>
+
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 1.2: SUCESSO - Adicionar item com peso válido</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 1.2: SUCESSO - Adicionar item com peso válido.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: Inventário 1 (Personagem 1) tem 24.9 de espaço livre. Vamos adicionar um item de peso 10.0.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pré-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_itens_antes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">-- Ação</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">(</span><span class="n">id_item</span><span class="p">,</span><span class="w"> </span><span class="n">id_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">peso</span><span class="p">,</span><span class="w"> </span><span class="n">durabilidade</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">101</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Elmo de Aço&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">150</span><span class="p">);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Ação: Item &quot;Elmo de Aço&quot; inserido no inventário 1.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pós-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_itens_depois</span><span class="p">,</span><span class="w"> </span>
+<span class="w">       </span><span class="n">SUM</span><span class="p">(</span><span class="n">peso</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">novo_peso_total</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO: total_itens_depois deve ser 3. novo_peso_total deve ser 15.10.&#39;</span><span class="p">;</span>
+
+
+<span class="c1">-- ===================================================================</span>
+<span class="c1">-- TESTE 2: Procedure de Transferência de Item (sp_transferir_item)</span>
+<span class="c1">-- ===================================================================</span>
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 2.1: SUCESSO - Transferência válida</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 2.1: SUCESSO - Transferência de item válida.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: Transferir a &quot;Armadura de Couro&quot; (ID 2, peso 5.0) do Personagem 1 para o Personagem 2 (Inventário 2, capacidade 90).&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pré-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO (antes): id_inventario deve ser 1.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Ação</span>
+<span class="k">CALL</span><span class="w"> </span><span class="n">sp_transferir_item</span><span class="p">(</span><span class="n">p_item_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="n">p_vendedor_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="n">p_comprador_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+
+<span class="c1">-- Verificação Pós-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">id_inventario</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO (depois): id_inventario deve ser 2.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 2.2: FALHA - Vendedor não possui o item</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 2.2: FALHA - Vendedor não possui o item.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: Tentar fazer o Personagem 3 (que não tem o item) vender a &quot;Espada Longa&quot; (ID 1) para o Personagem 1.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pré-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="mf">.</span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="mf">.</span><span class="n">id_inventario</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="n">inv</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">i</span><span class="mf">.</span><span class="n">id_inventario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inv</span><span class="mf">.</span><span class="n">id_inventario</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">inv</span><span class="mf">.</span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="mf">.</span><span class="n">id_personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">i</span><span class="mf">.</span><span class="n">id_item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;NOTA: Espada Longa pertence ao Personagem 1.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Ação (ESPERADO: ERRO!)</span>
+<span class="c1">-- CALL sp_transferir_item(p_item_id := 1, p_vendedor_id := 3, p_comprador_id := 1);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;NOTA: A ação de CALL para o teste 2.2 foi comentada. Se descomentada, ela deve gerar a exceção: &quot;O vendedor (ID: 3) não possui o item (ID: 1).&quot;.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 2.3: FALHA - Comprador não tem espaço no inventário</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 2.3: FALHA - Comprador com inventário cheio.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: Transferir a &quot;Espada Longa&quot; (ID 1, peso 0.1) do Personagem 1 para o Personagem 3. Antes, vamos lotar o inventário do Personagem 3.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Setup: Criar inventário para Personagem 3 e lotá-lo</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="p">(</span><span class="n">id_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">id_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">pods</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">(</span><span class="n">id_item</span><span class="p">,</span><span class="w"> </span><span class="n">id_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">peso</span><span class="p">,</span><span class="w"> </span><span class="n">durabilidade</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">102</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Escudo Torre&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Setup: Inventário para Personagem 3 criado com capacidade 20 e já preenchido com um item de peso 20.0.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Ação (ESPERADO: ERRO!)</span>
+<span class="c1">-- Tenta mover a espada de peso 0.1 para o inventário já lotado.</span>
+<span class="c1">-- CALL sp_transferir_item(p_item_id := 1, p_vendedor_id := 1, p_comprador_id := 3);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;NOTA: A ação de CALL para o teste 2.3 foi comentada. A procedure deve falhar por causa do trigger trg_check_inventory_weight, gerando a exceção de capacidade excedida.&#39;</span><span class="p">;</span>
+
+
+<span class="c1">-- ===================================================================</span>
+<span class="c1">-- TESTE 3: Batalha, Concessão de XP e Log (sp_executar_batalha, </span>
+<span class="c1">--          trg_grant_xp_on_victory, trg_log_personagem_level_up)</span>
+<span class="c1">-- ===================================================================</span>
+<span class="c1">-- Este teste verifica 3 funcionalidades de uma vez.</span>
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 3.1: SUCESSO - Jogador vence, ganha XP, sobe de nível e gera log</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 3.1: SUCESSO - Batalha com vitória e progressão.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: O &quot;Guia Roric&quot; (ID 1, jogador, ATQ 100) enfrenta o &quot;Goblin Ladrão&quot; (ID 10, vida 90, XP 1200). O jogador deve vencer.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pré-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nivel_antes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_confrontos_antes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">confronta</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_logs_antes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">log_personagem_level</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+
+<span class="c1">-- Ação</span>
+<span class="k">CALL</span><span class="w"> </span><span class="n">sp_executar_batalha</span><span class="p">(</span><span class="n">p_jogador_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="n">p_criatura_id</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Ação: Batalha executada entre jogador 1 e criatura 10.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pós-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nivel_depois</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO: nivel_depois deve ser maior que o anterior.&#39;</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">vencedor</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">confronta</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">unique_id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO: vencedor deve ser TRUE.&#39;</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">level_antigo</span><span class="p">,</span><span class="w"> </span><span class="n">level_novo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">log_personagem_level</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id_log</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO: Um novo log de alteração de nível deve existir.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="c1">-- Teste 3.2: LÓGICA DO TRIGGER - Confronto com derrota não concede XP</span>
+<span class="c1">-- -------------------------------------------------------------------</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;--&gt; TESTE 3.2: LÓGICA - Derrota não concede XP.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Cenário: Vamos simular uma derrota para o Jogador 2, inserindo um confronto com &quot;vencedor = FALSE&quot;. O trigger de XP não deve ser acionado.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pré-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nivel_antes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+
+<span class="c1">-- Ação</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">confronta</span><span class="p">(</span><span class="n">vencedor</span><span class="p">,</span><span class="w"> </span><span class="n">criatura_id</span><span class="p">,</span><span class="w"> </span><span class="n">jogador_id</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="k">FALSE</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Ação: Inserido confronto com derrota para o jogador 2.&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Verificação Pós-Teste</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nivel_depois</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id_personagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;ESPERADO: nivel_depois deve ser igual ao nivel_antes.&#39;</span><span class="p">;</span>
+
+
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;==================================================&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;Todos os testes foram executados.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;A transação será desfeita com ROLLBACK.&#39;</span><span class="p">;</span>
+<span class="n">RAISE</span><span class="w"> </span><span class="n">INFO</span><span class="w"> </span><span class="s1">&#39;==================================================&#39;</span><span class="p">;</span>
+
+<span class="k">ROLLBACK</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Desfaz todas as alterações feitas durante o teste</span>
+</code></pre></div>
+<hr />
+<h2 id="tabela-de-versionamento">Tabela de Versionamento</h2>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Data</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th>Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>04/07/2025</td>
+<td>Criação da documentação para triggers e stored procedures do jogo</td>
+<td><a href="https://github.com/FelipeFreire-gf">Felipe das Neves</a></td>
+<td><a href="https://github.com/FelipeFreire-gf">Felipe das Neves</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

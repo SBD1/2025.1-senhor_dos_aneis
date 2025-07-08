@@ -1,0 +1,1693 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do jogo Lord of The Rings Terminal Game">
+      
+      
+      
+      
+        <link rel="prev" href="../../Modulo1/Entrega1/">
+      
+      
+        <link rel="next" href="../DML/">
+      
+      
+      <link rel="icon" href="../../../assets/imgL.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>DDL - Lord of The Rings Terminal Game</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/styles.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-definition-language" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-header__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lord of The Rings Terminal Game
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DDL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-nav__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    Lord of The Rings Terminal Game
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metodologia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Diagrama_Entidade_Relacionamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade-Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/modelo_relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelo Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Dicionario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dicionário de Dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Entrega1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DDL
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDL
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceito:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracoes-de-ddl-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declarações de DDL no Software:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Declarações de DDL no Software:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visao-geral-do-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral do Banco de Dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-estruturas-fundamentais" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Estruturas Fundamentais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Estruturas Fundamentais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-da-tabela-personagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. CREATE da Tabela "personagem"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-create-da-tabela-cenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. CREATE da Tabela "cenario"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-estruturas-do-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Estruturas do Jogador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Estruturas do Jogador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-da-tabela-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. CREATE da Tabela "jogador"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-da-tabela-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. CREATE da Tabela "inventario"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-itens-e-equipamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Itens e Equipamentos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Itens e Equipamentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-da-tabela-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. CREATE da Tabela "item"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-das-tabelas-arma-e-armadura" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. CREATE das Tabelas "arma" e "armadura"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-personagens-nao-jogaveis-npcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Personagens Não-Jogáveis (NPCs)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Personagens Não-Jogáveis (NPCs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-create-das-tabelas-npc-guia-e-comerciante" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. CREATE das Tabelas "npc", "guia" e "comerciante"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-criaturas-e-inimigos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Criaturas e Inimigos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Criaturas e Inimigos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-create-da-tabela-criatura-e-suas-especializacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. CREATE da Tabela "criatura" e suas especializações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mecanicas-de-combate-e-interacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Mecânicas de Combate e Interação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Mecânicas de Combate e Interação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-create-da-tabela-confronta" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1. CREATE da Tabela "confronta"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-create-da-tabela-batalha" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2. CREATE da Tabela "batalha"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-habilidades-e-caracteristicas-do-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Habilidades e Características do Jogador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Habilidades e Características do Jogador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-create-das-tabelas-skill-e-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1. CREATE das Tabelas "skill" e "caracteristicas"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-classes-de-personagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Classes de Personagem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Classes de Personagem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-create-das-tabelas-de-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1. CREATE das Tabelas de Classes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Entrega2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Triggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Triggers e SP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Views
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Modificacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Atualizações
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Entrega3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceito:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracoes-de-ddl-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declarações de DDL no Software:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Declarações de DDL no Software:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visao-geral-do-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão Geral do Banco de Dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-estruturas-fundamentais" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Estruturas Fundamentais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Estruturas Fundamentais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-da-tabela-personagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. CREATE da Tabela "personagem"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-create-da-tabela-cenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. CREATE da Tabela "cenario"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-estruturas-do-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Estruturas do Jogador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Estruturas do Jogador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-da-tabela-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. CREATE da Tabela "jogador"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-da-tabela-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. CREATE da Tabela "inventario"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-itens-e-equipamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Itens e Equipamentos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Itens e Equipamentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-da-tabela-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. CREATE da Tabela "item"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-create-das-tabelas-arma-e-armadura" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. CREATE das Tabelas "arma" e "armadura"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-personagens-nao-jogaveis-npcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Personagens Não-Jogáveis (NPCs)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Personagens Não-Jogáveis (NPCs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-create-das-tabelas-npc-guia-e-comerciante" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. CREATE das Tabelas "npc", "guia" e "comerciante"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-criaturas-e-inimigos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Criaturas e Inimigos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Criaturas e Inimigos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-create-da-tabela-criatura-e-suas-especializacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. CREATE da Tabela "criatura" e suas especializações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mecanicas-de-combate-e-interacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Mecânicas de Combate e Interação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Mecânicas de Combate e Interação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-create-da-tabela-confronta" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1. CREATE da Tabela "confronta"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-create-da-tabela-batalha" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2. CREATE da Tabela "batalha"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-habilidades-e-caracteristicas-do-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Habilidades e Características do Jogador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Habilidades e Características do Jogador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-create-das-tabelas-skill-e-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1. CREATE das Tabelas "skill" e "caracteristicas"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-classes-de-personagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Classes de Personagem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Classes de Personagem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-create-das-tabelas-de-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1. CREATE das Tabelas de Classes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><span style="background-color:#c5a352; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Versão 1.0</span></p>
+<h1 id="data-definition-language">Data Definition Language</h1>
+<h2 id="conceito">Conceito:</h2>
+<p>A Data Definition Language (DDL), ou Linguagem de Definição de Dados, é um subconjunto da linguagem SQL responsável pela criação, modificação e remoção de estruturas de dados em um banco de dados. Ela lida com os aspectos estruturais do banco, como tabelas, esquemas, índices e relacionamentos. Com comandos como <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code> e <code>TRUNCATE</code>, a DDL permite que desenvolvedores e administradores definam como os dados serão armazenados, organizados e acessados, estabelecendo a base sobre a qual as operações de manipulação de dados (DML) irão atuar.</p>
+<hr />
+<h2 id="declaracoes-de-ddl-no-software">Declarações de DDL no Software:</h2>
+<h3 id="visao-geral-do-banco-de-dados"><strong>Visão Geral do Banco de Dados</strong></h3>
+<p>Este script cria a estrutura de um banco de dados para um jogo de RPG. Ele define todas as entidades essenciais, como personagens (jogadores, NPCs, criaturas), o mundo do jogo (cenários), itens (armas, armaduras), inventários e as mecânicas de combate e habilidades.</p>
+<p>A seguir, apresento a criação de cada tabela:</p>
+<div class="admonition warning">
+<p class="admonition-title">Atenção!</p>
+<p>O conteúdo deste tópico <strong>poderá sofrer alterações</strong> ao longo da Disciplina de Sistema de Banco de Dados 1. Portanto, à medida que novas inserções forem necessárias, o arquivo atual sempre sempre se manterá atualizado com a nova versão.</p>
+</div>
+<hr />
+<h3 id="1-estruturas-fundamentais"><strong>1. Estruturas Fundamentais</strong></h3>
+<p>Estas são as tabelas base que sustentam as principais entidades do jogo.</p>
+<h4 id="11-create-da-tabela-personagem"><strong>1.1. CREATE da Tabela "personagem"</strong></h4>
+<p>A tabela <code>personagem</code> é a tabela base para qualquer ser vivo no jogo, seja ele um jogador, um NPC ou uma criatura. Ela centraliza os atributos comuns a todos, como nome, vida e mana.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: personagem </span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nome</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vida_maxima</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">mana_maxima</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">habilidade</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">dificuldade</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">),</span>
+<span class="w">    </span><span class="k">level</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">resistencia</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">dialogo</span><span class="w"> </span><span class="nb">TEXT</span>
+<span class="p">);</span>
+</code></pre></div>
+<h4 id="12-create-da-tabela-cenario"><strong>1.2. CREATE da Tabela "cenario"</strong></h4>
+<p>Esta tabela define os diferentes locais ou mapas do mundo do jogo. As colunas de navegação (norte, leste, oeste, sul) são adicionadas posteriormente para criar as conexões entre os cenários, formando o mapa do mundo.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: cenario </span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_cenario</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">sol</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">chuva</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">noite</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">dia</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">-- Adicionando colunas de navegação </span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">norte_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">leste_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">oeste_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">sul_id</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">norte_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">cenario</span><span class="p">(</span><span class="n">id_cenario</span><span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">leste_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">cenario</span><span class="p">(</span><span class="n">id_cenario</span><span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">oeste_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">cenario</span><span class="p">(</span><span class="n">id_cenario</span><span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">sul_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">cenario</span><span class="p">(</span><span class="n">id_cenario</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="2-estruturas-do-jogador"><strong>2. Estruturas do Jogador</strong></h3>
+<p>Tabelas diretamente relacionadas ao personagem do jogador.</p>
+<h4 id="21-create-da-tabela-jogador"><strong>2.1. CREATE da Tabela "jogador"</strong></h4>
+<p>A tabela <code>jogador</code> é uma especialização da tabela <code>personagem</code>. Ela guarda informações específicas do jogador, como sua localização atual no mapa (<code>cenario</code>) e o tipo de equipamento que ele pode usar.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: jogador</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">jogador</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cenario</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tipo_equipamento</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">cenario</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">cenario</span><span class="p">(</span><span class="n">id_cenario</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h4 id="22-create-da-tabela-inventario"><strong>2.2. CREATE da Tabela "inventario"</strong></h4>
+<p>Todo personagem pode ter um inventário para carregar itens. Esta tabela define o inventário, sua capacidade de carga (<code>pods</code>) e a qual personagem ele pertence.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: inventario</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_inventario</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">id_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pods</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="3-itens-e-equipamentos"><strong>3. Itens e Equipamentos</strong></h3>
+<p>Tabelas que definem os itens que podem ser encontrados e usados no jogo.</p>
+<h4 id="31-create-da-tabela-item"><strong>3.1. CREATE da Tabela "item"</strong></h4>
+<p>A tabela <code>item</code> é a tabela base para todos os objetos que podem ser guardados no inventário. Ela contém informações genéricas como nome, peso e durabilidade.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: item</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_item</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nome</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">peso</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="mf">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">durabilidade</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">durabilidade</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">),</span><span class="w">      </span>
+<span class="w">    </span><span class="n">id_inventario</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_inventario</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">inventario</span><span class="p">(</span><span class="n">id_inventario</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span>
+<span class="p">);</span>
+</code></pre></div>
+<h4 id="32-create-das-tabelas-arma-e-armadura"><strong>3.2. CREATE das Tabelas "arma" e "armadura"</strong></h4>
+<p>Estas são especializações da tabela <code>item</code>. A tabela <code>arma</code> adiciona atributos de combate como dano, enquanto a <code>armadura</code> adiciona defesa.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabelas: arma e armadura</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">arma</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">mãos</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">mãos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">),</span>
+<span class="w">    </span><span class="n">dano</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">dano</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">id_item</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_item</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">item</span><span class="p">(</span><span class="n">id_item</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">armadura</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_item</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">defesa</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">defesa</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_item</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">item</span><span class="p">(</span><span class="n">id_item</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="4-personagens-nao-jogaveis-npcs"><strong>4. Personagens Não-Jogáveis (NPCs)</strong></h3>
+<p>Tabelas para os diferentes tipos de NPCs que povoam o mundo.</p>
+<h4 id="41-create-das-tabelas-npc-guia-e-comerciante"><strong>4.1. CREATE das Tabelas "npc", "guia" e "comerciante"</strong></h4>
+<p>A tabela <code>npc</code> é a base para personagens controlados pelo sistema. As tabelas <code>guia</code> e <code>comerciante</code> são especializações, adicionando funcionalidades como oferecer orientação ou negociar itens.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabelas especializadas de personagem</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">npc</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">quest</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">localizacao</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">255</span><span class="p">),</span>
+<span class="w">    </span><span class="n">hora_aparicao</span><span class="w"> </span><span class="nb">TIME</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">guia</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">custo_orientacao</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">comerciante</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">venda_item</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">compra_item</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="5-criaturas-e-inimigos"><strong>5. Criaturas e Inimigos</strong></h3>
+<p>Tabelas para os inimigos que o jogador pode enfrentar.</p>
+<h4 id="51-create-da-tabela-criatura-e-suas-especializacoes"><strong>5.1. CREATE da Tabela "criatura" e suas especializações</strong></h4>
+<p><code>criatura</code> é a tabela base para todos os inimigos, herdando de <code>personagem</code>. As tabelas <code>ork</code>, <code>goblin</code> e <code>boss</code> representam tipos específicos de criaturas com atributos e mecânicas únicas.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: criatura e suas especializações</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">criatura</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">XP</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">ork</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Raiva</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">criatura</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">goblin</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">furtividade</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">roubo</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">criatura</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">boss</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_personagem</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">faseAtual</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">imunidades</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">criatura</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="6-mecanicas-de-combate-e-interacao"><strong>6. Mecânicas de Combate e Interação</strong></h3>
+<p>Tabelas que governam as regras de combate e outras interações.</p>
+<h4 id="61-create-da-tabela-confronta"><strong>6.1. CREATE da Tabela "confronta"</strong></h4>
+<p>Esta tabela de associação registra cada confronto ocorrido entre um jogador e uma criatura, armazenando quem foi o vencedor.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: confronta</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">confronta</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">Unique_ID</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">vencedor</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="p">,</span>
+<span class="w">    </span><span class="n">criatura_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">jogador_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">criatura_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">criatura</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">),</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">jogador_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">jogador</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<h4 id="62-create-da-tabela-batalha"><strong>6.2. CREATE da Tabela "batalha"</strong></h4>
+<p>Esta tabela parece registrar os detalhes de cada turno ou evento de uma batalha, como o dano causado e sofrido, e o ambiente onde a luta ocorreu.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: batalha</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">batalha</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_batalha</span><span class="w"> </span><span class="nb">SERIAL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Dano_causado</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Controle_Dano</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Ambiente_batalha</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">100</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Dano_sofrido</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="7-habilidades-e-caracteristicas-do-jogador"><strong>7. Habilidades e Características do Jogador</strong></h3>
+<p>Tabelas que detalham as habilidades e atributos elementais do jogador.</p>
+<h4 id="71-create-das-tabelas-skill-e-caracteristicas"><strong>7.1. CREATE das Tabelas "skill" e "caracteristicas"</strong></h4>
+<p>A tabela <code>skill</code> armazena o poder de ataque do jogador, enquanto a tabela <code>caracteristicas</code> detalha suas afinidades com os elementos (fogo, água, terra, ar).</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Tabela: skill e caracteristicas</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_jogador</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_jogador</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">jogador</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">caracteristicas</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID_jogador</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fogo</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">agua</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">terra</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ar</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID_jogador</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">jogador</span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="8-classes-de-personagem"><strong>8. Classes de Personagem</strong></h3>
+<p>Tabelas de especialização que definem as classes do jogador, cada uma com habilidades únicas.</p>
+<h4 id="81-create-das-tabelas-de-classes"><strong>8.1. CREATE das Tabelas de Classes</strong></h4>
+<p>Estas tabelas (<code>guerreiro</code>, <code>sacerdote</code>, <code>mago</code>, <code>arqueiro</code>) são vinculadas à tabela <code>personagem</code> e definem os atributos específicos de cada classe de personagem disponível para o jogador.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- Classes de personagem: guerreiro, sacerdote, mago, arqueiro</span>
+<span class="c1">-- ============================================</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">guerreiro</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq_Fisico</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bloquear_Dano</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">sacerdote</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">bencao_Cura</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq_Especial</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mago</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq_Magico</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq_MultiElemento</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">arqueiro</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id_personagem</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq_Preciso</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">atq_Rapido</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">personagem</span><span class="p">(</span><span class="n">id_personagem</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="tabela-de-versionamento">Tabela de Versionamento</h2>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Data</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th>Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>15/06/2025</td>
+<td>Todos os integrantes desenvolveram esse artefato</td>
+<td>Todos os Integrantes</td>
+<td>Todos os Integrantes</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

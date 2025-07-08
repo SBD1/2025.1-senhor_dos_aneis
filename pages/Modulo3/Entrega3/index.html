@@ -1,0 +1,1335 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do jogo Lord of The Rings Terminal Game">
+      
+      
+      
+      
+        <link rel="prev" href="../Modificacoes/">
+      
+      
+      
+      <link rel="icon" href="../../../assets/imgL.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Apresentação 3 - Lord of The Rings Terminal Game</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/styles.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#descricao-geral" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-header__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lord of The Rings Terminal Game
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Apresentação 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-nav__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    Lord of The Rings Terminal Game
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metodologia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Diagrama_Entidade_Relacionamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade-Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/modelo_relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelo Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Dicionario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dicionário de Dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Entrega1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/DDL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/DML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/DQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo2/Entrega2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Triggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Triggers e SP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Views
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Modificacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Atualizações
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descricao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto-das-entregas-anteriores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto das Entregas Anteriores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades Implementadas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-avancados-triggers-e-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos Avançados: Triggers e Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recursos Avançados: Triggers e Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triggers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-a-passo-para-rodar-o-jogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passo a Passo para Rodar o Jogo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Passo a Passo para Rodar o Jogo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-requisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-clonar-o-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clonar o repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-instalar-as-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Instalar as dependências
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configurar-o-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configurar o Banco de Dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configurar-as-credenciais-do-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configurar as credenciais do banco
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-executar-o-jogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Executar o Jogo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Executar o Jogo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      No Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      No Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apresentacao-em-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apresentação em Vídeo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#descricao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descrição Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contexto-das-entregas-anteriores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contexto das Entregas Anteriores
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funcionalidades Implementadas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-avancados-triggers-e-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursos Avançados: Triggers e Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recursos Avançados: Triggers e Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#triggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Triggers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passo-a-passo-para-rodar-o-jogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passo a Passo para Rodar o Jogo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Passo a Passo para Rodar o Jogo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pré-requisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-clonar-o-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Clonar o repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-instalar-as-dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Instalar as dependências
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configurar-o-banco-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Configurar o Banco de Dados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configurar-as-credenciais-do-banco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Configurar as credenciais do banco
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-executar-o-jogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Executar o Jogo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Executar o Jogo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      No Linux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      No Windows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apresentacao-em-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apresentação em Vídeo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Apresentação 3</h1>
+
+<blockquote>
+<h2 id="descricao-geral">Descrição Geral</h2>
+<p>Esta terceira entrega consolida o desenvolvimento do nosso RPG inspirado em Senhor dos Anéis, integrando banco de dados relacional, lógica de jogo em Python e recursos avançados como triggers, procedures e sistema de quests. O projeto evoluiu desde a modelagem conceitual até a implementação de funcionalidades completas e automatizadas.</p>
+</blockquote>
+<hr />
+<h2 id="contexto-das-entregas-anteriores">Contexto das Entregas Anteriores</h2>
+<ul>
+<li><strong>Entrega 1:</strong> Modelagem do DER, MER, MR e Dicionário de Dados, definindo as entidades principais (jogadores, personagens, cenários, itens, NPCs, criaturas).</li>
+<li><strong>Entrega 2:</strong> Implementação da estrutura do banco (DDL), povoamento inicial (DML), consultas essenciais (DQL) e suporte a funcionalidades como combate, inventário, NPCs e navegação.</li>
+</ul>
+<hr />
+<h2 id="funcionalidades-implementadas">Funcionalidades Implementadas</h2>
+<ul>
+<li>Criação de personagens com classes distintas (Guerreiro, Mago, Arqueiro, Sacerdote)</li>
+<li>Exploração de cenários e navegação entre ambientes</li>
+<li>Sistema de inventário e gerenciamento de itens</li>
+<li>Interação com NPCs (comerciantes, guias, quest givers)</li>
+<li>Sistema de batalhas contra criaturas</li>
+<li>Sistema de quests (missões principais, secundárias e épicas)</li>
+<li>Salvamento automático do progresso do jogador</li>
+</ul>
+<hr />
+<h2 id="recursos-avancados-triggers-e-procedures">Recursos Avançados: Triggers e Procedures</h2>
+<h3 id="triggers">Triggers</h3>
+<ol>
+<li><strong>Validação de Peso do Inventário (<code>trg_check_inventory_weight</code>)</strong></li>
+<li>Garante que o peso total dos itens não ultrapasse a capacidade máxima do inventário.</li>
+<li><strong>Concessão de XP ao Jogador Após Vitória (<code>trg_grant_xp_on_victory</code>)</strong></li>
+<li>Ao vencer uma batalha, o jogador recebe XP automaticamente e pode subir de nível.</li>
+<li><strong>Log de Alterações de Nível (<code>trg_log_personagem_level_up</code>)</strong></li>
+<li>Registra toda alteração de nível dos personagens para auditoria.</li>
+<li><strong>Início Automático de Quests (<code>trg_auto_iniciar_quests</code>)</strong></li>
+<li>Quando o jogador sobe de nível, quests principais disponíveis são automaticamente iniciadas.</li>
+<li><strong>Log de Movimentação do Jogador (<code>trg_log_movimento</code>)</strong></li>
+<li>Registra cada vez que o jogador muda de cenário.</li>
+</ol>
+<h3 id="procedures">Procedures</h3>
+<ol>
+<li><strong>Batalha Completa (<code>sp_executar_batalha</code>)</strong></li>
+<li>Executa toda a lógica de uma batalha entre jogador e criatura, registrando resultados e disparando triggers de XP.</li>
+<li><strong>Transferência de Item (<code>sp_transferir_item</code>)</strong></li>
+<li>Gerencia a transferência de itens entre personagens, validando posse e capacidade do inventário.</li>
+<li><strong>Completar Quest (<code>sp_completar_quest</code>)</strong></li>
+<li>Marca uma quest como concluída, concede recompensas e atualiza o progresso do jogador.</li>
+<li><strong>Atualizar Progresso de Quest (<code>sp_atualizar_progresso_quest</code>)</strong></li>
+<li>Atualiza o progresso de uma quest e chama a procedure de conclusão se necessário.</li>
+</ol>
+<hr />
+<h2 id="passo-a-passo-para-rodar-o-jogo">Passo a Passo para Rodar o Jogo</h2>
+<h3 id="pre-requisitos">Pré-requisitos</h3>
+<ul>
+<li>Python 3.8 ou superior</li>
+<li>PostgreSQL 12 ou superior</li>
+<li>Dependências Python (instaladas via <code>requirements.txt</code>)</li>
+</ul>
+<h3 id="1-clonar-o-repositorio">1. Clonar o repositório</h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sbd1/2025.1-senhor_dos_aneis.git
+<span class="nb">cd</span><span class="w"> </span><span class="m">2025</span>.1-senhor_dos_aneis
+</code></pre></div>
+<h3 id="2-instalar-as-dependencias">2. Instalar as dependências</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<h3 id="3-configurar-o-banco-de-dados">3. Configurar o Banco de Dados</h3>
+<ul>
+<li>Crie um banco chamado <code>senhor_dos_aneis</code> no PostgreSQL.</li>
+<li>Execute os scripts na seguinte ordem:</li>
+<li><code>game/DDL.sql</code> (criação das tabelas)</li>
+<li><code>game/dml.sql</code> (dados iniciais)</li>
+<li><code>game/trigger_sp.sql</code> (triggers e procedures)</li>
+<li><code>game/quests.sql</code> (sistema de quests)</li>
+<li>Outros scripts opcionais: <code>game/views.sql</code>, <code>game/adicionar_npcs_cenarios.sql</code>, <code>game/popular_cenarios.sql</code>, <code>game/teste_trigger.sql</code></li>
+</ul>
+<p>No terminal do PostgreSQL (psql):</p>
+<div class="highlight"><pre><span></span><code><span class="err">\</span><span class="k">c</span><span class="w"> </span><span class="n">senhor_dos_aneis</span>
+<span class="err">\</span><span class="n">i</span><span class="w"> </span><span class="n">caminho</span><span class="o">/</span><span class="n">para</span><span class="o">/</span><span class="n">game</span><span class="o">/</span><span class="n">DDL</span><span class="p">.</span><span class="k">sql</span>
+<span class="err">\</span><span class="n">i</span><span class="w"> </span><span class="n">caminho</span><span class="o">/</span><span class="n">para</span><span class="o">/</span><span class="n">game</span><span class="o">/</span><span class="n">dml</span><span class="p">.</span><span class="k">sql</span>
+<span class="err">\</span><span class="n">i</span><span class="w"> </span><span class="n">caminho</span><span class="o">/</span><span class="n">para</span><span class="o">/</span><span class="n">game</span><span class="o">/</span><span class="n">trigger_sp</span><span class="p">.</span><span class="k">sql</span>
+<span class="err">\</span><span class="n">i</span><span class="w"> </span><span class="n">caminho</span><span class="o">/</span><span class="n">para</span><span class="o">/</span><span class="n">game</span><span class="o">/</span><span class="n">quests</span><span class="p">.</span><span class="k">sql</span>
+</code></pre></div>
+<h3 id="4-configurar-as-credenciais-do-banco">4. Configurar as credenciais do banco</h3>
+<p>No arquivo do jogo (ex: <code>jogo.py</code>), ajuste as credenciais de acesso ao banco conforme seu ambiente:</p>
+<div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">connection</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;senhor_dos_aneis&quot;</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;SEU_USUARIO&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;SUA_SENHA&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="5-executar-o-jogo">5. Executar o Jogo</h3>
+<h4 id="no-linux">No Linux</h4>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>game/jogo.py
+</code></pre></div>
+<h4 id="no-windows">No Windows</h4>
+<div class="highlight"><pre><span></span><code><span class="n">python</span> <span class="n">game</span><span class="p">\</span><span class="n">jogo</span><span class="p">.</span><span class="n">py</span>
+</code></pre></div>
+<hr />
+<hr />
+<h2 id="apresentacao-em-video">Apresentação em Vídeo</h2>
+<p>A apresentação da segunda etapa pode ser acessada no link abaixo:</p>
+<p>🔗 <a href="https://www.youtube.com/watch?v=7jo3BNOs5Go">Assista ao vídeo</a></p>
+<div style="text-align: center;">
+  <p><strong>Entrega 2: </strong> 
+    <a href="https://www.youtube.com/watch?v=7jo3BNOs5Go">Modelagem</a>
+  </p>
+  <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/7jo3BNOs5Go" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+<hr />
+<h2 id="tabela-de-versionamento">Tabela de Versionamento</h2>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Data</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th>Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>07/07/2025</td>
+<td>Inserção do vídeo</td>
+<td><a href="https://github.com/FelipeFreire-gf">Felipe das Neves</a></td>
+<td>Todos os Integrantes</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>"Mesmo a menor das pessoas pode mudar o curso do futuro."</em> – Galadriel</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

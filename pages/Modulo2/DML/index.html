@@ -1,0 +1,1098 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do jogo Lord of The Rings Terminal Game">
+      
+      
+      
+      
+        <link rel="prev" href="../DDL/">
+      
+      
+        <link rel="next" href="../DQL/">
+      
+      
+      <link rel="icon" href="../../../assets/imgL.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>DML - Lord of The Rings Terminal Game</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/styles.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-manipulation-language" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-header__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lord of The Rings Terminal Game
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DML
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="--md-primary-fg-color" data-md-color-accent="--md-primary-fg-color"  aria-label="Mude para o tema claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mude para o tema claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Lord of The Rings Terminal Game" class="md-nav__button md-logo" aria-label="Lord of The Rings Terminal Game" data-md-component="logo">
+      
+  <img src="../../../assets/imgL-icon.ico" alt="logo">
+
+    </a>
+    Lord of The Rings Terminal Game
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2025.1-senhor_dos_aneis/new/main" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2025.1-senhor_dos_aneis
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metodologia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Diagrama_Entidade_Relacionamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade-Relacionamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/modelo_relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelo Relacional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Dicionario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dicionário de Dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo1/Entrega1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DDL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DML
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    DML
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceito:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracoes-de-dml-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declarações de DML no Software:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Entrega2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Modulo 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Modulo 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Triggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Triggers e SP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Views
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Modificacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Atualizações
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Modulo3/Entrega3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conceito:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracoes-de-dml-no-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declarações de DML no Software:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tabela-de-versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Versionamento
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<p><span style="background-color:#c5a352; color:white; font-size:0.8em; font-weight: bold; padding:2px 6px; border-radius:4px;">Versão 1.0</span></p>
+<h1 id="data-manipulation-language">Data Manipulation Language</h1>
+<h2 id="conceito">Conceito:</h2>
+<p>A Data Manipulation Language (DML), ou Linguagem de Manipulação de Dados, é a parte do SQL responsável por lidar diretamente com os dados armazenados nas estruturas definidas pela DDL. Enquanto a DDL define "onde" os dados vão ficar, a DML atua sobre "quais" dados vão ocupar esses espaços e "como" serão manipulados. Com comandos como <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code> e <code>DELETE</code>, a DML permite consultar, adicionar, modificar e remover registros dentro das tabelas do banco de dados.</p>
+<p>Ao contrário dos comandos DDL, que geralmente afetam a estrutura do banco de forma permanente, os comandos DML operam sobre os dados em si e podem ser revertidos com o uso de transações (<code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code>). Isso garante maior controle sobre as operações, especialmente em aplicações que exigem consistência e segurança na manipulação de dados.</p>
+<hr />
+<h2 id="declaracoes-de-dml-no-software">Declarações de DML no Software:</h2>
+<div class="admonition warning">
+<p class="admonition-title">Atenção!</p>
+<p>O conteúdo deste tópico <strong>poderá sofrer alterações</strong> ao longo da Disciplina de Sistema de Banco de Dados 1. Portanto, à medida que novas inserções forem necessárias, o arquivo atual sempre sempre se manterá atualizado com a nova versão.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Atenção!</p>
+<p>Alguns DML's abaixo <strong>também utiliza de comandos DQL (Data Query Language) de forma integrada</strong>, isto é, comandos <code>SELECT</code> a fim de não comprometer as referências às chaves primárias à medida que o software evolui. Dessa maneira, entenda que ao invés da equipe inserir manualmente os valores de <em>ID's</em> ou <em>Seeds</em> nos campos de chave estrangeira, foi feito uma busca com <code>SELECT</code> sob alguns parâmetros com <code>WHERE</code> para capturar estes valores.  </p>
+</div>
+<details class="info">
+<summary><em>1. Personagens Base</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 1. TODOS OS PERSONAGENS BASE</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">personagem</span><span class="w"> </span><span class="p">(</span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">vida_maxima</span><span class="p">,</span><span class="w"> </span><span class="n">mana_maxima</span><span class="p">,</span><span class="w"> </span><span class="n">habilidade</span><span class="p">,</span><span class="w"> </span><span class="n">dificuldade</span><span class="p">,</span><span class="w"> </span><span class="k">level</span><span class="p">,</span><span class="w"> </span><span class="n">resistencia</span><span class="p">,</span><span class="w"> </span><span class="n">dialogo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="s1">&#39;Roric, o Guia&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="mf">150</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Navegação&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Normal&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">12</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Gelo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Olá, viajante! Posso te ajudar a encontrar seu destino por algumas moedas.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 1</span>
+<span class="p">(</span><span class="s1">&#39;Borgar, o Mercador&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">150</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Comércio&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Fácil&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">18</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nenhuma&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tenho os melhores itens deste lado da montanha! Dê uma olhada.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 2</span>
+<span class="p">(</span><span class="s1">&#39;Lord Valerius&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">120</span><span class="p">,</span><span class="w"> </span><span class="mf">120</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Liderança&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Difícil&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Persuasão&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Bem-vindo ao meu domínio. Cumpra uma tarefa para mim e será recompensado.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 3</span>
+<span class="p">(</span><span class="s1">&#39;Elara, a Cidadã&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Culinária&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Fácil&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nenhuma&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Um belo dia para um passeio na praça, não acha?&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 4</span>
+<span class="p">(</span><span class="s1">&#39;Aeldrin, o Mago&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Feitiçaria&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Média&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">14</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Fogo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;O conhecimento está nas runas antigas.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 5</span>
+<span class="p">(</span><span class="s1">&#39;Thalas, o Invocador&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="mf">180</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Invocação&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Alta&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">16</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sombras&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;O mundo espiritual é volátil.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 6</span>
+<span class="p">(</span><span class="s1">&#39;Lira, a Arqueira&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">110</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Precisão&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Normal&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">13</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ar&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nada escapa dos meus olhos.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 7</span>
+<span class="p">(</span><span class="s1">&#39;Kira, a Caçadora&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Furtividade&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Difícil&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">15</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Vento&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Eu vejo o que os outros não enxergam.&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 8</span>
+<span class="p">(</span><span class="s1">&#39;Ork Bruto&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Força Bruta&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Média&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Físico&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;GRRRR!&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 9</span>
+<span class="p">(</span><span class="s1">&#39;Goblin Ladrão&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">60</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Roubo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Fácil&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Furtividade&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hehe, peguei seu ouro!&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 10</span>
+<span class="p">(</span><span class="s1">&#39;Rei Demônio&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span><span class="w"> </span><span class="mf">250</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Magia Negra&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Extrema&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Fogo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Você jamais sairá vivo daqui!&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">-- ID 11</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>2. Especializações de NPCs</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 2. ESPECIALIZAÇÕES DE PERSONAGEM (NPCs)</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">guia</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">custo_orientacao</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">75.50</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">comerciante</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">venda_item</span><span class="p">,</span><span class="w"> </span><span class="n">compra_item</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span>
+<span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Poções de cura, Adagas de ferro&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ervas raras, Peles de lobo&#39;</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">npc</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">quest</span><span class="p">,</span><span class="w"> </span><span class="n">localizacao</span><span class="p">,</span><span class="w"> </span><span class="n">hora_aparicao</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span>
+<span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Derrote o líder dos goblins na floresta sombria.&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sala do Trono do Castelo&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;14:00:00&#39;</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>3. Criaturas</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 3. CRIATURAS</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">criatura</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">XP</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span>
+<span class="p">(</span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">1500</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">1200</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">11</span><span class="p">,</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">ork</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">Raiva</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">goblin</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">furtividade</span><span class="p">,</span><span class="w"> </span><span class="n">roubo</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">75</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">boss</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">faseAtual</span><span class="p">,</span><span class="w"> </span><span class="n">imunidades</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">11</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;fogo,veneno&#39;</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>4. Cenários</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 4. CENÁRIOS</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">cenario</span><span class="w"> </span><span class="p">(</span><span class="n">norte_id</span><span class="p">,</span><span class="w"> </span><span class="n">leste_id</span><span class="p">,</span><span class="w"> </span><span class="n">oeste_id</span><span class="p">,</span><span class="w"> </span><span class="n">sul_id</span><span class="p">,</span><span class="w"> </span><span class="n">sol</span><span class="p">,</span><span class="w"> </span><span class="n">chuva</span><span class="p">,</span><span class="w"> </span><span class="n">noite</span><span class="p">,</span><span class="w"> </span><span class="n">dia</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Ensolarado&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sem chuva&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Lua cheia&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Claro&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 1</span>
+<span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Nublado&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Chuva fraca&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Escuro&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Parcialmente nublado&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 2</span>
+<span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sol forte&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tempestade&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Estrelado&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Brilhante&#39;</span><span class="p">),</span><span class="w"> </span><span class="c1">-- ID 3</span>
+<span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Pôr do sol&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Garoa&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Neblina&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Amanhecer&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">-- ID 4</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>5. Jogadores</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 5. JOGADORES</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">jogador</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">cenario</span><span class="p">,</span><span class="w"> </span><span class="n">tipo_equipamento</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Espada&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cajado&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Arco&#39;</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">skill</span><span class="w"> </span><span class="p">(</span><span class="n">ID_jogador</span><span class="p">,</span><span class="w"> </span><span class="n">atq</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">100</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">caracteristicas</span><span class="w"> </span><span class="p">(</span><span class="n">ID_jogador</span><span class="p">,</span><span class="w"> </span><span class="n">fogo</span><span class="p">,</span><span class="w"> </span><span class="n">agua</span><span class="p">,</span><span class="w"> </span><span class="n">terra</span><span class="p">,</span><span class="w"> </span><span class="n">ar</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">,</span><span class="w"> </span><span class="mf">60</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>6. Inventário e Itens</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 6. INVENTÁRIO E ITENS</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">inventario</span><span class="w"> </span><span class="p">(</span><span class="n">ID_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">Pods</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span>
+<span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">(</span><span class="n">ID_item</span><span class="p">,</span><span class="w"> </span><span class="n">ID_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">peso</span><span class="p">,</span><span class="w"> </span><span class="n">durabilidade</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Espada Longa&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">250</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">arma</span><span class="w"> </span><span class="p">(</span><span class="n">ID_item</span><span class="p">,</span><span class="w"> </span><span class="n">mãos</span><span class="p">,</span><span class="w"> </span><span class="n">dano</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+
+<span class="c1">-- NOTA: O mesmo item não pode ser arma E armadura. Vou criar um item separado para armadura</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="p">(</span><span class="n">ID_item</span><span class="p">,</span><span class="w"> </span><span class="n">ID_inventario</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">peso</span><span class="p">,</span><span class="w"> </span><span class="n">durabilidade</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Armadura de Couro&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">200</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">armadura</span><span class="w"> </span><span class="p">(</span><span class="n">ID_item</span><span class="p">,</span><span class="w"> </span><span class="n">defesa</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">95</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>7. Classes de Personagem</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 7. CLASSES DE PERSONAGEM</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">guerreiro</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">atq_Fisico</span><span class="p">,</span><span class="w"> </span><span class="n">bloquear_Dano</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">92</span><span class="p">,</span><span class="w"> </span><span class="mf">65</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">sacerdote</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">bencao_Cura</span><span class="p">,</span><span class="w"> </span><span class="n">atq_Especial</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">45</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">mago</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">atq_Magico</span><span class="p">,</span><span class="w"> </span><span class="n">atq_MultiElemento</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">95</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">6</span><span class="p">,</span><span class="w"> </span><span class="mf">88</span><span class="p">,</span><span class="w"> </span><span class="mf">75</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">arqueiro</span><span class="w"> </span><span class="p">(</span><span class="n">ID_personagem</span><span class="p">,</span><span class="w"> </span><span class="n">atq_Preciso</span><span class="p">,</span><span class="w"> </span><span class="n">atq_Rapido</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">7</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">8</span><span class="p">,</span><span class="w"> </span><span class="mf">87</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>8. Batalhas</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 8. BATALHAS</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">batalha</span><span class="w"> </span><span class="p">(</span><span class="n">Dano_causado</span><span class="p">,</span><span class="w"> </span><span class="n">Controle_Dano</span><span class="p">,</span><span class="w"> </span><span class="n">Ambiente_batalha</span><span class="p">,</span><span class="w"> </span><span class="n">Dano_sofrido</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="mf">100</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Floresta de Fangorn&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">50</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">150</span><span class="p">,</span><span class="w"> </span><span class="mf">90</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Moria&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">75</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">200</span><span class="p">,</span><span class="w"> </span><span class="mf">95</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Portão Negro de Mordor&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">120</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">80</span><span class="p">,</span><span class="w"> </span><span class="mf">70</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Rohan&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">40</span><span class="p">),</span>
+<span class="p">(</span><span class="mf">120</span><span class="p">,</span><span class="w"> </span><span class="mf">85</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Gondor&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">60</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<details class="info">
+<summary><em>9. Confrontos</em> INSERT's</summary>
+<div class="highlight"><pre><span></span><code><span class="c1">-- ============================================</span>
+<span class="c1">-- 9. CONFRONTOS</span>
+<span class="c1">-- ============================================</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">confronta</span><span class="w"> </span><span class="p">(</span><span class="n">vencedor</span><span class="p">,</span><span class="w"> </span><span class="n">criatura_id</span><span class="p">,</span><span class="w"> </span><span class="n">jogador_id</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span>
+<span class="p">(</span><span class="k">TRUE</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">),</span>
+<span class="p">(</span><span class="k">FALSE</span><span class="p">,</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">),</span>
+<span class="p">(</span><span class="k">TRUE</span><span class="p">,</span><span class="w"> </span><span class="mf">11</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<hr />
+<h2 id="tabela-de-versionamento">Tabela de Versionamento</h2>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Data</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th>Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>15/06/2025</td>
+<td>Todos os integrantes desenvolveram esse artefato</td>
+<td>Todos os Integrantes</td>
+<td>Todos os Integrantes</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
