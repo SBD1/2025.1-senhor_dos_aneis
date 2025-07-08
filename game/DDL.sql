@@ -47,6 +47,16 @@ CREATE TABLE IF NOT EXISTS jogador (
 );
 
 -- ============================================
+-- Tabela: jogador_status (vida e mana atuais)
+-- ============================================
+CREATE TABLE IF NOT EXISTS jogador_status (
+    id_jogador INTEGER PRIMARY KEY,
+    vida_atual INTEGER NOT NULL DEFAULT 100,
+    mana_atual INTEGER NOT NULL DEFAULT 100,
+    FOREIGN KEY (id_jogador) REFERENCES jogador(ID_personagem) ON DELETE CASCADE
+);
+
+-- ============================================
 -- Tabela: inventario
 -- ============================================
 CREATE TABLE IF NOT EXISTS inventario (

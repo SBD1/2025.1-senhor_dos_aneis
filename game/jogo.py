@@ -46,7 +46,6 @@ class LordOfTheRingsMUD:
         try:
             cursor = self.connection.cursor()
             
-            # Verificar se as tabelas de quest já existem
             cursor.execute("""
                 SELECT EXISTS (
                     SELECT FROM information_schema.tables 
@@ -59,7 +58,6 @@ class LordOfTheRingsMUD:
             if not quest_exists:
                 print("🔧 Configurando sistema de quests...")
                 
-                # Criar tabela de quest
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS quest (
                         id_quest SERIAL PRIMARY KEY,
@@ -69,11 +67,11 @@ class LordOfTheRingsMUD:
                         recompensa_item VARCHAR(100),
                         pre_requisito_level INTEGER DEFAULT 1,
                         tipo_quest VARCHAR(50) DEFAULT 'Principal',
-                        status VARCHAR(20) DEFAULT 'Disponível'
+                        status VARCHAR(20) DEFAULT 'Disponível',
+                        quest_dinamica BOOLEAN DEFAULT FALSE
                     );
                 """)
                 
-                # Criar tabela de progresso
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS quest_progresso (
                         id_progresso SERIAL PRIMARY KEY,
@@ -89,16 +87,15 @@ class LordOfTheRingsMUD:
                     );
                 """)
                 
-                # Inserir quests corrigidas apenas se não existirem
                 cursor.execute("""
-                    INSERT INTO quest (nome, descricao, recompensa_xp, recompensa_item, pre_requisito_level, tipo_quest) 
+                    INSERT INTO quest (nome, descricao, recompensa_xp, recompensa_item, pre_requisito_level, tipo_quest, quest_dinamica) 
                     SELECT * FROM (VALUES
-                        ('A Jornada Começa', 'Fale com 2 NPCs diferentes para aprender sobre a Terra Média', 100, 'Poção de Cura', 1, 'Principal'),
-                        ('Defensor das Terras', 'Derrote 3 criaturas para proteger os inocentes', 200, 'Espada de Ferro', 1, 'Principal'),
-                        ('Explorador Iniciante', 'Visite todos os 4 cenários diferentes', 150, 'Mapa Élfico', 1, 'Secundária'),
-                        ('Comerciante Amigável', 'Realize 2 transações comerciais', 75, 'Bolsa de Moedas', 1, 'Secundária'),
-                        ('O Palantír Perdido', 'Encontre os três fragmentos do Palantír perdido espalhados pela Terra Média', 500, 'Palantír Restaurado', 1, 'Épica')
-                    ) AS v(nome, descricao, recompensa_xp, recompensa_item, pre_requisito_level, tipo_quest)
+                        ('A Jornada Começa', 'Fale com 2 NPCs diferentes para aprender sobre a Terra Média', 100, 'Poção de Cura', 1, 'Principal', FALSE),
+                        ('Defensor das Terras', 'Derrote 3 criaturas para proteger os inocentes', 200, 'Espada de Ferro', 1, 'Principal', FALSE),
+                        ('Explorador Iniciante', 'Visite todos os 4 cenários diferentes', 150, 'Mapa Élfico', 1, 'Secundária', FALSE),
+                        ('Comerciante Amigável', 'Realize 2 transações comerciais', 75, 'Bolsa de Moedas', 1, 'Secundária', FALSE),
+                        ('O Palantír Perdido', 'Encontre os três fragmentos do Palantír perdido espalhados pela Terra Média', 500, 'Palantír Restaurado', 1, 'Épica', FALSE)
+                    ) AS v(nome, descricao, recompensa_xp, recompensa_item, pre_requisito_level, tipo_quest, quest_dinamica)
                     WHERE NOT EXISTS (
                         SELECT 1 FROM quest WHERE quest.nome = v.nome
                     )
@@ -155,7 +152,6 @@ class LordOfTheRingsMUD:
         try:
             cursor = self.connection.cursor()
             
-            # Stats baseados na classe
             class_stats = {
                 'guerreiro': {'vida': 150, 'mana': 80, 'habilidade': 'Combate Corpo a Corpo', 'resistencia': 'Físico'},
                 'mago': {'vida': 90, 'mana': 200, 'habilidade': 'Feitiçaria Arcana', 'resistencia': 'Fogo'},
@@ -165,7 +161,6 @@ class LordOfTheRingsMUD:
             
             stats = class_stats.get(character_class, class_stats['guerreiro'])
             
-            # Inserir personagem
             cursor.execute("""
                 INSERT INTO personagem (nome, vida_maxima, mana_maxima, habilidade, dificuldade, level, resistencia, dialogo)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING ID_personagem
@@ -173,13 +168,11 @@ class LordOfTheRingsMUD:
             
             player_id = cursor.fetchone()[0]
             
-            # Inserir jogador com cenário inicial
             cursor.execute("""
                 INSERT INTO jogador (ID_personagem, cenario, tipo_equipamento)
                 VALUES (%s, %s, %s)
             """, (player_id, 1, "Equipamento Básico"))
             
-            # Inserir skills baseadas na classe
             class_attack = {
                 'guerreiro': 70, 'mago': 55, 'arqueiro': 65, 'sacerdote': 45
             }
@@ -188,7 +181,6 @@ class LordOfTheRingsMUD:
                 INSERT INTO skill (ID_jogador, atq) VALUES (%s, %s)
             """, (player_id, class_attack.get(character_class, 50)))
             
-            # Inserir características elementais baseadas na classe
             elemental_stats = {
                 'guerreiro': {'fogo': 20, 'agua': 20, 'terra': 40, 'ar': 20},
                 'mago': {'fogo': 50, 'agua': 30, 'terra': 10, 'ar': 30},
@@ -202,7 +194,6 @@ class LordOfTheRingsMUD:
                 VALUES (%s, %s, %s, %s, %s)
             """, (player_id, stats_elem['fogo'], stats_elem['agua'], stats_elem['terra'], stats_elem['ar']))
             
-            # Inserir na tabela da classe específica
             if character_class == "guerreiro":
                 cursor.execute("""
                     INSERT INTO guerreiro (id_personagem, atq_Fisico, bloquear_Dano)
@@ -224,14 +215,12 @@ class LordOfTheRingsMUD:
                     VALUES (%s, %s, %s)
                 """, (player_id, 95, 40))
             
-            # Criar inventário inicial
             cursor.execute("""
                 INSERT INTO inventario (id_personagem, pods) VALUES (%s, %s) RETURNING id_inventario
             """, (player_id, 100))
             
             inv_id = cursor.fetchone()[0]
             
-            # Adicionar item inicial + moedas
             initial_items = {
                 'guerreiro': ('Espada de Ferro', 2.5, 100),
                 'mago': ('Cajado Mágico', 1.5, 80),
@@ -244,11 +233,16 @@ class LordOfTheRingsMUD:
                 INSERT INTO item (nome, peso, durabilidade, id_inventario) VALUES (%s, %s, %s, %s)
             """, (item_name, peso, durabilidade, inv_id))
             
-            # Adicionar 10 moedas iniciais (cada uma como item separado)
             for _ in range(10):
                 cursor.execute("""
                     INSERT INTO item (nome, peso, durabilidade, id_inventario) VALUES (%s, %s, %s, %s)
                 """, ("Moeda de Ouro", 0.01, 999, inv_id))
+            
+            # Criar registro de status inicial (vida e mana atuais)
+            cursor.execute("""
+                INSERT INTO jogador_status (id_jogador, vida_atual, mana_atual)
+                VALUES (%s, %s, %s)
+            """, (player_id, stats['vida'], stats['mana']))
             
             self.connection.commit()
             self.current_player_id = player_id
@@ -278,23 +272,25 @@ class LordOfTheRingsMUD:
                          WHEN EXISTS(SELECT 1 FROM arqueiro a WHERE a.id_personagem = p.ID_personagem) THEN 'Arqueiro'
                          WHEN EXISTS(SELECT 1 FROM sacerdote s WHERE s.id_personagem = p.ID_personagem) THEN 'Sacerdote'
                          ELSE 'Desconhecida'
-                       END as classe
+                       END as classe,
+                       COALESCE(js.vida_atual, p.vida_maxima) as vida_atual,
+                       COALESCE(js.mana_atual, p.mana_maxima) as mana_atual
                 FROM personagem p
                 JOIN jogador j ON p.ID_personagem = j.ID_personagem
                 LEFT JOIN skill s ON j.ID_personagem = s.ID_jogador
                 LEFT JOIN caracteristicas c ON j.ID_personagem = c.ID_jogador
+                LEFT JOIN jogador_status js ON j.ID_personagem = js.id_jogador
                 WHERE p.ID_personagem = %s
             """, (self.current_player_id,))
             
             result = cursor.fetchone()
             if result:
-                # Atualizar cenário atual do jogador na memória
                 self.current_scenario_id = result[7]
                 return {
-                    "nome": result[0], "vida": result[1], "mana": result[2], "level": result[3],
+                    "nome": result[0], "vida_maxima": result[1], "mana_maxima": result[2], "level": result[3],
                     "habilidade": result[4], "resistencia": result[5], "equipamento": result[6],
                     "cenario": result[7], "ataque": result[8], "fogo": result[9], "agua": result[10], 
-                    "terra": result[11], "ar": result[12], "classe": result[13]
+                    "terra": result[11], "ar": result[12], "classe": result[13], "vida": result[14], "mana": result[15]
                 }
             return None
         except Exception as e:
@@ -344,7 +340,6 @@ class LordOfTheRingsMUD:
         try:
             cursor = self.connection.cursor()
             
-            # Buscar criaturas específicas do cenário, exceto as já derrotadas
             cursor.execute("""
                 SELECT c.ID_personagem, p.nome, p.vida_maxima, c.XP
                 FROM criatura c
@@ -361,11 +356,9 @@ class LordOfTheRingsMUD:
             creatures = cursor.fetchall()
             cursor.close()
             
-            # Se não há criaturas disponíveis, retornar lista vazia
             if not creatures:
                 return []
             
-            # Retornar 1-2 criaturas aleatórias
             return random.sample(creatures, min(2, len(creatures)))
             
         except Exception as e:
@@ -387,6 +380,58 @@ class LordOfTheRingsMUD:
             print(f"❌ Erro ao marcar criatura como derrotada: {e}")
             self.connection.rollback()
 
+    def update_player_status(self, vida_atual: int = None, mana_atual: int = None):
+        """Atualiza a vida e/ou mana atual do jogador"""
+        try:
+            cursor = self.connection.cursor()
+            
+            if vida_atual is not None and mana_atual is not None:
+                cursor.execute("""
+                    INSERT INTO jogador_status (id_jogador, vida_atual, mana_atual)
+                    VALUES (%s, %s, %s)
+                    ON CONFLICT (id_jogador) 
+                    DO UPDATE SET vida_atual = EXCLUDED.vida_atual, mana_atual = EXCLUDED.mana_atual
+                """, (self.current_player_id, vida_atual, mana_atual))
+            elif vida_atual is not None:
+                cursor.execute("""
+                    INSERT INTO jogador_status (id_jogador, vida_atual, mana_atual)
+                    VALUES (%s, %s, (SELECT mana_atual FROM jogador_status WHERE id_jogador = %s))
+                    ON CONFLICT (id_jogador) 
+                    DO UPDATE SET vida_atual = EXCLUDED.vida_atual
+                """, (self.current_player_id, vida_atual, self.current_player_id))
+            elif mana_atual is not None:
+                cursor.execute("""
+                    INSERT INTO jogador_status (id_jogador, vida_atual, mana_atual)
+                    VALUES (%s, (SELECT vida_atual FROM jogador_status WHERE id_jogador = %s), %s)
+                    ON CONFLICT (id_jogador) 
+                    DO UPDATE SET mana_atual = EXCLUDED.mana_atual
+                """, (self.current_player_id, self.current_player_id, mana_atual))
+            
+            self.connection.commit()
+            cursor.close()
+            
+        except Exception as e:
+            print(f"❌ Erro ao atualizar status do jogador: {e}")
+            self.connection.rollback()
+
+    def regenerate_mana(self, amount: int = 10):
+        """Regenera mana do jogador (usado após descanso ou tempo)"""
+        try:
+            player_stats = self.get_player_stats()
+            if not player_stats:
+                return
+            
+            current_mana = player_stats['mana']
+            max_mana = player_stats['mana_maxima']
+            new_mana = min(current_mana + amount, max_mana)
+            
+            if new_mana > current_mana:
+                self.update_player_status(mana_atual=new_mana)
+                print(f"💙 Mana regenerada! +{new_mana - current_mana} mana")
+            
+        except Exception as e:
+            print(f"❌ Erro ao regenerar mana: {e}")
+
     def get_player_money(self) -> int:
         """Conta o dinheiro do jogador - CORRIGIDO E ROBUSTO"""
         try:
@@ -394,7 +439,6 @@ class LordOfTheRingsMUD:
                 print("⚠️ current_player_id é None")
                 return 0
             cursor = self.connection.cursor()
-            # Query robusta: apenas Moeda de Ouro, INNER JOIN
             cursor.execute("""
                 SELECT COUNT(i.id_item) as money_count
                 FROM inventario inv
@@ -412,14 +456,19 @@ class LordOfTheRingsMUD:
             print(f"❌ Erro ao contar dinheiro: {e}")
             return 0
 
-    def update_quest_progress(self, quest_type: str, increment: int = 1):
+    def update_quest_progress(self, quest_type: str, increment: int = 1, scenario_id: int = None):
         """Atualiza progresso de quests baseado no tipo de ação"""
         quest_mapping = {
-            'npc_talk': 2,      # Defensor do Condado (conversas com NPCs)
-            'creature_kill': 2,  # Defensor do Condado (3 criaturas)
-            'explore': 3,        # Explorador da Terra Média (4 cenários)
-            'trade': 4,          # Caçador de Goblins (transações)
-            'palantir_fragment': 1  # A Busca do Palantír (3 fragmentos)
+            'npc_talk': 2,      
+            'creature_kill': 2,  
+            'explore': 3,        
+            'trade': 4,          
+            'palantir_fragment': 1,
+            'creature_kill_condado': 'dinamica',
+            'creature_kill_osgiliath': 'dinamica',
+            'creature_kill_rohan': 'dinamica',
+            'creature_kill_floresta': 'dinamica',
+            'generic_quest': 'dinamica'
         }
         
         quest_id = quest_mapping.get(quest_type)
@@ -429,29 +478,57 @@ class LordOfTheRingsMUD:
         try:
             cursor = self.connection.cursor()
             
-            # Verificar se jogador tem a quest ativa
-            cursor.execute("""
-                SELECT progresso_atual, progresso_maximo FROM quest_progresso
-                WHERE id_jogador = %s AND id_quest = %s AND status = 'Em Progresso'
-            """, (self.current_player_id, quest_id))
-            
-            result = cursor.fetchone()
-            if result:
-                atual, maximo = result
-                novo_progresso = min(atual + increment, maximo)
-                
+            if quest_id == 'dinamica':
+                # Atualizar quests dinâmicas baseadas no tipo e cenário
                 cursor.execute("""
-                    UPDATE quest_progresso 
-                    SET progresso_atual = %s
+                    SELECT qp.id_quest, qp.progresso_atual, qp.progresso_maximo, q.nome
+                    FROM quest_progresso qp
+                    JOIN quest q ON qp.id_quest = q.id_quest
+                    WHERE qp.id_jogador = %s AND qp.status = 'Em Progresso' AND q.quest_dinamica = TRUE
+                """, (self.current_player_id,))
+                
+                quests_dinamicas = cursor.fetchall()
+                
+                for quest_row in quests_dinamicas:
+                    q_id, atual, maximo, nome = quest_row
+                    objetivos = self.get_quest_objectives(nome)
+                    
+                    # Verificar se o tipo de progresso corresponde
+                    if objetivos['tipo_progresso'] == quest_type:
+                        novo_progresso = min(atual + increment, maximo)
+                        
+                        cursor.execute("""
+                            UPDATE quest_progresso 
+                            SET progresso_atual = %s
+                            WHERE id_jogador = %s AND id_quest = %s AND status = 'Em Progresso'
+                        """, (novo_progresso, self.current_player_id, q_id))
+                        
+                        if novo_progresso >= maximo:
+                            self.complete_quest(q_id)
+                        
+                        print(f"📈 Progresso na missão '{nome}': {novo_progresso}/{maximo}")
+            else:
+                # Sistema original para quests estáticas
+                cursor.execute("""
+                    SELECT progresso_atual, progresso_maximo FROM quest_progresso
                     WHERE id_jogador = %s AND id_quest = %s AND status = 'Em Progresso'
-                """, (novo_progresso, self.current_player_id, quest_id))
+                """, (self.current_player_id, quest_id))
                 
-                # Verificar se completou
-                if novo_progresso >= maximo:
-                    self.complete_quest(quest_id)
+                result = cursor.fetchone()
+                if result:
+                    atual, maximo = result
+                    novo_progresso = min(atual + increment, maximo)
+                    
+                    cursor.execute("""
+                        UPDATE quest_progresso 
+                        SET progresso_atual = %s
+                        WHERE id_jogador = %s AND id_quest = %s AND status = 'Em Progresso'
+                    """, (novo_progresso, self.current_player_id, quest_id))
+                    
+                    if novo_progresso >= maximo:
+                        self.complete_quest(quest_id)
                 
-                self.connection.commit()
-            
+            self.connection.commit()
             cursor.close()
             
         except Exception as e:
@@ -463,23 +540,20 @@ class LordOfTheRingsMUD:
         try:
             cursor = self.connection.cursor()
             
-            # Verificar se já tem quest inicial
             cursor.execute("""
                 SELECT COUNT(*) FROM quest_progresso WHERE id_jogador = %s
             """, (self.current_player_id,))
             
             if cursor.fetchone()[0] == 0:
-                # Iniciar quest do Palantír
                 cursor.execute("""
                     INSERT INTO quest_progresso (id_jogador, id_quest, progresso_atual, progresso_maximo, status)
                     VALUES (%s, %s, %s, %s, %s)
-                """, (self.current_player_id, 1, 0, 3, 'Em Progresso'))  # 3 fragmentos
+                """, (self.current_player_id, 1, 0, 3, 'Em Progresso'))  
                 
-                # Iniciar quest de defesa
                 cursor.execute("""
                     INSERT INTO quest_progresso (id_jogador, id_quest, progresso_atual, progresso_maximo, status)
                     VALUES (%s, %s, %s, %s, %s)
-                """, (self.current_player_id, 2, 0, 5, 'Em Progresso'))  # 5 criaturas
+                """, (self.current_player_id, 2, 0, 5, 'Em Progresso'))  
                 
                 self.connection.commit()
             
@@ -494,7 +568,6 @@ class LordOfTheRingsMUD:
         try:
             cursor = self.connection.cursor()
             
-            # Buscar dados da quest
             cursor.execute("""
                 SELECT nome, recompensa_xp, recompensa_item FROM quest WHERE id_quest = %s
             """, (quest_id,))
@@ -503,7 +576,6 @@ class LordOfTheRingsMUD:
             if quest_data:
                 nome, xp_reward, item_reward = quest_data
                 
-                # Marcar como completada
                 cursor.execute("""
                     UPDATE quest_progresso 
                     SET status = 'Completada'
@@ -512,11 +584,9 @@ class LordOfTheRingsMUD:
                 
                 print(f"\n🎉 QUEST COMPLETADA: {nome}")
                 
-                # Dar XP
                 if xp_reward > 0:
                     print(f"✨ Você ganhou {xp_reward} XP!")
                     
-                    # Level up simples (500 XP por level)
                     current_level = self.get_player_stats()['level']
                     new_level = current_level + (xp_reward // 500)
                     
@@ -526,7 +596,6 @@ class LordOfTheRingsMUD:
                         """, (new_level, self.current_player_id))
                         print(f"🆙 Você subiu para o nível {new_level}!")
                 
-                # Dar item de recompensa
                 if item_reward:
                     cursor.execute("""
                         SELECT id_inventario FROM inventario WHERE id_personagem = %s
@@ -540,19 +609,18 @@ class LordOfTheRingsMUD:
                     
                     print(f"🎁 Você recebeu: {item_reward}")
                 
-                # Iniciar próxima quest automaticamente se for principal
-                if quest_id == 1:  # Após quest do Palantír, iniciar explorador
+                if quest_id == 1:  
                     cursor.execute("""
                         INSERT INTO quest_progresso (id_jogador, id_quest, progresso_atual, progresso_maximo, status)
                         VALUES (%s, %s, %s, %s, %s)
                         ON CONFLICT (id_jogador, id_quest) DO NOTHING
-                    """, (self.current_player_id, 3, 0, 4, 'Em Progresso'))  # 4 cenários
-                elif quest_id == 2:  # Após quest de defesa, iniciar caçador de goblins
+                    """, (self.current_player_id, 3, 0, 4, 'Em Progresso')) 
+                elif quest_id == 2:  
                     cursor.execute("""
                         INSERT INTO quest_progresso (id_jogador, id_quest, progresso_atual, progresso_maximo, status)
                         VALUES (%s, %s, %s, %s, %s)
                         ON CONFLICT (id_jogador, id_quest) DO NOTHING
-                    """, (self.current_player_id, 4, 0, 3, 'Em Progresso'))  # 3 goblins
+                    """, (self.current_player_id, 4, 0, 3, 'Em Progresso'))  
                 
                 self.connection.commit()
             
@@ -605,6 +673,9 @@ class LordOfTheRingsMUD:
             # Atualizar quest de exploração
             self.update_quest_progress('explore', 1)
             
+            # Regenerar um pouco de mana ao explorar
+            self.regenerate_mana(5)
+            
             cursor.close()
             return True
             
@@ -614,7 +685,7 @@ class LordOfTheRingsMUD:
             return False
 
     def battle_creature(self, creature_id: int, creature_name: str, creature_hp: int, creature_xp: int):
-        """Sistema de combate melhorado"""
+        """Sistema de combate melhorado - ATUALIZADO para quests dinâmicas"""
         try:
             player_stats = self.get_player_stats()
             if not player_stats:
@@ -622,6 +693,7 @@ class LordOfTheRingsMUD:
                 
             player_attack = player_stats['ataque']
             player_hp = player_stats['vida']
+            player_mana = player_stats['mana']
             
             print(f"\n⚔️ **BATALHA ÉPICA** ⚔️")
             print(f"🧙‍♂️ {player_stats['nome']} VS {creature_name} 👹")
@@ -631,10 +703,10 @@ class LordOfTheRingsMUD:
             turn = 1
             while creature_hp > 0 and player_hp > 0:
                 print(f"\n🔄 Turno {turn}")
-                print(f"👤 Sua vida: {player_hp} | 👹 Vida do {creature_name}: {creature_hp}")
+                print(f"👤 Sua vida: {player_hp} | 💙 Mana: {player_mana} | 👹 Vida do {creature_name}: {creature_hp}")
                 
                 print("\n1. ⚔️ Ataque normal")
-                print("2. 🔥 Ataque elemental")
+                print("2. 🔥 Ataque elemental (Custo: 15 mana)")
                 print("3. 🛡️ Defender")
                 print("4. 🏃 Fugir")
                 
@@ -650,11 +722,19 @@ class LordOfTheRingsMUD:
                     
                 elif choice == "2":
                     # Ataque elemental baseado na classe
-                    elemental_bonus = max(player_stats['fogo'], player_stats['agua'], 
-                                        player_stats['terra'], player_stats['ar'])
-                    damage = random.randint(player_attack, player_attack + elemental_bonus)
-                    creature_hp -= damage
-                    print(f"🔥 Ataque elemental! {damage} de dano!")
+                    if player_mana >= 15:
+                        elemental_bonus = max(player_stats['fogo'], player_stats['agua'], 
+                                            player_stats['terra'], player_stats['ar'])
+                        damage = random.randint(player_attack, player_attack + elemental_bonus)
+                        creature_hp -= damage
+                        player_mana -= 15
+                        print(f"🔥 Ataque elemental! {damage} de dano! (-15 mana)")
+                    else:
+                        print("❌ Mana insuficiente para ataque elemental!")
+                        print("⚔️ Usando ataque normal...")
+                        damage = random.randint(player_attack - 10, player_attack + 10)
+                        creature_hp -= damage
+                        print(f"⚔️ Você ataca causando {damage} de dano!")
                     
                 elif choice == "3":
                     # Defender
@@ -683,13 +763,16 @@ class LordOfTheRingsMUD:
             # Resultado da batalha
             victory = creature_hp <= 0
             
+            # Atualizar vida e mana no banco de dados
+            self.update_player_status(vida_atual=player_hp, mana_atual=player_mana)
+            
             # Registrar no banco
             cursor = self.connection.cursor()
             cursor.execute("""
                 INSERT INTO batalha (Dano_causado, Controle_Dano, Ambiente_batalha, Dano_sofrido)
                 VALUES (%s, %s, %s, %s)
             """, (player_attack, 100, f"Cenário {self.current_scenario_id}", 
-                  player_stats['vida'] - player_hp))
+                  player_stats['vida_maxima'] - player_hp))
             
             cursor.execute("""
                 INSERT INTO confronta (vencedor, criatura_id, jogador_id)
@@ -703,8 +786,18 @@ class LordOfTheRingsMUD:
                 # Marcar criatura como derrotada
                 self.mark_creature_defeated(creature_id)
                 
-                # Atualizar quest de combate
-                self.update_quest_progress('creature_kill', 1)
+                # Atualizar quest de combate baseado no cenário atual
+                if self.current_scenario_id == 1:  # Condado
+                    self.update_quest_progress('creature_kill_condado', 1)
+                elif self.current_scenario_id == 4:  # Osgiliath
+                    self.update_quest_progress('creature_kill_osgiliath', 1)
+                elif self.current_scenario_id == 7:  # Rohan
+                    self.update_quest_progress('creature_kill_rohan', 1)
+                elif self.current_scenario_id == 2:  # Floresta
+                    self.update_quest_progress('creature_kill_floresta', 1)
+                else:
+                    # Quest genérica para outros cenários
+                    self.update_quest_progress('creature_kill', 1)
                 
                 # Level up simples
                 current_level = player_stats['level']
@@ -806,7 +899,7 @@ class LordOfTheRingsMUD:
                 time.sleep(1)
 
     def buy_menu(self, merchant_name: str, available_items: List[str]):
-        """Menu de compra"""
+        """Menu de compra aprimorado"""
         item_prices = {
             "Poção de Cura": 3,
             "Adaga de Ferro": 5,
@@ -816,20 +909,30 @@ class LordOfTheRingsMUD:
             "Poção de Mana": 3,
             "Anel de Proteção": 15,
             "Poções de cura": 3,
-            "Adagas de ferro": 5
+            "Adagas de ferro": 5,
+            "Cajado Mágico": 12,
+            "Arco Élfico": 9,
+            "Bastão Sagrado": 11,
+            "Capacete de Ferro": 6,
+            "Botas de Couro": 3,
+            "Pergaminho Antigo": 2,
+            "Runa de Proteção": 7
         }
         
         print(f"\n🛍️ {merchant_name}: \"Veja meus melhores itens:\"")
-        print("-" * 40)
+        print("-" * 50)
         
         player_money = self.get_player_money()
+        print(f"💰 Suas moedas: {player_money}")
+        print()
         
         for i, item in enumerate(available_items, 1):
             price = item_prices.get(item, 3)
             affordable = "✅" if player_money >= price else "❌"
-            print(f"{i}. {affordable} {item} - {price} moedas")
+            print(f"{i:2d}. {affordable} {item} - {price} moedas")
         
-        print("0. Voltar")
+        print("\n0. Voltar")
+        print("-" * 50)
         
         try:
             choice = int(input("\n➤ Qual item comprar? ").strip())
@@ -840,9 +943,18 @@ class LordOfTheRingsMUD:
                 price = item_prices.get(item, 3)
                 
                 if player_money >= price:
-                    self.purchase_item(item, price)
-                    print(f"✅ Você comprou {item} por {price} moedas!")
-                    self.update_quest_progress('trade', 1)
+                    # Confirmar compra
+                    print(f"\n💰 {merchant_name}: \"{item} custa {price} moedas.\"")
+                    confirm = input("➤ Confirmar compra? (s/n): ").strip().lower()
+                    
+                    if confirm in ['s', 'sim', 'y', 'yes']:
+                        if self.purchase_item(item, price):
+                            print(f"✅ Você comprou {item} por {price} moedas!")
+                            self.update_quest_progress('trade', 1)
+                        else:
+                            print("❌ Erro na compra!")
+                    else:
+                        print("❌ Compra cancelada.")
                 else:
                     print("❌ Dinheiro insuficiente!")
             else:
@@ -853,65 +965,185 @@ class LordOfTheRingsMUD:
         time.sleep(2)
 
     def sell_menu(self, merchant_name: str, wanted_items: List[str]):
-        """Menu de venda"""
+        """Menu de venda aprimorado - MELHORADO"""
         try:
             cursor = self.connection.cursor()
-            
-            # Buscar itens do jogador (exceto moedas)
+            # Buscar itens do jogador (exceto moedas) com quantidade
             cursor.execute("""
-                SELECT i.id_item, i.nome FROM item i
+                SELECT MIN(i.id_item) as id_item, i.nome, COUNT(*) as quantidade
+                FROM item i
                 JOIN inventario inv ON i.id_inventario = inv.id_inventario
                 WHERE inv.id_personagem = %s AND i.nome NOT LIKE '%Moeda%'
+                GROUP BY i.nome
                 ORDER BY i.nome
             """, (self.current_player_id,))
-            
             player_items = cursor.fetchall()
             cursor.close()
-            
+
             if not player_items:
                 print("🎒 Você não tem itens para vender.")
-                time.sleep(2)
+                print("💡 Dica: Explore áreas para encontrar itens valiosos!")
+                input("⏸️ Pressione Enter para voltar...")
                 return
             
-            print(f"\n💰 {merchant_name}: \"Estou interessado nestes itens:\"")
-            print("-" * 40)
+            print(f"\n💰 {merchant_name}: \"Deixe-me ver o que você tem para vender...\"")
+            print("-" * 50)
+            
+            # Mostrar dinheiro atual
+            player_money = self.get_player_money()
+            print(f"💰 Suas moedas atuais: {player_money}")
+            print()
+            
+            # Sistema de preços baseado no tipo de item - MELHORADO
+            item_prices = {
+                # Armas
+                "Espada": 8, "Adaga": 5, "Arco": 7, "Cajado": 6, "Bastão": 6, "Machado": 9,
+                # Armaduras
+                "Armadura": 10, "Escudo": 4, "Capacete": 3, "Botas": 2,
+                # Poções
+                "Poção": 4, "Poções": 4,
+                # Materiais
+                "Ferro": 3, "Madeira": 2, "Cristal": 5, "Gema": 6, "Pedra": 1, "Ouro": 8, "Prata": 4,
+                # Itens especiais
+                "Fragmento": 15, "Anel": 12, "Pergaminho": 3, "Runa": 8, "Palantír": 50,
+                # Comida
+                "Pão": 1, "Erva": 2, "Pele": 3, "Osso": 2, "Lemba": 2,
+                # Itens únicos
+                "Élfico": 10, "Sagrado": 12, "Mágico": 15, "Antigo": 8
+            }
             
             sellable_items = []
-            for item_id, nome in player_items:
-                # O comerciante aceita qualquer item por um preço básico
-                sellable_items.append((item_id, nome))
+            for row in player_items:
+                if row is None or len(row) < 3:
+                    print(f"[DEBUG] Linha inesperada em player_items: {row}")
+                    continue
+                item_id, nome, quantidade = row
+                if not nome or quantidade is None:
+                    print(f"[DEBUG] Dados incompletos: {row}")
+                    continue
+                # Calcular preço baseado no tipo de item
+                base_price = 2  # Preço padrão
+                for item_type, price in item_prices.items():
+                    if item_type.lower() in nome.lower():
+                        base_price = price
+                        break
+                # Ajustar preço baseado na raridade e especificidade
+                if "Fragmento do Palantír" in nome:
+                    base_price = 50  # Fragmentos do Palantír são extremamente valiosos
+                elif "Palantír" in nome:
+                    base_price = 100  # Palantír completo é inestimável
+                elif "Fragmento" in nome:
+                    base_price = 20  # Outros fragmentos são muito valiosos
+                elif "Anel" in nome and ("Proteção" in nome or "Poder" in nome):
+                    base_price = 25  # Anéis mágicos são valiosos
+                elif "Élfico" in nome:
+                    base_price = 12  # Itens élficos são valiosos
+                elif "Sagrado" in nome or "Mágico" in nome:
+                    base_price = 15  # Itens mágicos são valiosos
+                sellable_items.append((item_id, nome, quantidade, base_price))
             
             if not sellable_items:
                 print("❌ Você não tem nada que eu queira comprar.")
+                print("💡 Dica: Procure por itens mais valiosos em diferentes regiões!")
                 time.sleep(2)
                 return
             
-            for i, (item_id, nome) in enumerate(sellable_items[:10], 1):  # Mostrar apenas 10 itens
-                price = random.randint(1, 3)  # Preço de venda baixo
-                print(f"{i}. {nome} - {price} moedas")
+            print("📋 **SEUS ITENS DISPONÍVEIS PARA VENDA:**")
+            print("=" * 60)
             
-            print("0. Voltar")
+            for i, (item_id, nome, quantidade, base_price) in enumerate(sellable_items, 1):
+                if quantidade > 1:
+                    total_value = base_price * quantidade
+                    print(f"{i:2d}. {nome} x{quantidade} - {base_price} moedas cada (Total: {total_value})")
+                else:
+                    print(f"{i:2d}. {nome} - {base_price} moedas")
+            
+            print("\n0. Voltar")
+            print("99. 📋 Ver inventário completo")
+            print("88. 💰 Ver valor total dos itens")
+            print("77. 🛒 Vender todos os itens")
+            print("-" * 60)
             
             try:
-                choice = int(input("\n➤ Qual item vender? ").strip())
-                if choice == 0:
+                choice = input("\n➤ Qual item vender? ").strip()
+                if choice == "0":
                     return
-                elif 1 <= choice <= len(sellable_items):
-                    item_id, nome = sellable_items[choice - 1]
-                    price = random.randint(1, 3)
-                    
-                    self.sell_item(item_id, price)
-                    print(f"✅ Você vendeu {nome} por {price} moedas!")
-                    self.update_quest_progress('trade', 1)
+                elif choice == "99":
+                    # Mostrar inventário completo
+                    self.clear_screen()
+                    print("📋 **INVENTÁRIO COMPLETO**")
+                    print("=" * 50)
+                    self.show_inventory()
+                    input("\n⏸️ Pressione Enter para voltar...")
+                    return
+                elif choice == "88":
+                    # Calcular valor total
+                    total_value = sum(base_price * quantidade for _, _, quantidade, base_price in sellable_items)
+                    print(f"\n💰 **VALOR TOTAL DOS ITENS:** {total_value} moedas")
+                    print("💡 Dica: Vender todos os itens renderia uma boa quantia!")
+                    input("⏸️ Pressione Enter para continuar...")
+                    return
+                elif choice == "77":
+                    # Vender todos os itens
+                    total_value = sum(base_price * quantidade for _, _, quantidade, base_price in sellable_items)
+                    total_items = sum(quantidade for _, _, quantidade, _ in sellable_items)
+                    print(f"\n💰 {merchant_name}: \"Vou pagar {total_value} moedas por todos os seus {total_items} itens.\"")
+                    print(f"💡 Após a venda, você terá {player_money + total_value} moedas.")
+                    confirm = input("➤ Confirmar venda de TODOS os itens? (s/n): ").strip().lower()
+                    if confirm in ['s', 'sim', 'y', 'yes']:
+                        if self.sell_all_items():
+                            print(f"✅ Você vendeu todos os itens por {total_value} moedas!")
+                            print(f"💰 Agora você tem {self.get_player_money()} moedas!")
+                            self.update_quest_progress('trade', 1)
+                        else:
+                            print("❌ Erro na venda em massa!")
+                    else:
+                        print("❌ Venda cancelada.")
+                elif choice.isdigit():
+                    idx = int(choice)
+                    if 1 <= idx <= len(sellable_items):
+                        item_id, nome, quantidade, base_price = sellable_items[idx - 1]
+                        if quantidade > 1:
+                            print(f"\n💰 {merchant_name}: \"Você tem {quantidade} {nome}. Quantos quer vender?\"")
+                            print(f"💡 Preço por unidade: {base_price} moedas")
+                            try:
+                                sell_quantity = int(input(f"➤ Quantidade (1-{quantidade}): ").strip())
+                                if sell_quantity < 1 or sell_quantity > quantidade:
+                                    print("❌ Quantidade inválida!")
+                                    time.sleep(2)
+                                    return
+                            except ValueError:
+                                print("❌ Digite um número válido!")
+                                time.sleep(2)
+                                return
+                        else:
+                            sell_quantity = 1
+                        total_price = base_price * sell_quantity
+                        print(f"\n💰 {merchant_name}: \"Vou pagar {total_price} moedas por {sell_quantity} {nome}.\"")
+                        print(f"💡 Após a venda, você terá {player_money + total_price} moedas.")
+                        confirm = input("➤ Confirmar venda? (s/n): ").strip().lower()
+                        if confirm in ['s', 'sim', 'y', 'yes']:
+                            if self.sell_item_quantity(item_id, nome, sell_quantity, total_price):
+                                print(f"✅ Você vendeu {sell_quantity} {nome} por {total_price} moedas!")
+                                print(f"💰 Agora você tem {self.get_player_money()} moedas!")
+                                self.update_quest_progress('trade', 1)
+                            else:
+                                print("❌ Erro na venda!")
+                        else:
+                            print("❌ Venda cancelada.")
+                    else:
+                        print("❌ Opção inválida! Escolha um número da lista.")
+                        time.sleep(2)
                 else:
-                    print("❓ Opção inválida!")
-            except ValueError:
-                print("❓ Digite um número válido!")
-            
-            time.sleep(2)
+                    print("❌ Opção inválida! Digite um número da lista ou um comando especial.")
+                    time.sleep(2)
+            except Exception as e:
+                print(f"❌ Erro inesperado no menu de venda: {e}")
+                time.sleep(2)
             
         except Exception as e:
             print(f"❌ Erro no menu de venda: {e}")
+            time.sleep(2)
 
     def purchase_item(self, item_name: str, price: int):
         """Compra um item"""
@@ -926,7 +1158,7 @@ class LordOfTheRingsMUD:
             if not inv_row:
                 print("❌ Inventário não encontrado para o jogador!")
                 cursor.close()
-                return
+                return False
             inv_id = inv_row[0]
 
             # Verificar se há moedas suficientes
@@ -934,11 +1166,10 @@ class LordOfTheRingsMUD:
                 SELECT COUNT(*) FROM item WHERE id_inventario = %s AND nome = 'Moeda de Ouro'
             """, (inv_id,))
             moedas = cursor.fetchone()[0]
-            print(f"Moedas disponíveis antes da compra: {moedas}")
             if moedas < price:
                 print("❌ Dinheiro insuficiente para a compra!")
                 cursor.close()
-                return
+                return False
 
             # Remover moedas (uma por vez até atingir o preço)
             for _ in range(price):
@@ -955,28 +1186,66 @@ class LordOfTheRingsMUD:
             """, (item_name, 1.0, 100, inv_id))
 
             self.connection.commit()
-            print(f"Compra realizada: {item_name} por {price} moedas")
             cursor.close()
+            return True
 
         except Exception as e:
             print(f"❌ Erro na compra: {e}")
             self.connection.rollback()
+            return False
 
     def sell_item(self, item_id: int, price: int):
-        """Vende um item"""
+        """Vende um item (método legado)"""
+        return self.sell_item_quantity(item_id, "Item", 1, price)
+
+    def sell_item_quantity(self, item_id: int, item_name: str, quantity: int, total_price: int):
+        """Vende uma quantidade específica de itens - MELHORADA"""
         try:
             cursor = self.connection.cursor()
             
-            # Remover item
-            cursor.execute("DELETE FROM item WHERE id_item = %s", (item_id,))
-            
-            # Adicionar moedas
+            # Buscar o inventário do jogador
             cursor.execute("""
                 SELECT id_inventario FROM inventario WHERE id_personagem = %s
             """, (self.current_player_id,))
+            inv_result = cursor.fetchone()
+            if not inv_result:
+                print("❌ Inventário não encontrado!")
+                cursor.close()
+                return False
+            inv_id = inv_result[0]
+
+            # Verificar se o jogador tem a quantidade suficiente do item
+            cursor.execute("""
+                SELECT COUNT(*) FROM item
+                WHERE id_inventario = %s AND nome = %s
+            """, (inv_id, item_name))
+            available_quantity = cursor.fetchone()[0]
             
-            inv_id = cursor.fetchone()[0]
-            for _ in range(price):
+            if available_quantity < quantity:
+                print(f"❌ Você não tem {quantity} {item_name} para vender! (Disponível: {available_quantity})")
+                cursor.close()
+                return False
+
+            # Remover a quantidade especificada de itens pelo nome
+            # Usar uma abordagem mais segura com LIMIT
+            cursor.execute("""
+                DELETE FROM item
+                WHERE id_item IN (
+                    SELECT id_item FROM item 
+                    WHERE id_inventario = %s AND nome = %s 
+                    LIMIT %s
+                )
+            """, (inv_id, item_name, quantity))
+            
+            # Verificar se a remoção foi bem-sucedida
+            if cursor.rowcount != quantity:
+                print(f"❌ Erro: Esperava remover {quantity} itens, mas removeu {cursor.rowcount}")
+                self.connection.rollback()
+                cursor.close()
+                return False
+            
+            # Adicionar moedas ao inventário de forma mais eficiente
+            for _ in range(total_price):
                 cursor.execute("""
                     INSERT INTO item (nome, peso, durabilidade, id_inventario)
                     VALUES (%s, %s, %s, %s)
@@ -985,9 +1254,16 @@ class LordOfTheRingsMUD:
             self.connection.commit()
             cursor.close()
             
+            # Verificar se a transação foi bem-sucedida
+            new_money = self.get_player_money()
+            print(f"💰 Transação concluída! Moedas recebidas: {total_price}")
+            
+            return True
+            
         except Exception as e:
             print(f"❌ Erro na venda: {e}")
             self.connection.rollback()
+            return False
 
     def interact_with_npc(self, npc_id: int, npc_name: str, npc_type: str):
         """Interação aprimorada com NPCs"""
@@ -1097,8 +1373,89 @@ class LordOfTheRingsMUD:
         except Exception as e:
             print(f"❌ Erro na interação com guia: {e}")
 
+    def create_dynamic_quest(self, quest_name: str, quest_description: str, npc_name: str, location: str) -> int:
+        """Cria uma quest dinâmica baseada na missão de um NPC"""
+        try:
+            cursor = self.connection.cursor()
+            
+            # Verificar se a quest já existe
+            cursor.execute("""
+                SELECT id_quest FROM quest WHERE nome = %s AND quest_dinamica = TRUE
+            """, (quest_name,))
+            
+            existing_quest = cursor.fetchone()
+            if existing_quest:
+                cursor.close()
+                return existing_quest[0]
+            
+            # Criar nova quest dinâmica
+            cursor.execute("""
+                INSERT INTO quest (nome, descricao, recompensa_xp, recompensa_item, pre_requisito_level, tipo_quest, quest_dinamica)
+                VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id_quest
+            """, (
+                quest_name,
+                quest_description,
+                150,  # XP base para quests dinâmicas
+                'Recompensa Especial',  # Item base
+                1,  # Level mínimo
+                'NPC',  # Tipo especial para quests de NPC
+                True  # Marca como quest dinâmica
+            ))
+            
+            quest_id = cursor.fetchone()[0]
+            self.connection.commit()
+            cursor.close()
+            
+            return quest_id
+            
+        except Exception as e:
+            print(f"❌ Erro ao criar quest dinâmica: {e}")
+            self.connection.rollback()
+            return None
+
+    def get_quest_objectives(self, quest_name: str) -> Dict[str, Any]:
+        """Retorna objetivos específicos para diferentes tipos de quests"""
+        objectives = {
+            "Ajude a proteger o Condado dos perigos que se aproximam": {
+                "objetivo": "Derrote 2 criaturas hostis no Condado",
+                "progresso_maximo": 2,
+                "tipo_progresso": "creature_kill_condado",
+                "recompensa_xp": 120,
+                "recompensa_item": "Escudo do Condado"
+            },
+            "Gondor precisa de heróis para defender Osgiliath": {
+                "objetivo": "Derrote 3 inimigos nas Ruínas de Osgiliath",
+                "progresso_maximo": 3,
+                "tipo_progresso": "creature_kill_osgiliath",
+                "recompensa_xp": 200,
+                "recompensa_item": "Espada de Gondor"
+            },
+            "Rohan enfrenta ameaças das planícies": {
+                "objetivo": "Derrote 2 criaturas nas Colinas do Vento",
+                "progresso_maximo": 2,
+                "tipo_progresso": "creature_kill_rohan",
+                "recompensa_xp": 180,
+                "recompensa_item": "Lança de Rohan"
+            },
+            "A floresta anciã precisa de proteção": {
+                "objetivo": "Derrote 2 criaturas na Floresta Sombria",
+                "progresso_maximo": 2,
+                "tipo_progresso": "creature_kill_floresta",
+                "recompensa_xp": 160,
+                "recompensa_item": "Bastão da Floresta"
+            }
+        }
+        
+        return objectives.get(quest_name, {
+            "objetivo": "Complete a missão para receber recompensas",
+            "progresso_maximo": 1,
+            "tipo_progresso": "generic_quest",
+            "recompensa_xp": 100,
+            "recompensa_item": "Recompensa Especial"
+        })
+
     def interact_with_quest_npc(self, cursor, npc_id: int, npc_name: str):
-        """Interação específica com NPCs de Quest"""
+        """Interação específica com NPCs de Quest - MELHORADA"""
         try:
             cursor.execute("""
                 SELECT n.quest, n.localizacao FROM npc n WHERE n.ID_personagem = %s
@@ -1109,26 +1466,67 @@ class LordOfTheRingsMUD:
                 quest_desc, localizacao = result
                 
                 if quest_desc:
-                    print(f"\n📜 **MISSÃO ESPECIAL**")
-                    print(f"🎯 {quest_desc}")
-                    print(f"📍 Local: {localizacao}")
+                    # Obter objetivos da missão
+                    objetivos = self.get_quest_objectives(quest_desc)
                     
-                    print("\n1. ✅ Aceitar informações")
+                    print(f"\n📜 **MISSÃO ESPECIAL DE {npc_name.upper()}**")
+                    print("="*60)
+                    print(f"🎯 **MISSÃO:** {quest_desc}")
+                    print(f"📍 **LOCAL:** {localizacao}")
+                    print(f"📋 **OBJETIVO:** {objetivos['objetivo']}")
+                    print(f"💰 **RECOMPENSA:** {objetivos['recompensa_xp']} XP + {objetivos['recompensa_item']}")
+                    print("="*60)
+                    
+                    print("\n1. ✅ Aceitar missão")
                     print("2. ❓ Mais detalhes")
-                    print("3. 🚶 Ir embora")
+                    print("3. 🚶 Recusar")
                     
                     choice = input("\n➤ Sua decisão: ").strip()
                     
                     if choice == "1":
                         print(f"\n{npc_name}: \"Excelente! A Terra Média precisa de heróis como você!\"")
-                        print("📝 Informações valiosas obtidas!")
+                        print("📝 Missão aceita com sucesso!")
+
+                        # Criar ou buscar quest dinâmica
+                        quest_id = self.create_dynamic_quest(quest_desc, quest_desc, npc_name, localizacao)
                         
+                        if quest_id:
+                            # Verificar se já não está ativa
+                            cursor.execute("""
+                                SELECT COUNT(*) FROM quest_progresso WHERE id_jogador = %s AND id_quest = %s
+                            """, (self.current_player_id, quest_id))
+                            
+                            if cursor.fetchone()[0] == 0:
+                                # Iniciar a quest
+                                cursor.execute("""
+                                    INSERT INTO quest_progresso (id_jogador, id_quest, progresso_atual, progresso_maximo, status)
+                                    VALUES (%s, %s, %s, %s, %s)
+                                """, (self.current_player_id, quest_id, 0, objetivos['progresso_maximo'], 'Em Progresso'))
+                                
+                                # Atualizar recompensas da quest
+                                cursor.execute("""
+                                    UPDATE quest SET recompensa_xp = %s, recompensa_item = %s 
+                                    WHERE id_quest = %s
+                                """, (objetivos['recompensa_xp'], objetivos['recompensa_item'], quest_id))
+                                
+                                self.connection.commit()
+                                print(f"🎉 **MISSÃO ATIVADA:** {quest_desc}")
+                                print(f"📊 Progresso: 0/{objetivos['progresso_maximo']}")
+                                print(f"🎯 Objetivo: {objetivos['objetivo']}")
+                            else:
+                                print("⚠️ Você já aceitou esta missão anteriormente!")
+                        else:
+                            print("❌ Erro ao criar missão!")
+                    
                     elif choice == "2":
-                        print(f"\n{npc_name}: \"Esta missão testará sua coragem...\"")
-                        print("\"Prepare-se bem antes de partir!\"")
+                        print(f"\n{npc_name}: \"Esta missão testará sua coragem e habilidade...\"")
+                        print(f"\"Você precisará enfrentar os perigos em {localizacao}.\"")
+                        print(f"\"{objetivos['objetivo']}\"")
+                        print("\n\"Prepare-se bem antes de partir, herói!\"")
                         
                     elif choice == "3":
-                        print(f"\n{npc_name}: \"Pense na minha proposta. O destino pode depender disso.\"")
+                        print(f"\n{npc_name}: \"Entendo. Talvez outro herói aceite este desafio...\"")
+                        print("\"Pense na minha proposta. O destino pode depender disso.\"")
                 else:
                     print(f"\n{npc_name}: \"Por enquanto não tenho tarefas para você.\"")
                     print("\"Mas continue sua jornada, herói!\"")
@@ -1245,36 +1643,52 @@ class LordOfTheRingsMUD:
             
             cursor.close()
             
+            # Regenerar mana ao explorar
+            self.regenerate_mana(3)
+            
         except Exception as e:
             print(f"❌ Erro ao explorar área: {e}")
             time.sleep(2)
 
     def check_quests(self):
-        """Verifica e exibe quests ativas do jogador"""
+        """Verifica e exibe quests ativas do jogador - MELHORADA"""
         try:
             cursor = self.connection.cursor()
             cursor.execute("""
-                SELECT q.nome, q.descricao, qp.progresso_atual, qp.progresso_maximo, qp.status
+                SELECT q.nome, q.descricao, qp.progresso_atual, qp.progresso_maximo, qp.status, q.quest_dinamica
                 FROM quest_progresso qp
                 JOIN quest q ON qp.id_quest = q.id_quest
                 WHERE qp.id_jogador = %s AND qp.status = 'Em Progresso'
-                ORDER BY q.tipo_quest, q.nome
+                ORDER BY q.quest_dinamica DESC, q.tipo_quest, q.nome
             """, (self.current_player_id,))
             
             quests = cursor.fetchall()
             
             if quests:
                 print("\n📜 **MISSÕES ATIVAS**")
-                print("-" * 50)
+                print("="*60)
+                
                 for quest in quests:
-                    nome, desc, atual, maximo, status = quest
+                    nome, desc, atual, maximo, status, dinamica = quest
                     progresso_bar = "█" * atual + "░" * (maximo - atual)
-                    print(f"🎯 {nome}")
-                    print(f"   {desc}")
-                    print(f"   Progresso: [{progresso_bar}] {atual}/{maximo}")
+                    
+                    if dinamica:
+                        # Para quests dinâmicas, mostrar objetivos específicos
+                        objetivos = self.get_quest_objectives(nome)
+                        print(f"🎯 **{nome}** (Missão de NPC)")
+                        print(f"   📋 Objetivo: {objetivos['objetivo']}")
+                        print(f"   📊 Progresso: [{progresso_bar}] {atual}/{maximo}")
+                        print(f"   💰 Recompensa: {objetivos['recompensa_xp']} XP + {objetivos['recompensa_item']}")
+                    else:
+                        # Para quests estáticas
+                        print(f"🎯 **{nome}**")
+                        print(f"   📝 {desc}")
+                        print(f"   📊 Progresso: [{progresso_bar}] {atual}/{maximo}")
+                    
                     print()
             else:
                 print("\n📜 Nenhuma missão ativa no momento.")
+                print("💡 Dica: Converse com NPCs para receber missões!")
             
             cursor.close()
             
@@ -1760,6 +2174,169 @@ class LordOfTheRingsMUD:
                 
         except Exception as e:
             print(f"❌ Erro ao carregar herói: {e}")
+            return False
+
+    def sell_all_items(self):
+        """Vende todos os itens do jogador (exceto moedas) - NOVA FUNÇÃO"""
+        try:
+            cursor = self.connection.cursor()
+            
+            # Buscar o inventário do jogador
+            cursor.execute("""
+                SELECT id_inventario FROM inventario WHERE id_personagem = %s
+            """, (self.current_player_id,))
+            inv_result = cursor.fetchone()
+            if not inv_result:
+                print("❌ Inventário não encontrado!")
+                cursor.close()
+                return False
+            inv_id = inv_result[0]
+
+            # Contar itens para venda (exceto moedas)
+            cursor.execute("""
+                SELECT COUNT(*) FROM item
+                WHERE id_inventario = %s AND nome NOT LIKE '%Moeda%'
+            """, (inv_id,))
+            total_items = cursor.fetchone()[0]
+            
+            if total_items == 0:
+                print("❌ Você não tem itens para vender!")
+                cursor.close()
+                return False
+
+            # Calcular valor total dos itens
+            total_value = 0
+            cursor.execute("""
+                SELECT nome, COUNT(*) as quantidade
+                FROM item
+                WHERE id_inventario = %s AND nome NOT LIKE '%Moeda%'
+                GROUP BY nome
+            """, (inv_id,))
+            
+            items_to_sell = cursor.fetchall()
+            
+            # Sistema de preços (mesmo do sell_menu)
+            item_prices = {
+                "Espada": 8, "Adaga": 5, "Arco": 7, "Cajado": 6, "Bastão": 6, "Machado": 9,
+                "Armadura": 10, "Escudo": 4, "Capacete": 3, "Botas": 2,
+                "Poção": 4, "Poções": 4,
+                "Ferro": 3, "Madeira": 2, "Cristal": 5, "Gema": 6, "Pedra": 1, "Ouro": 8, "Prata": 4,
+                "Fragmento": 15, "Anel": 12, "Pergaminho": 3, "Runa": 8, "Palantír": 50,
+                "Pão": 1, "Erva": 2, "Pele": 3, "Osso": 2, "Lemba": 2,
+                "Élfico": 10, "Sagrado": 12, "Mágico": 15, "Antigo": 8
+            }
+            
+            for nome, quantidade in items_to_sell:
+                base_price = 2  # Preço padrão
+                for item_type, price in item_prices.items():
+                    if item_type.lower() in nome.lower():
+                        base_price = price
+                        break
+                
+                # Ajustar preço baseado na raridade
+                if "Fragmento do Palantír" in nome:
+                    base_price = 50
+                elif "Palantír" in nome:
+                    base_price = 100
+                elif "Fragmento" in nome:
+                    base_price = 20
+                elif "Anel" in nome and ("Proteção" in nome or "Poder" in nome):
+                    base_price = 25
+                elif "Élfico" in nome:
+                    base_price = 12
+                elif "Sagrado" in nome or "Mágico" in nome:
+                    base_price = 15
+                
+                total_value += base_price * quantidade
+
+            # Remover todos os itens (exceto moedas)
+            cursor.execute("""
+                DELETE FROM item
+                WHERE id_inventario = %s AND nome NOT LIKE '%Moeda%'
+            """, (inv_id,))
+            
+            # Adicionar moedas ao inventário
+            for _ in range(total_value):
+                cursor.execute("""
+                    INSERT INTO item (nome, peso, durabilidade, id_inventario)
+                    VALUES (%s, %s, %s, %s)
+                """, ("Moeda de Ouro", 0.01, 999, inv_id))
+            
+            self.connection.commit()
+            cursor.close()
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Erro na venda em massa: {e}")
+            self.connection.rollback()
+            return False
+
+    def sell_item_quantity(self, item_id: int, item_name: str, quantity: int, total_price: int):
+        """Vende uma quantidade específica de itens - MELHORADA"""
+        try:
+            cursor = self.connection.cursor()
+            
+            # Buscar o inventário do jogador
+            cursor.execute("""
+                SELECT id_inventario FROM inventario WHERE id_personagem = %s
+            """, (self.current_player_id,))
+            inv_result = cursor.fetchone()
+            if not inv_result:
+                print("❌ Inventário não encontrado!")
+                cursor.close()
+                return False
+            inv_id = inv_result[0]
+
+            # Verificar se o jogador tem a quantidade suficiente do item
+            cursor.execute("""
+                SELECT COUNT(*) FROM item
+                WHERE id_inventario = %s AND nome = %s
+            """, (inv_id, item_name))
+            available_quantity = cursor.fetchone()[0]
+            
+            if available_quantity < quantity:
+                print(f"❌ Você não tem {quantity} {item_name} para vender! (Disponível: {available_quantity})")
+                cursor.close()
+                return False
+
+            # Remover a quantidade especificada de itens pelo nome
+            # Usar uma abordagem mais segura com LIMIT
+            cursor.execute("""
+                DELETE FROM item
+                WHERE id_item IN (
+                    SELECT id_item FROM item 
+                    WHERE id_inventario = %s AND nome = %s 
+                    LIMIT %s
+                )
+            """, (inv_id, item_name, quantity))
+            
+            # Verificar se a remoção foi bem-sucedida
+            if cursor.rowcount != quantity:
+                print(f"❌ Erro: Esperava remover {quantity} itens, mas removeu {cursor.rowcount}")
+                self.connection.rollback()
+                cursor.close()
+                return False
+            
+            # Adicionar moedas ao inventário de forma mais eficiente
+            for _ in range(total_price):
+                cursor.execute("""
+                    INSERT INTO item (nome, peso, durabilidade, id_inventario)
+                    VALUES (%s, %s, %s, %s)
+                """, ("Moeda de Ouro", 0.01, 999, inv_id))
+            
+            self.connection.commit()
+            cursor.close()
+            
+            # Verificar se a transação foi bem-sucedida
+            new_money = self.get_player_money()
+            print(f"💰 Transação concluída! Moedas recebidas: {total_price}")
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Erro na venda: {e}")
+            self.connection.rollback()
             return False
 
 def main():
