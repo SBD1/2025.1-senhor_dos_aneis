@@ -1,3 +1,4 @@
+
 # 📝 Modificações do Jogo
 
 ## 🔄 **Resumo das Alterações**
@@ -163,3 +164,4 @@ CREATE TABLE cenario_criatura (
 - **Progresso, Eventos e Status:** Registro detalhado das ações e condições do jogador, incluindo vida e mana atuais
 
 ---
+
