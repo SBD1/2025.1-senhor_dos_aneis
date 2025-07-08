@@ -1,12 +1,12 @@
-# 📝 Modificações do Jogo - Sistema de Quests e Personagens
+# 📝 Modificações do Jogo - Sistema de Quests, Personagens
 
 ## 🔄 **Resumo das Alterações**
 
-Foram adicionados novos arquivos e funcionalidades que expandiram significativamente o sistema do jogo, incluindo um sistema completo de quests e personagens temáticos do universo "O Senhor dos Anéis".
+Além do sistema de quests e da expansão dos personagens, foram adicionadas novas tabelas ao banco de dados para aprimorar a associação entre cenários, NPCs e criaturas, bem como para registrar eventos, progresso e o status de vida/mana dos jogadores. Essas mudanças tornam o mundo do jogo mais dinâmico, flexível e auditável.
 
 ---
 
-## 📁 **Novos Arquivos Adicionados**
+## 📁 **Novos Arquivos e Scripts Adicionados**
 
 ### 1. **`quests.sql`** - Sistema de Quests Completo
 
@@ -15,12 +15,14 @@ Foram adicionados novos arquivos e funcionalidades que expandiram significativam
   - `quest` - Definição das missões
   - `quest_progresso` - Acompanhamento do progresso
   - `diario_eventos` - Logs de eventos do jogador
+  - `jogador_status` - Registro de vida e mana atuais do jogador
 
 - **Funcionalidades:**
   - Triggers automáticos para iniciar quests
-  - Stored procedures para completar quests
+  - Stored procedures para completar quests e atualizar progresso
   - Sistema de recompensas (XP e itens)
   - Quests principais e secundárias
+  - Registro de vida e mana atuais do jogador
 
 ### 2. **`popular_cenarios.sql`** - Personagens LOTR
 
@@ -38,10 +40,9 @@ Foram adicionados novos arquivos e funcionalidades que expandiram significativam
 
 ## 🗄️ **Novas Tabelas do Sistema**
 
-### **Tabelas de Quest System:**
+### **Tabelas de Quests, Eventos e Status**
 
 ```sql
--- Tabela principal de quests
 CREATE TABLE quest (
     id_quest SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -54,7 +55,6 @@ CREATE TABLE quest (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Progresso das quests por jogador
 CREATE TABLE quest_progresso (
     id_progresso SERIAL PRIMARY KEY,
     id_jogador INTEGER NOT NULL,
@@ -69,7 +69,6 @@ CREATE TABLE quest_progresso (
     UNIQUE(id_jogador, id_quest)
 );
 
--- Log de eventos do jogador
 CREATE TABLE diario_eventos (
     id_evento SERIAL PRIMARY KEY,
     id_jogador INTEGER NOT NULL,
@@ -80,12 +79,34 @@ CREATE TABLE diario_eventos (
     FOREIGN KEY (id_jogador) REFERENCES jogador(ID_personagem),
     FOREIGN KEY (cenario_id) REFERENCES cenario(id_cenario) ON DELETE SET NULL
 );
+
+-- Tabela correta: Status de Vida e Mana do Jogador
+CREATE TABLE IF NOT EXISTS jogador_status (
+    id_jogador INTEGER PRIMARY KEY,
+    vida_atual INTEGER NOT NULL DEFAULT 100,
+    mana_atual INTEGER NOT NULL DEFAULT 100,
+    FOREIGN KEY (id_jogador) REFERENCES jogador(ID_personagem) ON DELETE CASCADE
+);
+
+-- Inserir registros iniciais para jogadores existentes
+INSERT INTO jogador_status (id_jogador, vida_atual, mana_atual)
+SELECT
+    j.ID_personagem,
+    p.vida_maxima,
+    p.mana_maxima
+FROM jogador j
+JOIN personagem p ON j.ID_personagem = p.ID_personagem
+WHERE NOT EXISTS (
+    SELECT 1 FROM jogador_status js WHERE js.id_jogador = j.ID_personagem
+);
+
+-- Mostrar quantos registros foram criados
+SELECT COUNT(*) as jogadores_com_status FROM jogador_status;
 ```
 
-### **Tabelas de Associação:**
+### **Tabelas de Associação**
 
 ```sql
--- Associação NPCs aos cenários
 CREATE TABLE cenario_npc (
     id_cenario INTEGER,
     id_personagem INTEGER,
@@ -94,7 +115,6 @@ CREATE TABLE cenario_npc (
     FOREIGN KEY (id_personagem) REFERENCES personagem(ID_personagem)
 );
 
--- Associação criaturas aos cenários
 CREATE TABLE cenario_criatura (
     id_cenario INTEGER,
     id_personagem INTEGER,
@@ -106,136 +126,40 @@ CREATE TABLE cenario_criatura (
 
 ---
 
-## 👥 **Novos Personagens LOTR Adicionados**
+## 👥 **Novos Personagens e Criaturas LOTR**
 
-### **NPCs Principais (20 personagens):**
-
-1. **Samwise Gamgee** - Lealdade, Nível 8
-2. **Gandalf, o Cinzento** - Magia Branca, Nível 25
-3. **Legolas** - Arco Élfico, Nível 15
-4. **Gimli** - Machado Anão, Nível 14
-5. **Aragorn** - Espada de Gondor, Nível 20
-6. **Boromir** - Horn of Gondor, Nível 18
-7. **Frodo Baggins** - Portador do Anel, Nível 12
-8. **Merry Brandybuck** - Espada de Rohan, Nível 9
-9. **Pippin Took** - Coragem Hobbit, Nível 8
-10. **Galadriel** - Poder Élfico, Nível 30
-11. **Elrond** - Sabedoria Élfica, Nível 28
-12. **Théoden** - Rei de Rohan, Nível 22
-13. **Éowyn** - Escudo-Maiden, Nível 18
-14. **Faramir** - Capitão de Gondor, Nível 19
-15. **Denethor** - Senescal de Gondor, Nível 25
-16. **Treebeard** - Ent, Nível 35
-17. **Tom Bombadil** - Mestre da Floresta, Nível 50
-18. **Goldberry** - Filha do Rio, Nível 25
-19. **Bilbo Baggins** - Aventureiro Aposentado, Nível 15
-20. **Radagast** - Mago Marrom, Nível 20
-
-### **Criaturas Temáticas (20 criaturas):**
-
-1. **Lobo Sombrio** - Caça Noturna, Nível 5
-2. **Aranha Gigante** - Tecelã de Seda, Nível 8
-3. **Orc Guerreiro** - Combate Brutal, Nível 7
-4. **Troll das Montanhas** - Força Bruta, Nível 12
-5. **Nazgûl** - Terror Sombrio, Nível 20
-6. **Balrog** - Demônio Antigo, Nível 25
-7. **Dragão de Gelo** - Sopro Congelante, Nível 22
-8. **Goblin Arqueiro** - Tiro Preciso, Nível 6
-9. **Warg** - Caçador em Matilha, Nível 6
-10. **Cave Troll** - Destruidor, Nível 10
-11. **Haradrim** - Guerreiro do Sul, Nível 7
-12. **Uruk-hai** - Elite Orc, Nível 9
-13. **Múmia Antiga** - Maldição Eterna, Nível 8
-14. **Esqueleto Guerreiro** - Lâmina Óssea, Nível 5
-15. **Fantasma do Pântano** - Assombração, Nível 6
-16. **Golem de Pedra** - Guardião Antigo, Nível 11
-17. **Basilisco** - Olhar Mortal, Nível 15
-18. **Hidra** - Múltiplas Cabeças, Nível 18
-19. **Minotauro** - Fúria Selvagem, Nível 10
-20. **Quimera** - Bestas Múltiplas, Nível 16
+- **NPCs Principais:** Samwise, Gandalf, Legolas, Gimli, Aragorn, Boromir, Frodo, Merry, Pippin, Galadriel, Elrond, Théoden, Éowyn, Faramir, Denethor, Treebeard, Tom Bombadil, Goldberry, Bilbo, Radagast, entre outros.
+- **Criaturas Temáticas:** Lobo Sombrio, Aranha Gigante, Orc Guerreiro, Troll das Montanhas, Nazgûl, Balrog, Dragão de Gelo, Goblin Arqueiro, Warg, Cave Troll, Haradrim, Uruk-hai, Múmia Antiga, Esqueleto Guerreiro, Fantasma do Pântano, Golem de Pedra, Basilisco, Hidra, Minotauro, Quimera, entre outros.
 
 ---
 
 ## 🗺️ **Distribuição por Cenários**
 
-### **O Condado (Cenário 1):**
-
-- **NPCs:** Samwise, Frodo, Merry, Pippin, Bilbo
-- **Criaturas:** Lobo Sombrio, Goblin Arqueiro
-
-### **Floresta Sombria (Cenário 2):**
-
-- **NPCs:** Legolas, Gimli, Treebeard, Tom Bombadil, Goldberry
-- **Criaturas:** Aranha Gigante, Warg, Basilisco
-
-### **Montanhas Nebulosas (Cenário 3):**
-
-- **NPCs:** Gandalf, Aragorn, Radagast
-- **Criaturas:** Troll das Montanhas, Dragão de Gelo, Golem de Pedra
-
-### **Ruínas de Osgiliath (Cenário 4):**
-
-- **NPCs:** Boromir, Faramir, Denethor
-- **Criaturas:** Nazgûl, Esqueleto Guerreiro, Múmia Antiga
-
-### **Pântano dos Mortos (Cenário 5):**
-
-- **NPCs:** Gollum
-- **Criaturas:** Fantasma do Pântano, Hidra
-
-### **Minas de Moria (Cenário 6):**
-
-- **NPCs:** Gimli
-- **Criaturas:** Balrog, Cave Troll, Goblin Arqueiro
-
-### **Colinas do Vento (Cenário 7):**
-
-- **NPCs:** Théoden, Éowyn
-- **Criaturas:** Orc Guerreiro, Uruk-hai, Warg
-
-### **Porto Cinzento (Cenário 8):**
-
-- **NPCs:** Galadriel, Elrond
-- **Criaturas:** Quimera, Minotauro
+- **O Condado:** Samwise, Frodo, Merry, Pippin, Bilbo, Lobo Sombrio, Goblin Arqueiro
+- **Floresta Sombria:** Legolas, Gimli, Treebeard, Tom Bombadil, Goldberry, Aranha Gigante, Warg, Basilisco
+- **Montanhas Nebulosas:** Gandalf, Aragorn, Radagast, Troll das Montanhas, Dragão de Gelo, Golem de Pedra
+- **Ruínas de Osgiliath:** Boromir, Faramir, Denethor, Nazgûl, Esqueleto Guerreiro, Múmia Antiga
+- **Pântano dos Mortos:** Gollum, Fantasma do Pântano, Hidra
+- **Minas de Moria:** Gimli, Balrog, Cave Troll, Goblin Arqueiro
+- **Colinas do Vento:** Théoden, Éowyn, Orc Guerreiro, Uruk-hai, Warg
+- **Porto Cinzento:** Galadriel, Elrond, Quimera, Minotauro
 
 ---
 
 ## 🎯 **Sistema de Quests Implementado**
 
-### **Quests Principais:**
-
-1. **"A Busca do Palantír"** - Encontrar 3 fragmentos (1000 XP)
-2. **"O Chamado de Minas Tirith"** - Chegar a Minas Tirith (600 XP)
-
-### **Quests Secundárias:**
-
-1. **"Defensor do Condado"** - Derrotar 5 criaturas (500 XP)
-2. **"Explorador da Terra Média"** - Visitar 4 cenários (300 XP)
-3. **"Caçador de Goblins"** - Eliminar 3 Goblins (400 XP)
-
-### **Funcionalidades do Sistema:**
-
-- **Início Automático:** Quests principais iniciam automaticamente
-- **Progresso Dinâmico:** Atualização baseada em ações do jogador
-- **Recompensas:** XP e itens especiais
-- **Logs:** Registro completo de eventos
+- **Quests Principais:** Ex: "A Busca do Palantír", "O Chamado de Minas Tirith"
+- **Quests Secundárias:** Ex: "Defensor do Condado", "Explorador da Terra Média", "Caçador de Goblins"
+- **Funcionalidades:** Início automático, progresso dinâmico, recompensas (XP/itens), logs de eventos
+- **Status de Vida/Mana:** Agora o status de vida e mana do jogador é registrado separadamente, permitindo controle preciso durante batalhas, exploração e uso de habilidades.
 
 ---
 
 ## 🎮 **Impacto no Jogo Python**
 
-### **Modificações no `jogo.py`:**
-
-- **Sistema de Quests Integrado:** Funções para gerenciar quests
-- **NPCs Dinâmicos:** Busca de NPCs por cenário
-- **Criaturas Específicas:** Criaturas únicas por localização
-- **Progresso de Quest:** Atualização automática baseada em ações
-
-### **Novas Funcionalidades:**
-
-- `setup_quest_system()` - Configuração inicial
-- `update_quest_progress()` - Atualização de progresso
-- `complete_quest()` - Completar quests
-- `check_quests()` - Verificar quests disponíveis
+- **Sistema de Quests Integrado:** Funções para gerenciar quests, progresso e recompensas
+- **NPCs e Criaturas Dinâmicos:** Busca e associação por cenário
+- **Novas Tabelas:** Permitem maior flexibilidade e controle sobre o mundo do jogo
+- **Progresso, Eventos e Status:** Registro detalhado das ações e condições do jogador, incluindo vida e mana atuais
 
 ---
