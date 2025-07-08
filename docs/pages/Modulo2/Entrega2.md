@@ -39,7 +39,7 @@
 
 A apresentação da segunda etapa pode ser acessada no link abaixo:
 
-🔗 [Assista ao vídeo](https://www.youtube.com/watch?v=c3PBaiwbirc)
+🔗 [Assista ao vídeo](https://www.youtube.com/watch?v=BWf-5Y_HMe0)
 
 <div style="text-align: center;">
   <p><strong>Entrega 2: </strong> 

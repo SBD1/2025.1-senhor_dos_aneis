@@ -122,4 +122,37 @@ python game\jogo.py
 
 ---
 
+
+---
+
+## Apresentação em Vídeo
+
+A apresentação da segunda etapa pode ser acessada no link abaixo:
+
+🔗 [Assista ao vídeo](https://www.youtube.com/watch?v=7jo3BNOs5Go)
+
+<div style="text-align: center;">
+  <p><strong>Entrega 2: </strong> 
+    <a href="https://www.youtube.com/watch?v=7jo3BNOs5Go">Modelagem</a>
+  </p>
+  <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/7jo3BNOs5Go" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+---
+
+## Tabela de Versionamento
+
+| Versão | Data       | Descrição                                     | Autor(es)                                                             | Revisor(es)                                                          |
+|--------|------------|-----------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------|
+|1.0  |07/07/2025     | Inserção do vídeo | [Felipe das Neves](https://github.com/FelipeFreire-gf)  |Todos os Integrantes|
+
+
+
 > _"Mesmo a menor das pessoas pode mudar o curso do futuro."_ – Galadriel
