@@ -1,4 +1,4 @@
-# 📝 Modificações do Jogo - Sistema de Quests, Personagens
+# 📝 Modificações do Jogo
 
 ## 🔄 **Resumo das Alterações**
 
